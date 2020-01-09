@@ -13,6 +13,13 @@ try {
     require('bootstrap');
 
     require('admin-lte');
+
+    require('@fortawesome/fontawesome-free/js/all.js');
+
+    // require('icheck');
+
+    require('icheck-bootstrap')
+
 } catch (e) {}
 
 /**
