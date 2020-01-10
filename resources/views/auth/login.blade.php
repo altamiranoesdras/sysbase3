@@ -97,6 +97,10 @@
                 <a href="#" class="btn btn-block btn-danger">
                     <i class="fab fa-google-plus mr-2"></i> {{__("Sign in using Google+")}}
                 </a>
+                <a href="{{ route('social_auth', ['driver' => 'github']) }}"
+                    class="btn btn-block btn-default">
+                    <i class="fab fa-github-alt mr-2"></i> {{ __("Sign in using Github") }}
+                </a>
             </div>
             <!-- /.social-auth-links -->
 

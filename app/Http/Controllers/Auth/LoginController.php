@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\DB;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -43,5 +46,59 @@ class LoginController extends Controller
         return "username";
     }
 
+    /**
+     * Redirecciona al usuario al proveedor de autenticación.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function redirectToProvider (string $driver) {
+        return Socialite::driver($driver)->redirect();
+    }
 
+    /**
+     * Se obtiene la informacion de usuario del proveedore de autenticación despues de aceptar.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback(string $driver)
+    {
+        if( ! request()->has('code') || request()->has('denied')) {
+            session()->flash('message', ['danger', __("Inicio de sesión cancelado")]);
+            return redirect('login');
+        }
+
+        $socialUser = Socialite::driver('github')->user();
+
+        $userLocal = User::whereEmail($socialUser->getEmail())->first();
+
+        //si no existe el usuario localmente se debe crear
+        if (is_null($userLocal)){
+
+            try {
+                DB::beginTransaction();
+
+                $userLocal = User::create([
+                    "name" => $socialUser->getName(),
+                    "username" => $socialUser->getNickname(),
+                    "email" => $socialUser->getEmail(),
+                    "provider" => $driver,
+                    "provider_uid" => $socialUser->getId()
+                ]);
+
+            } catch (\Exception $exception) {
+                DB::rollBack();
+
+                throw new \Exception($exception);
+            }
+
+
+            DB::commit();
+
+        }
+
+        auth()->loginUsingId($userLocal->id);
+        return redirect(route('home'));
+
+
+    }
 }
