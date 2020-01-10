@@ -7,18 +7,9 @@ window._ = require('lodash');
  */
 
 try {
-    window.Popper = require('popper.js').default;
+    // window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
 
-    require('bootstrap');
-
-    require('admin-lte');
-
-    require('@fortawesome/fontawesome-free/js/all.js');
-
-    // require('icheck');
-
-    require('icheck-bootstrap')
 
 } catch (e) {}
 

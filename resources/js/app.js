@@ -20,3 +20,29 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+
+require('admin-lte/plugins/jquery-ui/jquery-ui.min');
+
+$.widget.bridge('uibutton', $.ui.button);
+
+require('admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js');
+
+require ('admin-lte/plugins/chart.js/Chart.min.js');
+
+require ('admin-lte/plugins/jqvmap/jquery.vmap.min.js');
+
+require ('admin-lte/plugins/jqvmap/maps/jquery.vmap.usa.js');
+
+require ('admin-lte/plugins/jquery-knob/jquery.knob.min.js');
+
+require ('admin-lte/plugins/daterangepicker/daterangepicker.js');
+
+require ('admin-lte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min');
+
+require('admin-lte/plugins/summernote/summernote-bs4.min.js');
+
+require('admin-lte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js');
+
+require('admin-lte/dist/js/adminlte.min');
+
+require('@fortawesome/fontawesome-free/js/all.js');
