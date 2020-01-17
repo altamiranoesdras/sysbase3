@@ -39,6 +39,6 @@ class User extends Authenticatable
 
     public function getImgAttribute()
     {
-        return is_null($this->avatar) ? asset('img/avatar_none.png') : asset('storage/avatars/'.$this->avatar);
+        return is_null($this->avatar) ? asset('dist/img/avatar5.png') : asset('storage/avatars/'.$this->avatar);
     }
 }

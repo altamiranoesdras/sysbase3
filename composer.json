@@ -13,7 +13,8 @@
         "laravel/framework": "^6.2",
         "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",
-        "laraveles/spanish": "^1.4"
+        "laraveles/spanish": "^1.4",
+        "phpoffice/phpword": "^0.17.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
@@ -43,6 +44,9 @@
         "classmap": [
             "database/seeds",
             "database/factories"
+        ],
+        "files": [
+            "app/helpers.php"
         ]
     },
     "autoload-dev": {
