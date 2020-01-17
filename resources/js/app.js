@@ -45,4 +45,9 @@ require('admin-lte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js'
 
 require('admin-lte/dist/js/adminlte.min');
 
-require('@fortawesome/fontawesome-free/js/all.js');
+
+require('datatables.net-bs4');
+require('datatables.net-buttons-bs4');
+require('datatables.net-fixedheader-bs4');
+require('datatables.net-responsive-bs4');
+require('../../public/vendor/datatables/buttons.server-side');
