@@ -45,7 +45,7 @@ class LoginController extends Controller
 
     public function username()
     {
-        return "username";
+        return env('USER_OR_EMAIL','email');
     }
 
     /**
