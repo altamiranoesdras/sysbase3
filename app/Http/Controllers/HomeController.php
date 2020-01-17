@@ -25,4 +25,14 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function profile()
+    {
+        return view('admin.users.profile');
+    }
+
+    public function contact()
+    {
+        return view('admin.contact');
+    }
 }

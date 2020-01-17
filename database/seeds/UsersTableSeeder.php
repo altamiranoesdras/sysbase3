@@ -13,6 +13,13 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
 
+
+        if (Storage::exists('avatars')){
+
+            Storage::deleteDirectory('avatars');
+        }
+        Storage::makeDirectory('avatars');
+
         //Usuario admin
         factory(User::class,1)->create([
             "username" => "admin",

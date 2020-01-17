@@ -7,7 +7,9 @@ use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\File;
 
 class LoginController extends Controller
 {
@@ -67,9 +69,12 @@ class LoginController extends Controller
             return redirect('login');
         }
 
-        $socialUser = Socialite::driver('github')->user();
+        $socialUser = Socialite::driver($driver)->user();
 
+//        dd($socialUser);
         $userLocal = User::whereEmail($socialUser->getEmail())->first();
+
+
 
         //si no existe el usuario localmente se debe crear
         if (is_null($userLocal)){
@@ -77,12 +82,19 @@ class LoginController extends Controller
             try {
                 DB::beginTransaction();
 
+                $avatar= $driver=='facebook' ? $socialUser->avatar_original : $socialUser->getAvatar();
+
+                $fileName = $socialUser->getId() . ".jpg";
+                $fileContents = file_get_contents($avatar);
+                Storage::put('/avatars/' . $fileName, $fileContents);
+
                 $userLocal = User::create([
                     "name" => $socialUser->getName(),
                     "username" => $socialUser->getNickname(),
                     "email" => $socialUser->getEmail(),
                     "provider" => $driver,
-                    "provider_uid" => $socialUser->getId()
+                    "provider_uid" => $socialUser->getId(),
+                    "avatar" => $fileName
                 ]);
 
             } catch (\Exception $exception) {
@@ -101,4 +113,5 @@ class LoginController extends Controller
 
 
     }
+
 }

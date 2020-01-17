@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ __('Login') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -21,11 +21,35 @@
 
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <style>
+        .background-image {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: url("{{asset('/img/fondo_login.png')}}") no-repeat;
+            background-size: cover;
+            -moz-background-size: cover;
+            -webkit-background-size: cover;
+            -o-background-size: cover;
+            width: 100%;
+            height: 100%;
+            -webkit-filter: blur(5px);
+            -moz-filter: blur(5px);
+            -o-filter: blur(5px);
+            -ms-filter: blur(5px);
+            filter: blur(5px);
+            z-index: -999999;
+        }
+    </style>
+
+
 </head>
 <body class="hold-transition login-page">
+<div class="background-image"></div>
 <div class="login-box">
-    <div class="login-logo">
-        <a href="{{ route('home') }}"><b>{{ config('app.name', 'Laravel') }}</b></a>
+    <div class="login-logo text-dark text-uppercase text-bold"  >
+        <a href="{{ route('home') }}"><b style="color: black !important;">{{ config('app.name', 'Laravel') }}</b></a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
@@ -47,27 +71,33 @@
                         </div>
                     </div>
 
-                    @error('email')
+
+                    @error('username')
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                            <strong>{{ $message }}</strong>
+                        </span>
                     @enderror
+
+
                 </div>
                 <div class="input-group mb-3">
                     <input id="password" type="password"
                            class="form-control @error('password') is-invalid @enderror"
                            name="password" required autocomplete="current-password"
                            placeholder="{{__('Password')}}">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
-                    </div>
+
                     @error('password')
                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                     @enderror
+
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+
 
                 </div>
                 <div class="row">
@@ -91,10 +121,11 @@
 
             <div class="social-auth-links text-center mb-3">
                 <p>- {{__("OR")}} -</p>
-                <a href="#" class="btn btn-block btn-primary">
+                <a href="{{ route('social_auth', ['driver' => 'facebook']) }}" class="btn btn-block btn-primary">
                     <i class="fab fa-facebook mr-2"></i> {{__("Sign in using Facebook")}}
                 </a>
-                <a href="#" class="btn btn-block btn-danger">
+                <a href="{{ route('social_auth', ['driver' => 'google']) }}"
+                   class="btn btn-block btn-danger">
                     <i class="fab fa-google-plus mr-2"></i> {{__("Sign in using Google+")}}
                 </a>
                 <a href="{{ route('social_auth', ['driver' => 'github']) }}"
@@ -109,7 +140,7 @@
 
             <p class="mb-1">
                 @if (Route::has('password.request'))
-                    <a href="{{ route('password.request') }}" class="text-center">
+                    <a class="text-center" href="{{ route('password.request') }}">
                         {{ __('Forgot Your Password?') }}
                     </a>
                 @endif
