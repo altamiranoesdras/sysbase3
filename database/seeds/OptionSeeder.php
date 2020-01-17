@@ -38,8 +38,10 @@ class OptionSeeder extends Seeder
         if (app()->environment()=='local'){
 
             factory(Option::class,10)->create(['ruta' => null])->each(function (Option $option){
-                factory(Option::class,rand(1,5))->create(['ruta' => null,'option_id' => $option->id])->each(function (Option $option){
-                    factory(Option::class,rand(1,5))->create(['option_id' => $option->id]);
+                factory(Option::class,rand(2,5))->create(['ruta' => null,'option_id' => $option->id])->each(function (Option $option){
+                    factory(Option::class,rand(2,5))->create(['option_id' => $option->id])->each(function (Option $option){
+                        factory(Option::class,rand(2,5))->create(['option_id' => $option->id]);
+                    });
                 });
             });
 

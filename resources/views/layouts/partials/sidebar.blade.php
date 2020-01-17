@@ -23,75 +23,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column nav-compact nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
 
-
-{{--                <li class="nav-header">EXAMPLES</li>--}}
-
-                @foreach(App\Models\Option::padres()->get() as $option)
-                    <li class="nav-item {{$option->hasTreeview()}} {{$option->openTreeView()}}">
-                        <a href="{{rutaOpcion($option)}}" class="nav-link {{$option->active()}}">
-                            <i class="nav-icon fa {{$option->icono_l}}"></i>
-                            <p>
-                                {{$option->nombre}}
-                                @if($option->hasChildren())
-                                    <i class="right fa fa-angle-left"></i>
-                                @endif
-                            </p>
-                        </a>
-                        @if($option->hasChildren())
-                            <ul class="nav nav-treeview">
-                            @foreach($option->children as $index => $option)
-
-                                <li class="nav-item {{$option->hasTreeview()}} {{$option->openTreeView()}}">
-                                    <a href="{{rutaOpcion($option)}}" class="nav-link {{$option->active()}}">
-                                        <i class="nav-icon fa {{$option->icono_l}}"></i>
-                                        <p>
-                                            {{$option->nombre}}
-                                            @if($option->hasChildren())
-                                            <i class="right fa fa-angle-left"></i>
-                                            @elseif($option->icono_r)
-                                                <span class="right badge badge-danger">New</span>
-                                            @endif
-                                        </p>
-                                    </a>
-                                    @if($option->hasChildren())
-                                        <ul class="nav nav-treeview">
-                                            @foreach($option->children as $index => $option)
-                                                <li class="nav-item {{$option->hasTreeview()}} {{$option->openTreeView()}}">
-                                                    <a href="{{rutaOpcion($option)}}" class="nav-link {{$option->active()}}">
-                                                        <i class="nav-icon fa {{$option->icono_l}}"></i>
-                                                        <p>
-                                                            {{$option->nombre}}
-                                                            @if($option->hasChildren())
-                                                                <i class="right fa fa-angle-left"></i>
-                                                            @endif
-                                                        </p>
-                                                    </a>
-                                                    @foreach($option->children as $option)
-                                                        <ul class="nav nav-treeview">
-                                                            <li class="nav-item">
-                                                                <a href="{{rutaOpcion($option)}}" class="nav-link">
-                                                                    <i class="nav-icon {{$option->icono_l}}"></i>
-                                                                    <p>{{$option->nombre}}</p>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    @endforeach
-                                                </li>
-
-                                            @endforeach
-                                        </ul>
-                                    @endif
-                                </li>
-
-                            @endforeach
-                            </ul>
-                        @endif
-
-                    </li>
-                @endforeach
-
-{{--                <li class="nav-header">EXAMPLES</li>--}}
-
+                @include('layouts.partials.menu');
 
             </ul>
         </nav>
