@@ -9,12 +9,18 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "doctrine/dbal": "~2.3",
         "fideloper/proxy": "^4.0",
+        "infyomlabs/adminlte-templates": "6.0.x-dev",
+        "infyomlabs/laravel-generator": "6.0.x-dev",
         "laravel/framework": "^6.2",
         "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",
+        "laravelcollective/html": "^6.0",
         "laraveles/spanish": "^1.4",
-        "phpoffice/phpword": "^0.17.0"
+        "phpoffice/phpword": "^0.17.0",
+        "yajra/laravel-datatables-buttons": "^4.8",
+        "yajra/laravel-datatables-oracle": "^9.8"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
