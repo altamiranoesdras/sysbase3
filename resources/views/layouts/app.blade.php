@@ -59,6 +59,29 @@
 
 <script src="{{ url (mix('/js/app.js')) }}" type="text/javascript"></script>
 
+<script>
+    /**
+     * Funcion para confirmar la eliminacion de los registros de cualquier datatable
+     * @param data
+     */
+    function deleteItemDt(data){
+        var id = $(data).data('id');
+
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¡No podrás revertir esto!",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, elimínalo\n!'
+        }).then((result) => {
+            if (result.value) {
+                $("#delete-form"+id).submit();
+            }
+        });
+    }
+</script>
+
 <!--            Scripts inyectados
 ------------------------------------------------------------------------>
 @stack('scripts')
