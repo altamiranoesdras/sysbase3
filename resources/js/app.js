@@ -51,3 +51,7 @@ require('datatables.net-buttons-bs4');
 require('datatables.net-fixedheader-bs4');
 require('datatables.net-responsive-bs4');
 require('../../public/vendor/datatables/buttons.server-side');
+
+$('[data-toggle="tooltip"]').tooltip();
+
+window.Swal = require('sweetalert2')
