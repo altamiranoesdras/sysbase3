@@ -1,20 +1,37 @@
 @extends('layouts.app')
 
 @section('content')
+
+    <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1 class="pull-left">$MODEL_NAME_PLURAL_HUMAN$</h1>
-        <h1 class="pull-right">
-           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.create') }}">Add New</a>
-        </h1>
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>$MODEL_NAME_PLURAL_HUMAN$</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-right">
+                        <li class="breadcrumb-item">
+                            <a class="btn btn-outline-success"
+                                href="{!! route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.create') !!}">
+                                <i class="fa fa-plus"></i>
+                                <span class="d-none d-sm-inline">Agregar Nuev@</span>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
     </section>
+
     <div class="content">
         <div class="clearfix"></div>
 
         @include('flash::message')
 
         <div class="clearfix"></div>
-        <div class="box box-primary">
-            <div class="box-body">
+        <div class="card card-primary">
+            <div class="card-body">
                     @include('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.table')
             </div>
         </div>
