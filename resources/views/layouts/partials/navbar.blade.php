@@ -125,19 +125,56 @@
         @else
             <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    {{ Auth::user()->name }} <span class="caret"></span>
+                    <img src="{{Auth::user()->img}}" class="img-circle elevation-2" width="30" height="30" alt="User Image">
+                    <span class="caret"></span>
                 </a>
 
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                       onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
+                <div class="dropdown-menu dropdown-menu-right p-0" style="max-height: calc(100vh - 62px - 100px);width: 354px" aria-labelledby="navbarDropdown">
+                    <div class="card card-widget widget-user m-0">
+                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                        <div class="widget-user-header bg-info">
+                            <h3 class="widget-user-username">{{Auth::user()->name}}</h3>
+                            <h5 class="widget-user-desc">Founder & CEO</h5>
+                        </div>
+                        <div class="widget-user-image">
+                            <img class="img-circle elevation-2" src="{{Auth::user()->img}}" alt="{{Auth::user()->name}}">
+                        </div>
+                        <div class="card-footer pb-0">
+                            <div class="row border-top ">
+                                <div class="col border-right ">
+                                    <div class="description-block">
+                                        <a class="btn btn-outline-info" href="{{ route('profile') }}">
+                                            {{ __('Profile') }}
+                                        </a>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col">
+                                    <div class="description-block">
+{{--                                        <h5 class="description-header">35</h5>--}}
+{{--                                        <span class="description-text">PRODUCTS</span>--}}
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
+                                        <a class="btn btn-outline-warning" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                    </div>
+
+
+
                 </div>
             </li>
         @endguest

@@ -18,7 +18,7 @@
     "Hello!": "¡Hola!",
     "If you’re having trouble clicking the \":actionText\" button, copy and paste the URL below\ninto your web browser: [:actionURL](:actionURL)": "Si tienes problemas haciendo click en el botón \":actionText\", copia y pega el siguiente\nenlace en tu navegador: [:actionURL](:actionURL)",
     "Send Password Reset Link": "Enviar enlace para restablecer contraseña",
-    "Logout": "Cerrar sesión",
+    "Logout": "Salir",
     "Verify Email Address": "Confirmar correo electrónico",
     "Please click the button below to verify your email address.": "Por favor pulsa el siguiente botón para confirmar tu correo electrónico.",
     "If you did not create an account, no further action is required.": "Si no has creado ninguna cuenta, puedes ignorar o eliminar este e-mail.",
@@ -33,5 +33,8 @@
     "Sign in using Facebook": "Iniciar sesión usando Facebook",
     "Sign in using Google+": "Iniciar sesión usando Google+",
     "Sign in using Github": "Iniciar sesión usando Github",
-    "Register a new membership": "Registrar un nuevo miembro"
+    "Register a new membership": "Registrar un nuevo miembro",
+    "Profile" : "Perfil",
+    "Submit" : "Guardar",
+    "Updated profile!" : "Perfil actualizado!"
 }

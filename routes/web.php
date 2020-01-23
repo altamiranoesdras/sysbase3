@@ -13,11 +13,13 @@
 
 
 use App\Models\Option;
+use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/admin/users/profile', 'HomeController@profile')->name('profile');
+Route::get('/admin/users/profile', 'ProfileController@index')->name('profile');
+Route::patch('/admin/users/profile/{user}', 'ProfileController@update')->name('profile.update');
 
 //Route::get('/users', 'HomeController@index')->name('users');
 //Route::get('/menu', 'HomeController@index')->name('menu');
@@ -29,6 +31,10 @@ Route::get('login/{driver}', 'Auth\LoginController@redirectToProvider')->name('s
 Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallback');
 
 
-foreach (Option::whereNotNull('ruta')->get() as $op){
-    Route::get($op->nombre, 'HomeController@index')->name($op->ruta);
+//si la aplicación no esta corriendo en consola
+if (!app()->runningInConsole()){
+    foreach (Option::whereNotNull('ruta')->get() as $op){
+        Route::get($op->nombre, 'HomeController@index')->name($op->ruta);
+    }
 }
+
