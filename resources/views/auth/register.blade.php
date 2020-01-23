@@ -104,18 +104,11 @@
                 </div>
             </form>
 
-            <div class="social-auth-links text-center mb-3">
-                <p>- {{__("OR")}} -</p>
-                <a href="#" class="btn btn-block btn-primary">
-                    <i class="fab fa-facebook mr-2"></i> {{__("Sign in using Facebook")}}
-                </a>
-                <a href="#" class="btn btn-block btn-danger">
-                    <i class="fab fa-google-plus mr-2"></i> {{__("Sign in using Google+")}}
-                </a>
-            </div>
-            <!-- /.social-auth-links -->
+            @include('partials.social_links')
 
-            <a href="{{route('login')}}" class="text-center">I already have a membership</a>
+            <a href="{{route('login')}}" class="text-center">
+                {{__('I already have a membership')}}
+            </a>
         </div>
         <!-- /.form-box -->
     </div><!-- /.card -->

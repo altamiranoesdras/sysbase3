@@ -15,11 +15,11 @@
 use App\Models\Option;
 use Illuminate\Support\Facades\Route;
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/admin/users/profile', 'ProfileController@index')->name('profile');
-Route::patch('/admin/users/profile/{user}', 'ProfileController@update')->name('profile.update');
+Route::get('profile', 'ProfileController@index')->name('profile');
+Route::patch('profile/{user}', 'ProfileController@update')->name('profile.update');
 
 //Route::get('/users', 'HomeController@index')->name('users');
 //Route::get('/menu', 'HomeController@index')->name('menu');

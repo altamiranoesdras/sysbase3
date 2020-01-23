@@ -36,5 +36,6 @@
     "Register a new membership": "Registrar un nuevo miembro",
     "Profile" : "Perfil",
     "Submit" : "Guardar",
-    "Updated profile!" : "Perfil actualizado!"
+    "Updated profile!" : "Perfil actualizado!",
+    "I already have a membership" : "Ya soy un miembro"
 }

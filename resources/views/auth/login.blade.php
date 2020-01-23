@@ -9,11 +9,13 @@
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
+                @include('flash::message')
+{{--                @include('layouts.partials.request_errors')--}}
+
                 <p class="login-box-msg">{{__("Sign in to start your session")}}</p>
 
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
-
 
                     <div class="input-group mb-3">
 
@@ -98,23 +100,8 @@
                     </div>
                 </form>
 
-                <div class="social-auth-links text-center mb-3">
-                    <p>- {{__("OR")}} -</p>
-                    <a href="{{ route('social_auth', ['driver' => 'facebook']) }}" class="btn btn-block btn-primary">
-                        <i class="fab fa-facebook mr-2"></i> {{__("Sign in using Facebook")}}
-                    </a>
-                    <a href="{{ route('social_auth', ['driver' => 'google']) }}"
-                       class="btn btn-block btn-danger">
-                        <i class="fab fa-google-plus mr-2"></i> {{__("Sign in using Google+")}}
-                    </a>
-                    <a href="{{ route('social_auth', ['driver' => 'github']) }}"
-                       class="btn btn-block btn-default">
-                        <i class="fab fa-github-alt mr-2"></i> {{ __("Sign in using Github") }}
-                    </a>
-                </div>
-                <!-- /.social-auth-links -->
 
-
+                @include('partials.social_links')
 
 
                 <p class="mb-1">
