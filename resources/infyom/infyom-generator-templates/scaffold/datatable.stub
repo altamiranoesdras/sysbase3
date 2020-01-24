@@ -18,7 +18,11 @@ class $MODEL_NAME$DataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', '$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.datatables_actions');
+        return $dataTable->addColumn('action', function($$MODEL_NAME_HUMAN$){
+            $id = $$MODEL_NAME_HUMAN$->id;
+            return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.datatables_actions',compact('$MODEL_NAME_HUMAN$','id'));
+        });
+
     }
 
     /**

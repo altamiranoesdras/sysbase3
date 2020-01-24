@@ -19,9 +19,11 @@
     <div class="content">
         <div class="card card-primary">
             <div class="card-body">
-                <div class="row" style="padding-left: 20px">
-                    @include('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.show_fields')
-                    <a href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index') }}" class="btn btn-default">Back</a>
+                <div class="row">
+                    <div class="form-group col-sm-12">
+                        @include('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.show_fields')
+                        <a href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index') }}" class="btn btn-default">Back</a>
+                    </div>
                 </div>
             </div>
         </div>
