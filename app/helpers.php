@@ -227,7 +227,7 @@ function rutaOpcion($opcion){
     try{
         return route($opcion->ruta.'');
     }catch (\Exception $e){
-        return '#';
+        return route('home');
     }
 }
 
