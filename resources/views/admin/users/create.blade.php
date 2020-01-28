@@ -33,7 +33,7 @@
                     {!! Form::open(['route' => 'users.store']) !!}
                         <div class="form-row">
 
-                            @include('users.fields')
+                            @include('admin.users.fields')
                             <!-- Submit Field -->
                             <div class="form-group col-sm-12">
                                 <button type="submit" onClick="this.form.submit(); this.disabled=true;" class="btn btn-outline-success">Guardar</button>

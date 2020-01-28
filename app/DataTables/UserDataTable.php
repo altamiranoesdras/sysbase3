@@ -20,7 +20,7 @@ class UserDataTable extends DataTable
 
         return $dataTable->addColumn('action', function($User){
             $id = $User->id;
-            return view('users.datatables_actions',compact('User','id'));
+            return view('admin.users.datatables_actions',compact('User','id'));
         });
 
     }

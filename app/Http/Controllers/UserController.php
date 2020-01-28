@@ -21,7 +21,7 @@ class UserController extends AppBaseController
      */
     public function index(UserDataTable $userDataTable)
     {
-        return $userDataTable->render('users.index');
+        return $userDataTable->render('admin.users.index');
     }
 
     /**
@@ -31,7 +31,7 @@ class UserController extends AppBaseController
      */
     public function create()
     {
-        return view('users.create');
+        return view('admin.users.create');
     }
 
     /**
@@ -71,7 +71,7 @@ class UserController extends AppBaseController
             return redirect(route('users.index'));
         }
 
-        return view('users.show')->with('user', $user);
+        return view('admin.users.show')->with('user', $user);
     }
 
     /**
@@ -92,7 +92,7 @@ class UserController extends AppBaseController
             return redirect(route('users.index'));
         }
 
-        return view('users.edit')->with('user', $user);
+        return view('admin.users.edit')->with('user', $user);
     }
 
     /**
