@@ -23,7 +23,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column nav-compact nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
 
-                @include('layouts.partials.menu');
+                @include('layouts.partials.menu')
 
             </ul>
         </nav>

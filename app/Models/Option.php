@@ -81,7 +81,7 @@ class Option extends Model
 
     public function children()
     {
-        return $this->hasMany(Option::class,'option_id','id');
+        return $this->hasMany(Option::class,'option_id','id')->orderBy('orden');
     }
 
     public function hasChildren()
@@ -132,7 +132,7 @@ class Option extends Model
 
     public function scopePadres($query)
     {
-        return $query->whereNull('option_id');
+        return $query->whereNull('option_id')->orderBy('orden');
     }
 
     public function scopePadresDe($query,$chidres)
@@ -140,6 +140,11 @@ class Option extends Model
         return $query->whereNull('option_id')->whereHas('children',function ($q)use ($chidres){
                 $q->whereIn('id',$chidres);
         });
+    }
+
+    public function isChildren()
+    {
+        return !is_null($this->option_id);
     }
 
 }
