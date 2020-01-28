@@ -1,7 +1,7 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-use App\User;
+use App\Models\User;
 use Faker\Generator as Faker;
 use Faker\Provider\Image;
 use Illuminate\Support\Str;

@@ -10,7 +10,7 @@ return [
          * This is appended on default Laravel namespace.
          * Usage: php artisan datatables:make User
          * Output: App\DataTables\UserDataTable
-         * With Model: App\User (default model)
+         * With Model: App\Models\User (default model)
          * Export filename: users_timestamp
          */
         'base'  => 'DataTables',
