@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\DB;
 use Response;
 
 class UserController extends AppBaseController
@@ -45,8 +46,24 @@ class UserController extends AppBaseController
     {
         $input = $request->all();
 
-        /** @var User $user */
-        $user = User::create($input);
+        try {
+            DB::beginTransaction();
+
+
+            /** @var User $user */
+            $user = User::create($input);
+
+            $hashFile = $request->file('avatar')->hashName();
+
+            $user->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+
+        } catch (Exception $exception) {
+            DB::rollBack();
+
+            throw new Exception($exception);
+        }
+
+        DB::commit();
 
         Flash::success('User saved successfully.');
 
@@ -114,8 +131,22 @@ class UserController extends AppBaseController
             return redirect(route('users.index'));
         }
 
-        $user->fill($request->all());
-        $user->save();
+        try {
+            DB::beginTransaction();
+            $user->fill($request->all());
+            $user->save();
+
+            $user->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+
+        } catch (Exception $exception) {
+            DB::rollBack();
+
+            throw new Exception($exception);
+        }
+
+        DB::commit();
+
+
 
         Flash::success('User updated successfully.');
 

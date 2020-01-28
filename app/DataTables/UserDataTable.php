@@ -21,7 +21,11 @@ class UserDataTable extends DataTable
         return $dataTable->addColumn('action', function($User){
             $id = $User->id;
             return view('admin.users.datatables_actions',compact('User','id'));
-        });
+        })->editColumn('avatar',function (User $user){
+
+            return "<img src='{$user->thumb}' alt=''>";
+
+        })->rawColumns(['action','avatar']);
 
     }
 

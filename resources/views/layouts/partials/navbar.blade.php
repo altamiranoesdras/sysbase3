@@ -125,7 +125,7 @@
         @else
             <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    <img src="{{Auth::user()->img}}" class="img-circle elevation-2" width="30" height="30" alt="User Image">
+                    <img src="{{Auth::user()->thumb}}" class="img-circle elevation-2" width="30" height="30" alt="User Image">
                     <span class="caret"></span>
                 </a>
 

@@ -30,7 +30,8 @@
 
             <div class="card">
                 <div class="card-body">
-                    {!! Form::open(['route' => 'users.store']) !!}
+
+                    {!! Form::open(['route' => 'users.store', "enctype"=>"multipart/form-data"]) !!}
                         <div class="form-row">
 
                             @include('admin.users.fields')

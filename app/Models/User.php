@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\Models\Media;
 
 /**
  * Class User
@@ -17,14 +20,15 @@ use Illuminate\Notifications\Notifiable;
  * @property string email
  * @property string|\Carbon\Carbon email_verified_at
  * @property string password
- * @property string avatar
+ * @property string thumb
+ * @property string img
  * @property string provider
  * @property string provider_uid
  * @property string remember_token
  */
-class User extends Authenticatable implements  MustVerifyEmail
+class User extends Authenticatable implements  MustVerifyEmail,HasMedia
 {
-    use Notifiable;
+    use Notifiable,HasMediaTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -32,7 +36,7 @@ class User extends Authenticatable implements  MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'username','name', 'email', 'password','provider','provider_uid','avatar'
+        'username','name', 'email', 'password','provider','provider_uid'
     ];
 
     /**
@@ -55,7 +59,8 @@ class User extends Authenticatable implements  MustVerifyEmail
 
     public function getImgAttribute()
     {
-        return is_null($this->avatar) ? asset('dist/img/avatar5.png') : asset('storage/avatars/'.$this->avatar);
+        $media = $this->getMedia('avatars')->first();
+        return $media ? $media->getUrl() : asset('dist/img/avatar5.png');
     }
 
     /**
@@ -73,6 +78,19 @@ class User extends Authenticatable implements  MustVerifyEmail
     public function options()
     {
         return $this->belongsToMany(\App\Models\Option::class, 'option_user');
+    }
+
+    public function registerMediaConversions(Media $media = null)
+    {
+        $this->addMediaConversion('thumb')
+            ->width(50)
+            ->height(50);
+    }
+
+    public function getThumbAttribute()
+    {
+        $media = $this->getMedia('avatars')->first();
+        return $media ? $media->getUrl('thumb') : asset('dist/img/avatar5.png');
     }
 
 }
