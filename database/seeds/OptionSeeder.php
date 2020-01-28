@@ -22,7 +22,7 @@ class OptionSeeder extends Seeder
                 'option_id' => $option->id,
                 'nombre' => 'Usuarios',
                 'icono_l' => 'fa-users',
-                'ruta' => 'users'
+                'ruta' => 'users.index'
             ]);
 
 
@@ -30,7 +30,7 @@ class OptionSeeder extends Seeder
                 'option_id' => $option->id,
                 'nombre' => 'Menu',
                 'icono_l' => 'fa-list',
-                'ruta' => 'menu'
+                'ruta' => 'options.index'
             ]);
         });
 

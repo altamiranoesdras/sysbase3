@@ -32,11 +32,14 @@ Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallba
 
 
 //si la aplicación no esta corriendo en consola
-if (!app()->runningInConsole()){
-    foreach (Option::whereNotNull('ruta')->whereNotIn('option_id',[1])->get() as $op){
-        Route::get($op->nombre, 'HomeController@index')->name($op->ruta);
-    }
-}
+//if (!app()->runningInConsole()){
+//    foreach (Option::whereNotNull('ruta')->whereNotIn('option_id',[1])->get() as $op){
+//        Route::get($op->nombre, 'HomeController@index')->name($op->ruta);
+//    }
+//}
 
 
 
+
+
+Route::resource('users', 'UserController');
