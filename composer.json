@@ -21,6 +21,7 @@
         "laraveles/spanish": "^1.4",
         "phpoffice/phpword": "^0.17.0",
         "spatie/laravel-medialibrary": "^7.18",
+        "spatie/laravel-permission": "^3.6",
         "yajra/laravel-datatables-buttons": "^4.8",
         "yajra/laravel-datatables-oracle": "^9.8"
     },
