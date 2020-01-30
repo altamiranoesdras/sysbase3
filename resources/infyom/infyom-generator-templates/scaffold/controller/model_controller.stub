@@ -12,6 +12,12 @@ use Response;
 
 class $MODEL_NAME$Controller extends AppBaseController
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the $MODEL_NAME$.
      *
