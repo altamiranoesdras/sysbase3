@@ -31,3 +31,32 @@
         <label class="custom-file-label" for="exampleInputFile">{{__("Choose file")}}</label>
     </div>
 </div>
+
+
+
+<div class="form-group col-sm-12">
+    {!! Form::label('name', 'Roles:') !!}
+
+    {!!
+        Form::select(
+            'roles[]',
+            select(\App\Models\Role::class,'name','id',null)
+            , null
+            , ['id'=>'roless','class' => 'form-control duallistbox','multiple']
+        )
+    !!}
+</div>
+
+
+<div class="form-group col-sm-12">
+    {!! Form::label('name', 'Permisos:') !!}
+
+    {!!
+        Form::select(
+            'permissions[]',
+            select(\App\Models\Permission::class,'name','id',null)
+            , null
+            , ['id'=>'permissionss','class' => 'form-control duallistbox','multiple']
+        )
+    !!}
+</div>

@@ -8,6 +8,8 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
+use Spatie\Permission\Traits\HasPermissions;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * Class User
@@ -28,7 +30,7 @@ use Spatie\MediaLibrary\Models\Media;
  */
 class User extends Authenticatable implements  MustVerifyEmail,HasMedia
 {
-    use Notifiable,HasMediaTrait;
+    use Notifiable,HasMediaTrait,HasRoles;
 
     /**
      * The attributes that are mass assignable.

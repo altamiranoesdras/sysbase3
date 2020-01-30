@@ -55,9 +55,12 @@ class UserController extends AppBaseController
             /** @var User $user */
             $user = User::create($input);
 
-            $hashFile = $request->file('avatar')->hashName();
+            if ($request->hasFile('avatar')){
+                $user->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+            }
 
-            $user->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+            $user->syncRoles($request->roles);
+            $user->syncPermissions($request->permissions);
 
         } catch (Exception $exception) {
             DB::rollBack();
@@ -138,7 +141,12 @@ class UserController extends AppBaseController
             $user->fill($request->all());
             $user->save();
 
-            $user->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+            if ($request->hasFile('avatar')){
+                $user->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+            }
+
+            $user->syncRoles($request->roles);
+            $user->syncPermissions($request->permissions);
 
         } catch (Exception $exception) {
             DB::rollBack();
