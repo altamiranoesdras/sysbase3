@@ -19,6 +19,7 @@
         "datatables.net-buttons-bs4": "^1.6.1",
         "datatables.net-responsive": "^2.2.3",
         "datatables.net-responsive-bs4": "^2.2.3",
+        "gijgo": "^1.9.13",
         "icheck-bootstrap": "^3.0.1",
         "jquery": "^3.2",
         "laravel-mix": "^4.0.7",

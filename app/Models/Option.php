@@ -32,7 +32,7 @@ class Option extends Model
 
     protected $with = ['children'];
 
-    protected $appends= ['active'];
+    protected $appends= ['active','text'];
 
     public $fillable = [
         'option_id',
@@ -150,6 +150,11 @@ class Option extends Model
     public function isChildren()
     {
         return !is_null($this->option_id);
+    }
+
+    public function getTextAttribute()
+    {
+        return $this->nombre;
     }
 
 }

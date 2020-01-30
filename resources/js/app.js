@@ -52,6 +52,8 @@ require('datatables.net-fixedheader-bs4');
 require('datatables.net-responsive-bs4');
 require('../../public/vendor/datatables/buttons.server-side');
 
+require("gijgo/js/gijgo.min")
+
 $('[data-toggle="tooltip"]').tooltip();
 
 window.Swal = require('sweetalert2')

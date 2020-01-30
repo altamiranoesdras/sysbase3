@@ -8,6 +8,10 @@
     <i class="fa fa-edit"></i>
 </a>
 
+<a href="{{ route('user.menu',$id) }}" class="btn btn-sm btn-default">
+    <span class="fa fa-list-alt" data-toggle="tooltip" title="Menu"></span>
+</a>
+
 <a href="#" onclick="deleteItemDt(this)" data-id="{{$id}}" data-toggle="tooltip" title="Eliminar" class='btn btn-outline-danger btn-sm'>
     <i class="fa fa-trash-alt"></i>
 </a>

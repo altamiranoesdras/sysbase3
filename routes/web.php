@@ -37,6 +37,8 @@ Route::get('login/{driver}', 'Auth\LoginController@redirectToProvider')->name('s
 Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallback');
 
 Route::resource('users', 'UserController');
+Route::get('user/{user}/menu', 'UserController@menu')->name('user.menu');;
+Route::patch('user/menu/{user}', 'UserController@menuStore')->name('users.menuStore');
 
 Route::get('option/create/{option}', 'OptionController@create')->name('option.create');
 Route::get('option/orden', 'OptionController@updateOrden')->name('option.order.store');

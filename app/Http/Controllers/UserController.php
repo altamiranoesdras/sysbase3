@@ -6,9 +6,11 @@ use App\DataTables\UserDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Option;
 use App\Models\User;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Response;
 
@@ -176,6 +178,36 @@ class UserController extends AppBaseController
         $user->delete();
 
         Flash::success('User deleted successfully.');
+
+        return redirect(route('users.index'));
+    }
+
+    /**
+     * Muestra al vista para poder asignar opciones del menu a un usuario
+     *
+     * @param $id id del usuario
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function menu(User $user){
+
+        return view("admin.users.menu",compact('user'));
+    }
+
+    /**
+     * Guarda lsa opciones de menu que se decidieron asignar al usuario
+     *
+     * @param Request $request
+     * @param $id usuario
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function menuStore(User $user,Request $request){
+
+
+        $opciones = explode(",",$request->options);
+
+        $user->options()->sync($opciones);
+
+        Flash::success('Menu del usuario actualizado!')->important();
 
         return redirect(route('users.index'));
     }

@@ -36,6 +36,8 @@ class OptionAPIController extends AppBaseController
 
         if ($request->parentes){
             $query->padres();
+
+            return Response::json($query->get());
         }
 
         $options = $query->get();
