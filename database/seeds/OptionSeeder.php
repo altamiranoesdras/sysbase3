@@ -22,7 +22,8 @@ class OptionSeeder extends Seeder
                 'option_id' => $option->id,
                 'nombre' => 'Usuarios',
                 'icono_l' => 'fa-users',
-                'ruta' => 'users.index'
+                'ruta' => 'users.index',
+                'orden' => 1
             ]);
 
 
@@ -30,26 +31,44 @@ class OptionSeeder extends Seeder
                 'option_id' => $option->id,
                 'nombre' => 'Menu',
                 'icono_l' => 'fa-list',
-                'ruta' => 'options.index'
+                'ruta' => 'options.index',
+                'orden' => 2
             ]);
             factory(Option::class,1)->create([
                 'option_id' => $option->id,
                 'nombre' => "Prueba API'S",
                 'icono_l' => 'fa-check-circle',
-                'ruta' => 'developer.prueba.api'
+                'ruta' => 'developer.prueba.api',
+                'orden' => 3
+            ]);
+
+            factory(Option::class,1)->create([
+                'option_id' => $option->id,
+                'nombre' => "Roles",
+                'icono_l' => 'fa-circle',
+                'ruta' => 'roles.index',
+                'orden' => 4
+            ]);
+
+            factory(Option::class,1)->create([
+                'option_id' => $option->id,
+                'nombre' => "Permisos",
+                'icono_l' => 'fa-circle',
+                'ruta' => 'permissions.index',
+                'orden' => 5
             ]);
         });
 
 
         if (app()->environment()=='local'){
 
-            factory(Option::class,2)->create(['ruta' => null])->each(function (Option $option){
-                factory(Option::class,3)->create(['ruta' => null,'option_id' => $option->id])->each(function (Option $option){
-                    factory(Option::class,3)->create(['option_id' => $option->id])->each(function (Option $option){
-                        factory(Option::class,3)->create(['option_id' => $option->id]);
-                    });
-                });
-            });
+//            factory(Option::class,2)->create(['ruta' => null])->each(function (Option $option){
+//                factory(Option::class,3)->create(['ruta' => null,'option_id' => $option->id])->each(function (Option $option){
+//                    factory(Option::class,3)->create(['option_id' => $option->id])->each(function (Option $option){
+//                        factory(Option::class,3)->create(['option_id' => $option->id]);
+//                    });
+//                });
+//            });
 
         }
 

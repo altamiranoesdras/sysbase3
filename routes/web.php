@@ -43,3 +43,6 @@ Route::patch('user/menu/{user}', 'UserController@menuStore')->name('users.menuSt
 Route::get('option/create/{option}', 'OptionController@create')->name('option.create');
 Route::get('option/orden', 'OptionController@updateOrden')->name('option.order.store');
 Route::resource('options',"OptionController");
+
+
+Route::resource('roles', 'RoleController');
