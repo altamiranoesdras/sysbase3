@@ -17,6 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
 
+Route::group(['prefix' => 'developer'],function (){
+
+    Route::get('prueba/api','PruebaApiController@index')->name('developer.prueba.api');
+
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('profile', 'ProfileController@index')->name('profile');
 Route::patch('profile/{user}', 'ProfileController@update')->name('profile.update');

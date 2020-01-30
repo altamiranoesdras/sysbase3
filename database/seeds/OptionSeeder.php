@@ -32,6 +32,12 @@ class OptionSeeder extends Seeder
                 'icono_l' => 'fa-list',
                 'ruta' => 'options.index'
             ]);
+            factory(Option::class,1)->create([
+                'option_id' => $option->id,
+                'nombre' => "Prueba API'S",
+                'icono_l' => 'fa-check-circle',
+                'ruta' => 'developer.prueba.api'
+            ]);
         });
 
 
