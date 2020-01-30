@@ -14,15 +14,77 @@ use Response;
 
 class OptionController extends AppBaseController
 {
+    private $iconos=[
+        'far fa-circle',
+        'fa-th',
+        'fa-shopping-cart',
+        'fa-folder',
+        'fa-plus-square',
+        'fa-info-circle',
+        'fa-laptop',
+        'fa-user',
+        'fa-user-md',
+        'fa-user-plus',
+        'fa-user-secret',
+        'fa-user-times',
+        'fa-users',
+        'fa-adjust',
+        'fa-adn',
+        'fa-align-center',
+        'fa-align-justify',
+        'fa-align-left',
+        'fa-align-right',
+        'fa-angle-left',
+        'fa-angle-right',
+        'fa-ambulance',
+        'fa-anchor',
+        'fa-android',
+        'fa-angellist',
+        'fa-angle-down',
+        'fa-angle-double-down',
+        'fa-angle-double-left',
+        'fa-angle-double-right',
+        'fa-angle-double-up',
+        'fa-angle-up',
+        'fa-calculator',
+        'fa-apple',
+        'fa-archive',
+        'fa-area-chart',
+        'fa-asterisk',
+        'fa-at',
+        'fa-car',
+        'fa-mobile',
+        'fa-mobile',
+        'fa-money',
+        'fa-ban',
+        'fa-university',
+        'fa-bar-chart',
+        'fa-bar-chart',
+        'fa-barcode',
+        'fa-bars',
+
+    ];
+
+    /**
+     * OptionController constructor.
+     * @param array $iconos
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     /**
      * Display a listing of the Option.
      *
      * @param OptionDataTable $optionDataTable
      * @return Response
      */
-    public function index(OptionDataTable $optionDataTable)
+    public function index()
     {
-        return $optionDataTable->render('options.index');
+        $iconos= $this->iconos;
+        return view('options.index',compact('iconos'));
     }
 
     /**
@@ -30,9 +92,13 @@ class OptionController extends AppBaseController
      *
      * @return Response
      */
-    public function create()
+    public function create(Option $option)
     {
-        return view('options.create');
+        $parent = $option ?? null;
+
+        $iconos= $this->iconos;
+
+        return view('options.create',compact('iconos','parent'));
     }
 
     /**
@@ -93,7 +159,10 @@ class OptionController extends AppBaseController
             return redirect(route('options.index'));
         }
 
-        return view('options.edit')->with('option', $option);
+        $iconos = $this->iconos;
+        $parent = $option->parent ?? null;
+
+        return view('options.edit',compact('option','iconos','parent'));
     }
 
     /**

@@ -1,5 +1,5 @@
 
-<a href="{{ route('options.create', $id) }}" data-toggle="tooltip" title="Nueva" class='btn btn-outline-success btn-xs'>
+<a href="{{ route('option.create', $id) }}" data-toggle="tooltip" title="Nueva" class='btn btn-outline-success btn-xs'>
     <i class="fa fa-plus"></i>
 </a>
 

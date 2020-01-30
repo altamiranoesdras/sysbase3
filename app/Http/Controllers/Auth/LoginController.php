@@ -113,20 +113,18 @@ class LoginController extends Controller
             try {
                 DB::beginTransaction();
 
-                $avatar= $driver=='facebook' ? $socialUser->avatar_original : $socialUser->getAvatar();
-
-                $fileName = $socialUser->getId() . ".jpg";
-                $fileContents = file_get_contents($avatar);
-                Storage::put('/avatars/' . $fileName, $fileContents);
-
                 $userLocal = User::create([
                     "name" => $socialUser->getName(),
                     "username" => $socialUser->getNickname(),
                     "email" => $socialUser->getEmail(),
                     "provider" => $driver,
                     "provider_uid" => $socialUser->getId(),
-                    "avatar" => $fileName
+                    //"avatar" => $fileName
                 ]);
+
+                $avatar= $driver=='facebook' ? $socialUser->avatar_original : $socialUser->getAvatar();
+
+                $userLocal->addMediaFromUrl($avatar)->toMediaCollection('avatars');
 
             } catch (\Exception $exception) {
                 DB::rollBack();

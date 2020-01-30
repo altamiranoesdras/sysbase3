@@ -32,6 +32,6 @@ Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallba
 
 Route::resource('users', 'UserController');
 
-Route::get('option/create/{padre}', 'OptionController@create')->name('option.create');
+Route::get('option/create/{option}', 'OptionController@create')->name('option.create');
 Route::get('option/orden', 'OptionController@updateOrden')->name('option.order.store');
 Route::resource('options',"OptionController");

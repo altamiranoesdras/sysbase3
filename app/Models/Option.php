@@ -79,6 +79,11 @@ class Option extends Model
         return $this->belongsToMany(\App\Models\User::class, 'option_user');
     }
 
+    public function parent()
+    {
+        return $this->belongsTo(Option::class,'option_id','id');
+    }
+
     public function children()
     {
         return $this->hasMany(Option::class,'option_id','id')->orderBy('orden');
