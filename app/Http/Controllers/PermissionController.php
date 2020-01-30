@@ -6,7 +6,7 @@ use App\DataTables\PermissionDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreatePermissionRequest;
 use App\Http\Requests\UpdatePermissionRequest;
-use Spatie\Permission\Models\Permission;
+use App\Models\Permission;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;

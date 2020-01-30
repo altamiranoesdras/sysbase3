@@ -6,7 +6,8 @@ use App\DataTables\RoleDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
-use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\DB;
+use App\Models\Role;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
@@ -45,8 +46,22 @@ class RoleController extends AppBaseController
     {
         $input = $request->all();
 
-        /** @var Role $role */
-        $role = Role::create($input);
+        try {
+            DB::beginTransaction();
+
+            /** @var Role $role */
+            $role = Role::create($input);
+
+            $role->syncPermissions($request->permissions);
+
+        } catch (Exception $exception) {
+            DB::rollBack();
+
+            throw new Exception($exception);
+        }
+
+        DB::commit();
+
 
         Flash::success('Role saved successfully.');
 
@@ -70,6 +85,7 @@ class RoleController extends AppBaseController
 
             return redirect(route('roles.index'));
         }
+
 
         return view('roles.show')->with('role', $role);
     }
@@ -114,8 +130,23 @@ class RoleController extends AppBaseController
             return redirect(route('roles.index'));
         }
 
-        $role->fill($request->all());
-        $role->save();
+
+
+        try {
+            DB::beginTransaction();
+
+            $role->fill($request->all());
+            $role->save();
+
+            $role->syncPermissions($request->permissions);
+
+        } catch (Exception $exception) {
+            DB::rollBack();
+
+            throw new Exception($exception);
+        }
+
+        DB::commit();
 
         Flash::success('Role updated successfully.');
 

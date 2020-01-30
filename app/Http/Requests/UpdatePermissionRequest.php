@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Spatie\Permission\Models\Permission;
+use App\Models\Permission;
 
 class UpdatePermissionRequest extends FormRequest
 {

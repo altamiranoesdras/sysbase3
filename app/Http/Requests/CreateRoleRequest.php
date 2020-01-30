@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Spatie\Permission\Models\Role;
+use App\Models\Role;
 
 class CreateRoleRequest extends FormRequest
 {

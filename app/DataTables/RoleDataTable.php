@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use Spatie\Permission\Models\Role;
+use App\Models\Role;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 

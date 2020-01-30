@@ -2,6 +2,7 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use App\Extenciones\NumeroALetras;
 
@@ -28,7 +29,7 @@ function select($model, $label='nombre', $id='id', $defaultValue='SELECCIONE UNO
 
 
     if (!is_null($defaultValue)) {
-        $options = array_prepend($options, $defaultValue, $defaultKey);
+        $options = Arr::prepend($options, $defaultValue, $defaultKey);
     }
     return $options;
 }
