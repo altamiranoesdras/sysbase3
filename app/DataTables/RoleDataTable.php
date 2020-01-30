@@ -20,7 +20,7 @@ class RoleDataTable extends DataTable
 
         return $dataTable->addColumn('action', function($Role){
             $id = $Role->id;
-            return view('roles.datatables_actions',compact('Role','id'));
+            return view('admin.roles.datatables_actions',compact('Role','id'));
         });
 
     }

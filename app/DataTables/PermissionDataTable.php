@@ -20,7 +20,7 @@ class PermissionDataTable extends DataTable
 
         return $dataTable->addColumn('action', function($Permission){
             $id = $Permission->id;
-            return view('permissions.datatables_actions',compact('Permission','id'));
+            return view('admin.permissions.datatables_actions',compact('Permission','id'));
         });
 
     }

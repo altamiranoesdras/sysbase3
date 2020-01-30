@@ -29,7 +29,7 @@ class PermissionController extends AppBaseController
      */
     public function index(PermissionDataTable $permissionDataTable)
     {
-        return $permissionDataTable->render('permissions.index');
+        return $permissionDataTable->render('admin.permissions.index');
     }
 
     /**
@@ -39,7 +39,7 @@ class PermissionController extends AppBaseController
      */
     public function create()
     {
-        return view('permissions.create');
+        return view('admin.permissions.create');
     }
 
     /**
@@ -79,7 +79,7 @@ class PermissionController extends AppBaseController
             return redirect(route('permissions.index'));
         }
 
-        return view('permissions.show')->with('permission', $permission);
+        return view('admin.permissions.show')->with('permission', $permission);
     }
 
     /**
@@ -100,7 +100,7 @@ class PermissionController extends AppBaseController
             return redirect(route('permissions.index'));
         }
 
-        return view('permissions.edit')->with('permission', $permission);
+        return view('admin.permissions.edit')->with('permission', $permission);
     }
 
     /**

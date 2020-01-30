@@ -22,7 +22,7 @@ class RoleController extends AppBaseController
      */
     public function index(RoleDataTable $roleDataTable)
     {
-        return $roleDataTable->render('roles.index');
+        return $roleDataTable->render('admin.roles.index');
     }
 
     /**
@@ -32,7 +32,7 @@ class RoleController extends AppBaseController
      */
     public function create()
     {
-        return view('roles.create');
+        return view('admin.roles.create');
     }
 
     /**
@@ -87,7 +87,7 @@ class RoleController extends AppBaseController
         }
 
 
-        return view('roles.show')->with('role', $role);
+        return view('admin.roles.show')->with('role', $role);
     }
 
     /**
@@ -108,7 +108,7 @@ class RoleController extends AppBaseController
             return redirect(route('roles.index'));
         }
 
-        return view('roles.edit')->with('role', $role);
+        return view('admin.roles.edit')->with('role', $role);
     }
 
     /**
