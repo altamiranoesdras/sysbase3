@@ -84,7 +84,7 @@ class OptionController extends AppBaseController
     public function index()
     {
         $iconos= $this->iconos;
-        return view('options.index',compact('iconos'));
+        return view('admin.options.index',compact('iconos'));
     }
 
     /**
@@ -98,7 +98,7 @@ class OptionController extends AppBaseController
 
         $iconos= $this->iconos;
 
-        return view('options.create',compact('iconos','parent'));
+        return view('admin.options.create',compact('iconos','parent'));
     }
 
     /**
@@ -138,7 +138,7 @@ class OptionController extends AppBaseController
             return redirect(route('options.index'));
         }
 
-        return view('options.show')->with('option', $option);
+        return view('admin.options.show')->with('option', $option);
     }
 
     /**
@@ -162,7 +162,7 @@ class OptionController extends AppBaseController
         $iconos = $this->iconos;
         $parent = $option->parent ?? null;
 
-        return view('options.edit',compact('option','iconos','parent'));
+        return view('admin.options.edit',compact('option','iconos','parent'));
     }
 
     /**

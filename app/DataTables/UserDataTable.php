@@ -23,7 +23,7 @@ class UserDataTable extends DataTable
             return view('admin.users.datatables_actions',compact('User','id'));
         })->editColumn('avatar',function (User $user){
 
-            return "<img src='{$user->thumb}' alt=''>";
+            return "<img src='{$user->thumb}' alt='' width='50' height='50'>";
 
         })->rawColumns(['action','avatar']);
 
@@ -53,7 +53,7 @@ class UserDataTable extends DataTable
             ->addAction(['width' => '120px', 'printable' => false])
             ->parameters([
                 'dom'     => 'lBftrip',
-                'order'   => [[0, 'desc']],
+                'order'   => [[1, 'asc']],
                 'language' => ['url' => asset('js/SpanishDataTables.json')],
                 //'scrollX' => false,
                 'responsive' => true,
@@ -75,7 +75,8 @@ class UserDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'avatar',
+            'avatar' => ['searchable' => false],
+            'id',
             'username',
             'name',
             'email',

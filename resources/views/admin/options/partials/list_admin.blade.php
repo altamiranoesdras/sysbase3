@@ -6,12 +6,12 @@
 
             &nbsp;
 
-            @include('options.datatables_actions',['id' => $option->id])
+            @include('admin.options.datatables_actions',['id' => $option->id])
 
 
         @if($option->hasChildren())
             <ul class="list-group sortable">
-                @include('options.partials.list_admin',['opciones' => $option->children])
+                @include('admin.options.partials.list_admin',['opciones' => $option->children])
             </ul>
         @endif
     </li>
