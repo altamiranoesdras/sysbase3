@@ -1,5 +1,7 @@
 @extends('layouts.blank')
 
+@section('title_page',__('Reset Password'))
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

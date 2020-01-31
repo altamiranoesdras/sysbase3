@@ -1,5 +1,6 @@
 @extends('layouts.blank')
 
+@section('title_page',__('Reset Password'))
 
 @section('content')
 
