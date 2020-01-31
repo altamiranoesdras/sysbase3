@@ -52,7 +52,7 @@ class UserDataTable extends DataTable
             ->minifiedAjax()
             ->addAction(['width' => '15%', 'printable' => false])
             ->parameters([
-                'dom'     => 'lBftrip',
+                'dom'     => 'Bfltrip',
                 'order'   => [[1, 'asc']],
                 'language' => ['url' => asset('js/SpanishDataTables.json')],
                 //'scrollX' => false,
