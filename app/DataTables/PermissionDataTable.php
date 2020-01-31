@@ -48,7 +48,7 @@ class PermissionDataTable extends DataTable
             ->minifiedAjax()
             ->addAction(['width' => '120px', 'printable' => false])
             ->parameters([
-                'dom'     => 'lBftrip',
+                'dom'     => 'Bfltrip',
                 'order'   => [[0, 'desc']],
                 'language' => ['url' => asset('js/SpanishDataTables.json')],
                 //'scrollX' => false,
