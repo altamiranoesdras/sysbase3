@@ -1,5 +1,7 @@
 @extends('layouts.blank')
 
+@section('title_page',__('Login'))
+
 @section('content')
 
     <div class="login-box">

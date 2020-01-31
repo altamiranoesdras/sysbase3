@@ -52,8 +52,6 @@ require('datatables.net-fixedheader-bs4');
 require('datatables.net-responsive-bs4');
 require('../../public/vendor/datatables/buttons.server-side');
 
-require("gijgo/js/gijgo.min")
-
 require('admin-lte/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min');
 
 $('.duallistbox').bootstrapDualListbox()

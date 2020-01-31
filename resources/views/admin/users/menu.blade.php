@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
-@section('htmlheader_title')
-    Menu del usuario: {{$user->name}}
-@endsection
+@section('title_page',"Menu del usuario: {$user->name}")
+@include('partials.plugins.gijgo')
 
 @section('content')
     <!-- Content Header (Page header) -->

@@ -4,5 +4,17 @@
     "/js/sparkline.js": "/js/sparkline.js",
     "/js/moment.min.js": "/js/moment.min.js",
     "/js/dashboard.js": "/js/dashboard.js",
-    "/js/demo.js": "/js/demo.js"
+    "/js/demo.js": "/js/demo.js",
+    "/plugins/fullcalendar/main.min.css": "/plugins/fullcalendar/main.min.css",
+    "/plugins/fullcalendar-daygrid/main.min.css": "/plugins/fullcalendar-daygrid/main.min.css",
+    "/plugins/fullcalendar-timegrid/main.min.css": "/plugins/fullcalendar-timegrid/main.min.css",
+    "/plugins/fullcalendar-bootstrap/main.min.css": "/plugins/fullcalendar-bootstrap/main.min.css",
+    "/plugins/fullcalendar/main.min.js": "/plugins/fullcalendar/main.min.js",
+    "/plugins/fullcalendar-interaction/main.min.js": "/plugins/fullcalendar-interaction/main.min.js",
+    "/plugins/fullcalendar-daygrid/main.min.js": "/plugins/fullcalendar-daygrid/main.min.js",
+    "/plugins/fullcalendar-timegrid/main.min.js": "/plugins/fullcalendar-timegrid/main.min.js",
+    "/plugins/fullcalendar-bootstrap/main.min.js": "/plugins/fullcalendar-bootstrap/main.min.js",
+    "/js/gijgo.min.js": "/js/gijgo.min.js",
+    "/js/messages.es-es.min.js": "/js/messages.es-es.min.js",
+    "/css/gijgo.min.css": "/css/gijgo.min.css"
 }
