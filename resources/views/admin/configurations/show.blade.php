@@ -24,7 +24,7 @@
                 <div class="row">
                     <div class="form-group col-sm-12">
                         @include('admin.configurations.show_fields')
-                        <a href="{{ route('configurations.index') }}" class="btn btn-default">Back</a>
+                        <a href="{{ route('configurations.index') }}" class="btn btn-outline-secondary">{{__('Back')}}</a>
                     </div>
                 </div>
             </div>

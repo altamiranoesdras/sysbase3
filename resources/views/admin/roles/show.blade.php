@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title_page',__('Role'))
+
 @section('content')
 
     <!-- Content Header (Page header) -->
@@ -7,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Role</h1>
+                    <h1>{{__('Role')}}</h1>
                 </div>
                 <div class="col-sm-6">
 
@@ -22,7 +24,7 @@
                 <div class="row">
                     <div class="form-group col-sm-12">
                         @include('admin.roles.show_fields')
-                        <a href="{{ route('roles.index') }}" class="btn btn-default">Back</a>
+                        <a href="{{ route('roles.index') }}" class="btn btn-outline-secondary">{{__('Back')}}</a>
                     </div>
                 </div>
             </div>

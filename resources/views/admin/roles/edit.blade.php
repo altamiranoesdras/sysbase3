@@ -16,7 +16,7 @@
                 <div class="col">
                     <a class="btn btn-outline-info float-right"
                        href="{{route('roles.index')}}">
-                        <i class="fa fa-list" aria-hidden="true"></i>&nbsp;<span class="d-none d-sm-inline">Listado</span>
+                        <i class="fa fa-list" aria-hidden="true"></i>&nbsp;<span class="d-none d-sm-inline">{{__('List')}}</span>
                     </a>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                             <!-- Submit Field -->
                             <div class="form-group col-sm-12">
                                 <button type="submit" onClick="this.form.submit(); this.disabled=true;" class="btn btn-outline-success">Guardar</button>
-                                <a href="{!! route('roles.index') !!}" class="btn btn-outline-default">Cancelar</a>
+                                <a href="{!! route('roles.index') !!}" class="btn btn-outline-secondary">Cancelar</a>
                             </div>
                         </div>
 

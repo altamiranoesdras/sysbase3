@@ -17,7 +17,7 @@
                             <a class="btn btn-outline-success"
                                 href="{!! route('configurations.create') !!}">
                                 <i class="fa fa-plus"></i>
-                                <span class="d-none d-sm-inline">Agregar Nuev@</span>
+                                <span class="d-none d-sm-inline">{{__('New')}}</span>
                             </a>
                         </li>
                     </ol>

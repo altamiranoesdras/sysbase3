@@ -18,16 +18,6 @@
 {!! $user->email_verified_at !!}<br>
 
 
-<!-- Password Field -->
-{!! Form::label('password', 'Password:') !!}
-{!! $user->password !!}<br>
-
-
-<!-- Avatar Field -->
-{!! Form::label('avatar', 'Avatar:') !!}
-{!! $user->avatar !!}<br>
-
-
 <!-- Provider Field -->
 {!! Form::label('provider', 'Provider:') !!}
 {!! $user->provider !!}<br>
@@ -37,9 +27,5 @@
 {!! Form::label('provider_uid', 'Provider Uid:') !!}
 {!! $user->provider_uid !!}<br>
 
-
-<!-- Remember Token Field -->
-{!! Form::label('remember_token', 'Remember Token:') !!}
-{!! $user->remember_token !!}<br>
 
 

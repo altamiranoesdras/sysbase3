@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('htmlheader_title')
-    home
-@endsection
+@section('title_page',__('Profile'))
 
 @section('content')
 

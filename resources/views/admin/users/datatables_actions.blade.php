@@ -1,5 +1,5 @@
 
-<a href="{{ route('users.show', $id) }}" data-toggle="tooltip" title="Ver" class='btn btn-default btn-sm'>
+<a href="{{ route('users.show', $id) }}" data-toggle="tooltip" title="Ver" class='btn btn-outline-secondary btn-sm'>
     <i class="fa fa-eye"></i>
 </a>
 
@@ -8,7 +8,7 @@
     <i class="fa fa-edit"></i>
 </a>
 
-<a href="{{ route('user.menu',$id) }}" class="btn btn-sm btn-default">
+<a href="{{ route('user.menu',$id) }}" class="btn btn-sm btn-outline-secondary">
     <span class="fa fa-list-alt" data-toggle="tooltip" title="Menu"></span>
 </a>
 

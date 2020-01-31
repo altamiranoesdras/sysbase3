@@ -13,5 +13,12 @@ class DatabaseSeeder extends Seeder
     {
          $this->call(UsersTableSeeder::class);
          $this->call(OptionSeeder::class);
+
+         if (app()->environment()=='local'){
+             $this->call(RoleSeeder::class);
+             $this->call(PermissionSeeder::class);
+             $this->call(PermissionSeeder::class);
+             $this->call(ConfigurationsTableSeeder::class);
+         }
     }
 }

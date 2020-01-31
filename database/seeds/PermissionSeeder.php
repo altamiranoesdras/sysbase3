@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Permission;
 use Illuminate\Database\Seeder;
 
 class PermissionSeeder extends Seeder
@@ -11,6 +12,6 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        factory(\Spatie\Permission\Models\Permission::class,25)->create();
+        factory(Permission::class,25)->create();
     }
 }

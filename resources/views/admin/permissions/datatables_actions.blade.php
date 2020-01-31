@@ -1,5 +1,5 @@
 
-<a href="{{ route('permissions.show', $id) }}" data-toggle="tooltip" title="Ver" class='btn btn-default btn-sm'>
+<a href="{{ route('permissions.show', $id) }}" data-toggle="tooltip" title="Ver" class='btn btn-outline-secondary btn-sm'>
     <i class="fa fa-eye"></i>
 </a>
 

@@ -8,7 +8,7 @@
         <i class="fab fa-google-plus mr-2"></i> {{__("Sign in using Google+")}}
     </a>
     <a href="{{ route('social_auth', ['driver' => 'github']) }}"
-       class="btn btn-block btn-default">
+       class="btn btn-block btn-outline-secondary">
         <i class="fab fa-github-alt mr-2"></i> {{ __("Sign in using Github") }}
     </a>
 </div>
