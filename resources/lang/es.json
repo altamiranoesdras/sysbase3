@@ -39,5 +39,10 @@
     "Updated profile!" : "Perfil actualizado!",
     "I already have a membership" : "Ya soy un miembro",
     "Home" : "Inicio",
-    "Dashboard" : "Panel De Control"
+    "Dashboard" : "Panel De Control",
+
+    "Configuration saved successfully." : "Configuración guardada con éxito.",
+    "Configuration updated successfully." : "Configuración actualizada con éxito.",
+    "Configuration not found." : "Configuración no encontrada.",
+    "Configuration deleted successfully." : "Configuración eliminada con éxito."
 }

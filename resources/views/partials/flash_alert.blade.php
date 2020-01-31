@@ -8,32 +8,32 @@
 
                 @switch($message['level'])
                     @case("info")
-                        alertInfo("{{$message['message']}}");
+                        alertInfo("{{__($message['message'])}}");
                     @break
                     @case("success")
-                        alertSucces("{{$message['message']}}");
+                        alertSucces("{{__($message['message'])}}");
                     @break
                     @case("warning")
-                        alertWarning("{{$message['message']}}");
+                        alertWarning("{{__($message['message'])}}");
                     @break
                     @case("danger")
-                        alertError("{{$message['message']}}");
+                        alertError("{{__($message['message'])}}");
                     @break
                 @endswitch
             @else
 
                 @switch($message['level'])
                     @case("info")
-                        iziTi("{{$message['message']}}");
+                        iziTi("{{__($message['message'])}}");
                     @break
                     @case("success")
-                        iziTs("{{$message['message']}}");
+                        iziTs("{{__($message['message'])}}");
                     @break
                     @case("warning")
-                        iziTw("{{$message['message']}}");
+                        iziTw("{{__($message['message'])}}");
                     @break
                     @case("danger")
-                        iziTe("{{$message['message']}}");
+                        iziTe("{{__($message['message'])}}");
                     @break
                 @endswitch
 
