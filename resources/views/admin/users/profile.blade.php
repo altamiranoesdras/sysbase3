@@ -26,7 +26,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            @include('flash::message')
+            @include('partials.flash_alert')
             @include('layouts.partials.request_errors')
 
             <div class="row">
