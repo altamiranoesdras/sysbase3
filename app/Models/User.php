@@ -95,4 +95,29 @@ class User extends Authenticatable implements  MustVerifyEmail,HasMedia
         return $media ? $media->getUrl('thumb') : asset('dist/img/avatar5.png');
     }
 
+    public function menu()
+    {
+        $optionsUser = $this->options;
+
+        $childres = $optionsUser->pluck('id')->toArray();
+
+        $options = Option::padresDe($childres)->get();
+
+        $options = $options->map(function ($padre) use ($optionsUser){
+
+            $childrens = collect();
+
+            foreach ($optionsUser as $index => $option) {
+                if ($option->option_id==$padre->id){
+                    $childrens->push($option);
+                }
+            }
+
+            $padre->setRelation('children',$childrens);
+            return $padre;
+        });
+
+        return $options;
+    }
+
 }
