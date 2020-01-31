@@ -84887,28 +84887,28 @@ __webpack_require__(/*! admin-lte/plugins/bootstrap4-duallistbox/jquery.bootstra
 window.iziTi = function (tile, message) {
   izitoast_dist_js_iziToast_min__WEBPACK_IMPORTED_MODULE_0___default.a.info({
     title: tile,
-    message: message || null
+    message: message || " "
   });
 };
 
 window.iziTs = function (tile, message) {
   izitoast_dist_js_iziToast_min__WEBPACK_IMPORTED_MODULE_0___default.a.success({
     title: tile,
-    message: message || null
+    message: message || " "
   });
 };
 
 window.iziTw = function (tile, message) {
   izitoast_dist_js_iziToast_min__WEBPACK_IMPORTED_MODULE_0___default.a.warning({
     title: tile,
-    message: message || null
+    message: message || " "
   });
 };
 
 window.iziTe = function (tile, message) {
   izitoast_dist_js_iziToast_min__WEBPACK_IMPORTED_MODULE_0___default.a.error({
     title: tile,
-    message: message || null
+    message: message || " "
   });
 };
 
@@ -84937,6 +84937,40 @@ window.alertWarning = function (title, text, html, time) {
   html = html || false;
   var options = {
     icon: "warning",
+    title: title,
+    text: text || false,
+    timer: time || false
+  };
+
+  if (html) {
+    delete options.text;
+    options['html'] = html;
+  }
+
+  Swal.fire(options);
+};
+
+window.alertInfo = function (title, text, html, time) {
+  html = html || false;
+  var options = {
+    icon: "info",
+    title: title,
+    text: text || false,
+    timer: time || false
+  };
+
+  if (html) {
+    delete options.text;
+    options['html'] = html;
+  }
+
+  Swal.fire(options);
+};
+
+window.alertError = function (title, text, html, time) {
+  html = html || false;
+  var options = {
+    icon: "error",
     title: title,
     text: text || false,
     timer: time || false

@@ -117,7 +117,7 @@ class ConfigurationController extends AppBaseController
         $configuration->fill($request->all());
         $configuration->save();
 
-        Flash::success('Configuration updated successfully.');
+        flash('Configuration updated successfully.')->error();
 
         return redirect(route('configurations.index'));
     }

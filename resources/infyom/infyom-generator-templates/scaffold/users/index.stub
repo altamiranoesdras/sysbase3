@@ -10,7 +10,7 @@
     <div class="content">
         <div class="clearfix"></div>
 
-        @include('flash::message')
+        @include('partials.flash_alert')
 
         <div class="clearfix"></div>
         <div class="box box-primary">
@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="text-center">
-        
+
         </div>
     </div>
 @endsection

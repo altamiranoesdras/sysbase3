@@ -59,28 +59,28 @@ import iziToast from "izitoast/dist/js/iziToast.min"
 window.iziTi = (tile,message) => {
     iziToast.info({
         title: tile,
-        message: message || null,
+        message: message || " ",
     });
 }
 
 window.iziTs = (tile,message) => {
     iziToast.success({
         title: tile,
-        message: message || null,
+        message: message || " ",
     });
 }
 
 window.iziTw = (tile,message) => {
     iziToast.warning({
         title: tile,
-        message: message || null,
+        message: message || " ",
     });
 }
 
 window.iziTe = (tile,message) => {
     iziToast.error({
         title: tile,
-        message: message || null,
+        message: message || " ",
     });
 }
 
@@ -133,6 +133,46 @@ window.alertWarning = (title,text,html,time) => {
 
 }
 
+window.alertInfo = (title,text,html,time) => {
+
+    html = html || false;
+
+    var options = {
+        icon: "info",
+        title: title,
+        text: text || false,
+        timer: time || false
+    }
+
+    if(html){
+        delete options.text;
+        options['html'] = html;
+    }
+
+
+    Swal.fire(options);
+
+}
+window.alertError = (title,text,html,time) => {
+
+    html = html || false;
+
+    var options = {
+        icon: "error",
+        title: title,
+        text: text || false,
+        timer: time || false
+    }
+
+    if(html){
+        delete options.text;
+        options['html'] = html;
+    }
+
+
+    Swal.fire(options);
+
+}
 window.errors2List = (errors) => {
 
     var res ="<b><ul style='list-style-type: none; padding:0px;'>";
