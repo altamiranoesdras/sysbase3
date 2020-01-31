@@ -21,7 +21,7 @@ class ConfigurationController extends AppBaseController
      */
     public function index(ConfigurationDataTable $configurationDataTable)
     {
-        return $configurationDataTable->render('configurations.index');
+        return $configurationDataTable->render('admin.configurations.index');
     }
 
     /**
@@ -31,7 +31,7 @@ class ConfigurationController extends AppBaseController
      */
     public function create()
     {
-        return view('configurations.create');
+        return view('admin.configurations.create');
     }
 
     /**
@@ -71,7 +71,7 @@ class ConfigurationController extends AppBaseController
             return redirect(route('configurations.index'));
         }
 
-        return view('configurations.show')->with('configuration', $configuration);
+        return view('admin.configurations.show')->with('configuration', $configuration);
     }
 
     /**
@@ -92,7 +92,7 @@ class ConfigurationController extends AppBaseController
             return redirect(route('configurations.index'));
         }
 
-        return view('configurations.edit')->with('configuration', $configuration);
+        return view('admin.configurations.edit')->with('configuration', $configuration);
     }
 
     /**

@@ -33,7 +33,7 @@
                    {!! Form::model($configuration, ['route' => ['configurations.update', $configuration->id], 'method' => 'patch']) !!}
                         <div class="form-row">
 
-                            @include('configurations.fields')
+                            @include('admin.configurations.fields')
                             <!-- Submit Field -->
                             <div class="form-group col-sm-12">
                                 <button type="submit" onClick="this.form.submit(); this.disabled=true;" class="btn btn-outline-success">Guardar</button>

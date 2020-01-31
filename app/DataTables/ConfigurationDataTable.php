@@ -20,7 +20,7 @@ class ConfigurationDataTable extends DataTable
 
         return $dataTable->addColumn('action', function($Configuration){
             $id = $Configuration->id;
-            return view('configurations.datatables_actions',compact('Configuration','id'));
+            return view('admin.configurations.datatables_actions',compact('Configuration','id'));
         });
 
     }

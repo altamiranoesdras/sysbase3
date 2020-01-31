@@ -23,7 +23,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="form-group col-sm-12">
-                        @include('configurations.show_fields')
+                        @include('admin.configurations.show_fields')
                         <a href="{{ route('configurations.index') }}" class="btn btn-default">Back</a>
                     </div>
                 </div>

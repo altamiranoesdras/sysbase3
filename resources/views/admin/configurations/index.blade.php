@@ -35,11 +35,11 @@
             <div class="clearfix"></div>
             <div class="card card-primary">
                 <div class="card-body">
-                        @include('configurations.table')
+                        @include('admin.configurations.table')
                 </div>
             </div>
             <div class="text-center">
-                
+
             </div>
         </div>
     </div>

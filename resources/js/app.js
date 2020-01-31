@@ -54,6 +54,36 @@ require('../../public/vendor/datatables/buttons.server-side');
 
 require('admin-lte/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min');
 
+import iziToast from "izitoast/dist/js/iziToast.min"
+
+window.iziTi = (tile,message) => {
+    iziToast.info({
+        title: tile,
+        message: message || null,
+    });
+}
+
+window.iziTs = (tile,message) => {
+    iziToast.success({
+        title: tile,
+        message: message || null,
+    });
+}
+
+window.iziTw = (tile,message) => {
+    iziToast.warning({
+        title: tile,
+        message: message || null,
+    });
+}
+
+window.iziTe = (tile,message) => {
+    iziToast.error({
+        title: tile,
+        message: message || null,
+    });
+}
+
 $('.duallistbox').bootstrapDualListbox()
 
 
@@ -135,3 +165,26 @@ window.$.fn.serializeObject = function()
     });
     return o;
 };
+
+/**
+ * Funcion para confirmar la eliminacion de los registros de cualquier datatable
+ * @param data
+ */
+window.deleteItemDt = (data) =>{
+    var id = $(data).data('id');
+
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "¡No podrás revertir esto!",
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, elimínalo\n!'
+    }).then((result) => {
+        if (result.value) {
+            $("#delete-form"+id).submit();
+        }
+    });
+}
+
+$('div.alert').not('.alert-important').delay(3000).fadeOut(350);
