@@ -63,7 +63,7 @@ class OptionSeeder extends Seeder
                 'option_id' => $option->id,
                 'nombre' => "Configuraciones",
                 'icono_l' => 'fa-cogs',
-                'ruta' => 'permissions.index',
+                'ruta' => 'configurations.index',
                 'orden' => 5
             ]);
         });

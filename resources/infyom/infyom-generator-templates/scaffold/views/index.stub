@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title_page',__('$MODEL_NAME_PLURAL_HUMAN$'))
+
 @section('content')
 
     <!-- Content Header (Page header) -->
