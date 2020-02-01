@@ -137,7 +137,7 @@ class Option extends Model
 
     public function scopePadres($query)
     {
-        return $query->whereNull('option_id')->orderBy('orden');
+        return $query->whereNull('options.option_id')->orderBy('orden');
     }
 
     public function scopePadresDe($query,$chidres)

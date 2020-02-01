@@ -97,6 +97,7 @@ class User extends Authenticatable implements  MustVerifyEmail,HasMedia
 
     public function menu()
     {
+        $parentOptionUser = $this->options()->padres()->get();
         $optionsUser = $this->options;
 
         $childres = $optionsUser->pluck('id')->toArray();
@@ -116,6 +117,8 @@ class User extends Authenticatable implements  MustVerifyEmail,HasMedia
             $padre->setRelation('children',$childrens);
             return $padre;
         });
+
+        $options = $parentOptionUser->merge($options);
 
         return $options;
     }
