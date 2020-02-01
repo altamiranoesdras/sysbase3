@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -25,7 +26,10 @@ class UsersTableSeeder extends Seeder
             "username" => "admin",
             "name" => "Administrador",
             "password" => bcrypt("123")
-        ]);
+        ])->each(function (User $user){
+            $user->syncRoles([Role::SUPERADMIN,Role::DEVELOPER]);
+        });
+
 
 //        factory(User::class,10)->create([
 //            "password" => bcrypt("123")

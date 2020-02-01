@@ -36,7 +36,11 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        @yield('content')
+        @can('access_option')
+            @yield('content')
+        @else
+            @include('partials.no_acces_to_option')
+        @endcan
     </div>
     <!-- /.content-wrapper -->
 
