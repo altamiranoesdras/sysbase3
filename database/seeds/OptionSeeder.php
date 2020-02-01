@@ -100,13 +100,13 @@ class OptionSeeder extends Seeder
 
         if (app()->environment()=='local'){
 
-//            factory(Option::class,2)->create(['ruta' => null])->each(function (Option $option){
-//                factory(Option::class,3)->create(['ruta' => null,'option_id' => $option->id])->each(function (Option $option){
-//                    factory(Option::class,3)->create(['option_id' => $option->id])->each(function (Option $option){
+            factory(Option::class,2)->create(['ruta' => null])->each(function (Option $option){
+                factory(Option::class,3)->create(['ruta' => null,'option_id' => $option->id])->each(function (Option $option){
+                    factory(Option::class,3)->create(['option_id' => $option->id])->each(function (Option $option){
 //                        factory(Option::class,3)->create(['option_id' => $option->id]);
-//                    });
-//                });
-//            });
+                    });
+                });
+            });
 
         }
 

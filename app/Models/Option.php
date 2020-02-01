@@ -81,7 +81,7 @@ class Option extends Model
 
     public function parent()
     {
-        return $this->belongsTo(Option::class,'option_id','id');
+        return $this->belongsTo(Option::class,'option_id','id')->with('parent');
     }
 
     public function children()
@@ -142,7 +142,7 @@ class Option extends Model
 
     public function scopePadresDe($query,$chidres)
     {
-        return $query->whereNull('option_id')->whereHas('children',function ($q)use ($chidres){
+        return $query->whereHas('children',function ($q)use ($chidres){
                 $q->whereIn('id',$chidres);
         });
     }

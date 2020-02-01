@@ -10,7 +10,7 @@ $factory->define(Option::class, function (Faker $faker) {
     return [
         'option_id' => null,
         'nombre' => $faker->userName,
-        'ruta' => $faker->domainName,
+        'ruta' => $faker->word,
         'descripcion' => $faker->text,
         'icono_l' => $faker->randomElement([
              'fa-file-code',

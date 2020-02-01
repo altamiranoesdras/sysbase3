@@ -24,6 +24,12 @@
             <ul class="nav nav-pills nav-sidebar flex-column nav-compact nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
 
                 @include('layouts.partials.menu')
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
 
             </ul>
         </nav>
