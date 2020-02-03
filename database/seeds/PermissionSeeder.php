@@ -12,6 +12,13 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        factory(Permission::class,25)->create();
+
+        foreach (Route::getRoutes() as $route){
+
+            if ($route->getName()){
+                factory(Permission::class,1)->create(['name' => $route->getName() ]);
+            }
+        }
+
     }
 }

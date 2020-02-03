@@ -45,5 +45,10 @@
     "Configuration updated successfully." : "Configuración actualizada con éxito.",
     "Configuration not found." : "Configuración no encontrada.",
     "Configuration deleted successfully." : "Configuración eliminada con éxito.",
-    "Back" : "Regresar"
+    "Back" : "Regresar",
+    "Page not found." : "Página no encontrada.",
+    "User does not have the right permissions." : "El usuario no tiene los permisos correctos.",
+    "Meanwhile, you may" : "Mientras tanto, puedes",
+    "return to home" : "regresar al inicio",
+    "or try using the search form." : "o intente usar el formulario de búsqueda."
 }

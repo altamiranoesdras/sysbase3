@@ -19,6 +19,11 @@ class $MODEL_NAME$Controller extends AppBaseController
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('permission:$MODEL_NAME_PLURAL_CAMEL$.index')->only('index');
+        $this->middleware('permission:$MODEL_NAME_PLURAL_CAMEL$.show')->only('show');
+        $this->middleware('permission:$MODEL_NAME_PLURAL_CAMEL$.create')->only(['create','store']);
+        $this->middleware('permission:$MODEL_NAME_PLURAL_CAMEL$.edit')->only(['edit','update']);
+        $this->middleware('permission:$MODEL_NAME_PLURAL_CAMEL$.destroy')->only('destroy');
     }
 
     /**
