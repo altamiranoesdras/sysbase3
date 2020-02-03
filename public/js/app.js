@@ -84819,13 +84819,9 @@ module.exports = function(module) {
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var izitoast_dist_js_iziToast_min__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! izitoast/dist/js/iziToast.min */ "./node_modules/izitoast/dist/js/iziToast.min.js");
-/* harmony import */ var izitoast_dist_js_iziToast_min__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(izitoast_dist_js_iziToast_min__WEBPACK_IMPORTED_MODULE_0__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -84881,7 +84877,153 @@ __webpack_require__(/*! datatables.net-responsive-bs4 */ "./node_modules/datatab
 __webpack_require__(/*! ../../public/vendor/datatables/buttons.server-side */ "./public/vendor/datatables/buttons.server-side.js");
 
 __webpack_require__(/*! admin-lte/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min */ "./node_modules/admin-lte/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js");
+/**
+ * Funciones personalizadas
+ */
 
+
+__webpack_require__(/*! ./fn.js */ "./resources/js/fn.js");
+
+var _require = __webpack_require__(/*! ./override-console-log */ "./resources/js/override-console-log.js"),
+    log = _require.log,
+    logI = _require.logI,
+    logD = _require.logD,
+    logW = _require.logW,
+    logE = _require.logE,
+    logConfig = _require.logConfig;
+
+window.log = log;
+window.logI = logI;
+window.logD = logD;
+window.logW = logW;
+window.logE = logE;
+window.logConfig = logConfig;
+
+/***/ }),
+
+/***/ "./resources/js/bootstrap.js":
+/*!***********************************!*\
+  !*** ./resources/js/bootstrap.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/**
+ * We'll load jQuery and the Bootstrap jQuery plugin which provides support
+ * for JavaScript based Bootstrap features such as modals and tabs. This
+ * code may be modified to fit the specific needs of your application.
+ */
+
+try {
+  // window.Popper = require('popper.js').default;
+  window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+} catch (e) {}
+/**
+ * We'll load the axios HTTP library which allows us to easily issue requests
+ * to our Laravel back-end. This library automatically handles sending the
+ * CSRF token as a header based on the value of the "XSRF" token cookie.
+ */
+
+
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+/**
+ * Echo exposes an expressive API for subscribing to channels and listening
+ * for events that are broadcast by Laravel. Echo and event broadcasting
+ * allows your team to easily build robust real-time web applications.
+ */
+// import Echo from 'laravel-echo';
+// window.Pusher = require('pusher-js');
+// window.Echo = new Echo({
+//     broadcaster: 'pusher',
+//     key: process.env.MIX_PUSHER_APP_KEY,
+//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+//     encrypted: true
+// });
+
+/***/ }),
+
+/***/ "./resources/js/components/ExampleComponent.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/ExampleComponent.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
+/* harmony import */ var _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ExampleComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
+  \*************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/fn.js":
+/*!****************************!*\
+  !*** ./resources/js/fn.js ***!
+  \****************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var izitoast_dist_js_iziToast_min__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! izitoast/dist/js/iziToast.min */ "./node_modules/izitoast/dist/js/iziToast.min.js");
+/* harmony import */ var izitoast_dist_js_iziToast_min__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(izitoast_dist_js_iziToast_min__WEBPACK_IMPORTED_MODULE_0__);
 
 
 window.iziTi = function (tile, message) {
@@ -85037,115 +85179,233 @@ $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
 
 /***/ }),
 
-/***/ "./resources/js/bootstrap.js":
-/*!***********************************!*\
-  !*** ./resources/js/bootstrap.js ***!
-  \***********************************/
+/***/ "./resources/js/override-console-log.js":
+/*!**********************************************!*\
+  !*** ./resources/js/override-console-log.js ***!
+  \**********************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
- */
+/*
+Author: Shammi Hans | Smi0001
+Dependency: JavaScript (ES06)
+Description: Overriding console.log to customize the log with current time along with passed log arguments
+*/
+var origlog = console.log;
+var defaultOptions = Object.freeze({
+  logDate: false,
+  logDateFormat: 'toLocaleString',
+  // Date format is actually the format-function-name in which user wants to convert the date
+  enableAll: true,
+  enableLog: true,
+  enableLogI: true,
+  enableLogD: true,
+  enableLogE: true,
+  logCustomPrefix: '',
+  // accepts any string of length < 1000
+  logDateThenPrefix: true,
+  debugPrefix: 'DEBUG:',
+  infoPrefix: 'INFO:',
+  errorPrefix: 'ERROR:',
+  warmPrefix: 'WARNING:',
+  stopLogging: false // stop this logging with format, only console.log() & log() can be used as usual logging
 
-try {
-  // window.Popper = require('popper.js').default;
-  window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-} catch (e) {}
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
+});
+var logConfig = {};
 
+console.resetLogger = function () {
+  logConfig = JSON.parse(JSON.stringify(defaultOptions));
+};
 
-window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-/**
- * Echo exposes an expressive API for subscribing to channels and listening
- * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
- */
-// import Echo from 'laravel-echo';
-// window.Pusher = require('pusher-js');
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
-// });
+console.resetLogger();
 
-/***/ }),
+var getCurrentDateFormat = function getCurrentDateFormat() {
+  var dateStr = new Date().toLocaleString(); // default date format
 
-/***/ "./resources/js/components/ExampleComponent.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue ***!
-  \******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+  if (logConfig && logConfig.logDateFormat && typeof logConfig.logDateFormat === 'string') {
+    switch (logConfig.logDateFormat.toLowerCase()) {
+      case 'todatestring':
+        dateStr = new Date().toDateString();
+        break;
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
-/* harmony import */ var _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+      case 'togmtstring':
+        dateStr = new Date().toGMTString();
+        break;
 
+      case 'toisostring':
+        dateStr = new Date().toISOString();
+        break;
 
+      case 'tojson':
+        dateStr = new Date().toJSON();
+        break;
 
+      case 'tolocaledatestring':
+        dateStr = new Date().toLocaleDateString();
+        break;
 
+      case 'todatestring':
+        dateStr = new Date().toLocaleTimeString();
+        break;
 
-/* normalize component */
+      case 'tostring':
+        dateStr = new Date().toString();
+        break;
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
+      case 'totimestring':
+        dateStr = new Date().toTimeString();
+        break;
 
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/ExampleComponent.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+      case 'toutcstring':
+        dateStr = new Date().toUTCString();
+        break;
 
-/***/ }),
+      default:
+        // dateStr = (new Date()).toLocaleString();
+        break;
+    }
+  }
 
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+  return dateStr + ' ';
+};
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+console.log = function (obj) {
+  var dateString = '';
+  var datePrefix = '';
 
-/***/ }),
+  if (logConfig && !logConfig.stopLogging) {
+    if (logConfig && logConfig.enableAll && logConfig.enableLog && logConfig.logDate) {
+      dateString = getCurrentDateFormat();
+      var prefix = '';
 
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
-  \*************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+      if (typeof logConfig.logCustomPrefix === 'string' && logConfig.logCustomPrefix.length < 1000) {
+        prefix = logConfig.logCustomPrefix;
+      }
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+      datePrefix = logConfig.logDateThenPrefix ? dateString + prefix + ' ' : prefix + ' ' + dateString;
+    }
+  }
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+  for (var _len = arguments.length, argumentArray = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    argumentArray[_key - 1] = arguments[_key];
+  }
 
+  if (typeof obj === 'string') {
+    argumentArray.unshift(datePrefix + obj);
+  } else {
+    // This handles console.log( object )
+    argumentArray.unshift(obj);
+    argumentArray.unshift(datePrefix);
+  }
 
+  origlog.apply(this, argumentArray);
+};
+
+var getDatePrefix = function getDatePrefix(prefix) {
+  var datePrefix = '';
+  var dateString = '';
+
+  if (logConfig && logConfig.enableAll) {
+    if (logConfig.logDate) {
+      dateString = getCurrentDateFormat();
+    }
+
+    datePrefix = logConfig.logDateThenPrefix ? dateString + prefix + ' ' : prefix + ' ' + dateString;
+  }
+
+  return datePrefix + ' ';
+};
+
+console.logD = function (obj) {
+  if (logConfig && !logConfig.stopLogging) {
+    var datePrefix = logConfig && logConfig.enableLogD ? getDatePrefix(logConfig.debugPrefix) : '';
+
+    for (var _len2 = arguments.length, argumentArray = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+      argumentArray[_key2 - 1] = arguments[_key2];
+    }
+
+    if (typeof obj === 'string') {
+      argumentArray.unshift(datePrefix + obj);
+    } else {
+      argumentArray.unshift(obj);
+      argumentArray.unshift(datePrefix);
+    }
+
+    origlog.apply(this, argumentArray);
+  }
+};
+
+console.logW = function (obj) {
+  var origlog = console.warn;
+
+  if (logConfig && !logConfig.stopLogging) {
+    var datePrefix = logConfig && logConfig.enableLogD ? getDatePrefix(logConfig.warmPrefix) : '';
+
+    for (var _len3 = arguments.length, argumentArray = new Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
+      argumentArray[_key3 - 1] = arguments[_key3];
+    }
+
+    if (typeof obj === 'string') {
+      argumentArray.unshift(datePrefix + obj);
+    } else {
+      argumentArray.unshift(obj);
+      argumentArray.unshift(datePrefix);
+    }
+
+    origlog.apply(this, argumentArray);
+  }
+};
+
+console.logI = function (obj) {
+  var origlog = console.info;
+
+  if (logConfig && !logConfig.stopLogging) {
+    var datePrefix = logConfig && logConfig.enableLogI ? getDatePrefix(logConfig.infoPrefix) : '';
+
+    for (var _len4 = arguments.length, argumentArray = new Array(_len4 > 1 ? _len4 - 1 : 0), _key4 = 1; _key4 < _len4; _key4++) {
+      argumentArray[_key4 - 1] = arguments[_key4];
+    }
+
+    if (typeof obj === 'string') {
+      argumentArray.unshift(datePrefix + obj);
+    } else {
+      argumentArray.unshift(obj);
+      argumentArray.unshift(datePrefix);
+    }
+
+    origlog.apply(this, argumentArray);
+  }
+};
+
+console.logE = function (obj) {
+  var origlog = console.error;
+
+  if (logConfig && !logConfig.stopLogging) {
+    var datePrefix = logConfig && logConfig.enableLogE ? getDatePrefix(logConfig.errorPrefix) : '';
+
+    for (var _len5 = arguments.length, argumentArray = new Array(_len5 > 1 ? _len5 - 1 : 0), _key5 = 1; _key5 < _len5; _key5++) {
+      argumentArray[_key5 - 1] = arguments[_key5];
+    }
+
+    if (typeof obj === 'string') {
+      argumentArray.unshift(datePrefix + obj);
+    } else {
+      // This handles console.log( object )
+      argumentArray.unshift(obj);
+      argumentArray.unshift(datePrefix);
+    }
+
+    origlog.apply(this, argumentArray);
+  }
+};
+
+module.exports.log = console.log;
+module.exports.logI = console.logI;
+module.exports.logD = console.logD;
+module.exports.logW = console.logW;
+module.exports.logE = console.logE;
+module.exports.logConfig = logConfig;
+module.exports.resetLogger = console.resetLogger;
 
 /***/ }),
 

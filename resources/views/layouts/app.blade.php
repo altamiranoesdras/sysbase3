@@ -68,6 +68,13 @@
 <script src="{{ url (mix('/js/app.js')) }}" type="text/javascript"></script>
 
 <script>
+    @if(!env('APP_DEBUG'))
+
+        logConfig.stopLogging = true;
+
+    @else
+        logW("Modo Debug Activo")
+    @endif
 
 </script>
 
