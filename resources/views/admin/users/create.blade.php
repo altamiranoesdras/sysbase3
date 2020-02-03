@@ -45,4 +45,6 @@
         </div>
     </div>
 
+    @include('admin.permissions.modal_form_new')
+    @include('admin.roles.modal_form_new')
 @endsection

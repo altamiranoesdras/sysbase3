@@ -18,7 +18,7 @@
             'permissions[]',
             select(\App\Models\Permission::class,'name','id',null)
             , null
-            , ['id'=>'permissionss','class' => 'form-control duallistbox','multiple']
+            , ['class' => 'form-control duallistbox','multiple']
         )
     !!}
 </div>

@@ -7,5 +7,9 @@ Route::group(['as'=>'api.','middleware' => 'auth:api'], function () {
 
     Route::resource('permissions', 'PermissionAPIController');
 
+    Route::resource('roles', 'RoleAPIController');
+
 });
+
+
 

@@ -69,7 +69,7 @@ class UserController extends AppBaseController
             }
 
             $user->syncRoles($request->roles);
-            $user->syncPermissions($request->permissions);
+            $user->syncPermissions($request->permissions_user);
 
         } catch (Exception $exception) {
             DB::rollBack();
@@ -123,7 +123,9 @@ class UserController extends AppBaseController
             return redirect(route('users.index'));
         }
 
-        return view('admin.users.edit')->with('user', $user);
+        $user->setAttribute('permissions_user',$user->permissions);
+
+        return view('admin.users.edit',compact('user'));
     }
 
     /**
@@ -155,7 +157,7 @@ class UserController extends AppBaseController
             }
 
             $user->syncRoles($request->roles);
-            $user->syncPermissions($request->permissions);
+            $user->syncPermissions($request->permissions_user);
 
         } catch (Exception $exception) {
             DB::rollBack();
