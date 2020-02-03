@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('htmlheader_title')
-	Editar Role
-@endsection
+@section('title_page',__('Edit Role'))
 
 @section('content')
 
@@ -49,4 +47,5 @@
         </div>
     </div>
 
+    @include('admin.permissions.modal_form_new')
 @endsection

@@ -52,7 +52,7 @@ require('datatables.net-fixedheader-bs4');
 require('datatables.net-responsive-bs4');
 require('../../public/vendor/datatables/buttons.server-side');
 
-require('admin-lte/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min');
+require('./jquery.bootstrap-duallistbox.js');
 
 /**
  * Funciones personalizadas

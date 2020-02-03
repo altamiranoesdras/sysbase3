@@ -172,3 +172,19 @@ window.deleteItemDt = (data) =>{
 }
 
 $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+
+window.erroresToList =  (errors) => {
+
+    var res ="<ul style='list-style-type: none; padding:0px;'>";
+
+    $.each(errors,function (field,fieldErrors) {
+
+        $.each(fieldErrors,function (index,error) {
+            res = res+'<li>'+error+'</li>';
+        })
+    })
+
+    res = res+"</ul>";
+
+    return res;
+}

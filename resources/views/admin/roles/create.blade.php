@@ -44,4 +44,6 @@
         </div>
     </div>
 
+    @include('admin.permissions.modal_form_new')
+
 @endsection
