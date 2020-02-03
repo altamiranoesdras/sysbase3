@@ -23,6 +23,11 @@ class OptionController extends AppBaseController
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('permission:options.index')->only('index');
+        $this->middleware('permission:options.show')->only('show');
+        $this->middleware('permission:options.create')->only(['create','store']);
+        $this->middleware('permission:options.edit')->only(['edit','update']);
+        $this->middleware('permission:options.destroy')->only('destroy');
     }
 
 
