@@ -25,7 +25,7 @@ class UsersTableSeeder extends Seeder
         factory(User::class,1)->create([
             "username" => "admin",
             "name" => "Administrador",
-            "password" => bcrypt("123")
+            "password" => bcrypt("admin")
         ])->each(function (User $user){
             $user->syncRoles([Role::SUPERADMIN,Role::DEVELOPER]);
         });
