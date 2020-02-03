@@ -14,56 +14,7 @@ use Response;
 
 class OptionController extends AppBaseController
 {
-    private $iconos=[
-        'far fa-circle',
-        'fa-th',
-        'fa-shopping-cart',
-        'fa-folder',
-        'fa-plus-square',
-        'fa-info-circle',
-        'fa-laptop',
-        'fa-user',
-        'fa-user-md',
-        'fa-user-plus',
-        'fa-user-secret',
-        'fa-user-times',
-        'fa-users',
-        'fa-adjust',
-        'fa-adn',
-        'fa-align-center',
-        'fa-align-justify',
-        'fa-align-left',
-        'fa-align-right',
-        'fa-angle-left',
-        'fa-angle-right',
-        'fa-ambulance',
-        'fa-anchor',
-        'fa-android',
-        'fa-angellist',
-        'fa-angle-down',
-        'fa-angle-double-down',
-        'fa-angle-double-left',
-        'fa-angle-double-right',
-        'fa-angle-double-up',
-        'fa-angle-up',
-        'fa-calculator',
-        'fa-apple',
-        'fa-archive',
-        'fa-area-chart',
-        'fa-asterisk',
-        'fa-at',
-        'fa-car',
-        'fa-mobile',
-        'fa-mobile',
-        'fa-money',
-        'fa-ban',
-        'fa-university',
-        'fa-bar-chart',
-        'fa-bar-chart',
-        'fa-barcode',
-        'fa-bars',
 
-    ];
 
     /**
      * OptionController constructor.
@@ -83,8 +34,7 @@ class OptionController extends AppBaseController
      */
     public function index()
     {
-        $iconos= $this->iconos;
-        return view('admin.options.index',compact('iconos'));
+        return view('admin.options.index');
     }
 
     /**
@@ -96,9 +46,8 @@ class OptionController extends AppBaseController
     {
         $parent = $option ?? null;
 
-        $iconos= $this->iconos;
 
-        return view('admin.options.create',compact('iconos','parent'));
+        return view('admin.options.create',compact('parent'));
     }
 
     /**
@@ -110,6 +59,7 @@ class OptionController extends AppBaseController
      */
     public function store(CreateOptionRequest $request)
     {
+        dd($request->all());
         $input = $request->all();
 
         /** @var Option $option */
@@ -159,10 +109,9 @@ class OptionController extends AppBaseController
             return redirect(route('options.index'));
         }
 
-        $iconos = $this->iconos;
         $parent = $option->parent ?? null;
 
-        return view('admin.options.edit',compact('option','iconos','parent'));
+        return view('admin.options.edit',compact('option','parent'));
     }
 
     /**

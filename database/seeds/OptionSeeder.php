@@ -64,7 +64,15 @@ class OptionSeeder extends Seeder
                 'nombre' => "Configuraciones",
                 'icono_l' => 'fa-cogs',
                 'ruta' => 'configurations.index',
-                'orden' => 5
+                'orden' => 6
+            ]);
+
+            factory(Option::class,1)->create([
+                'option_id' => $option->id,
+                'nombre' => "Clientes Passport",
+                'icono_l' => 'passport',
+                'ruta' => 'passport.clients',
+                'orden' => 7
             ]);
         });
 
@@ -100,13 +108,13 @@ class OptionSeeder extends Seeder
 
         if (app()->environment()=='local'){
 
-            factory(Option::class,2)->create(['ruta' => null])->each(function (Option $option){
-                factory(Option::class,3)->create(['ruta' => null,'option_id' => $option->id])->each(function (Option $option){
-                    factory(Option::class,3)->create(['option_id' => $option->id])->each(function (Option $option){
-//                        factory(Option::class,3)->create(['option_id' => $option->id]);
-                    });
-                });
-            });
+//            factory(Option::class,2)->create(['ruta' => null])->each(function (Option $option){
+//                factory(Option::class,3)->create(['ruta' => null,'option_id' => $option->id])->each(function (Option $option){
+//                    factory(Option::class,3)->create(['option_id' => $option->id])->each(function (Option $option){
+////                        factory(Option::class,3)->create(['option_id' => $option->id]);
+//                    });
+//                });
+//            });
 
         }
 

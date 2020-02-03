@@ -25,38 +25,16 @@
 </div>
 
 <div class="form-group col-6">
-    {!! Form::label('ruta', 'Icono izquierdo:') !!}
-    {!! Form::text('icono_l', null, ['class' => 'form-control input-icon']) !!}
-    @foreach($iconos as $icono)
-        <label class="radio-inline">
-            @isset($opcion)
-                <input type="radio" name="x" id="inputID" value="{{$icono}}" class="radio-iconos" {{$icono==$opcion->icono_l ? "checked" : ''}}>
-            @else
-                <input type="radio" name="x" id="inputID" value="{{$icono}}" class="radio-iconos">
-            @endisset
-            <i class="fa {{$icono}}"></i>
-        </label>
-    @endforeach
+    {!! Form::label('ruta', 'Icono izquierdo:') !!} <a href="https://fontawesome.com/icons?d=gallery&m=free" target="_blank">fontawesome</a>
+    {!! Form::text('icono_l', 'fa-circle-notch', ['class' => 'form-control input-icon']) !!}
+
 </div>
 
 <div class="form-group col-6">
 
-    {!! Form::label('ruta', 'Icono derecho:') !!}
+    {!! Form::label('ruta', 'Icono derecho:') !!} <a href="https://fontawesome.com/icons?d=gallery&m=free" target="_blank">fontawesome</a>
     {!! Form::text('icono_r', null, ['class' => 'form-control input-icon']) !!}
-    <label class="radio-inline">
-        <input type="radio" name="y" id="inputID" value="" checked>
-        ninguno
-    </label>
-    @foreach($iconos as $icono)
-        <label class="radio-inline">
-            @isset($opcion)
-                <input type="radio" name="y" id="inputID" value="{{$icono}}" class="radio-iconos" {{$icono==$opcion->icono_r ? "checked" : ''}}>
-            @else
-                <input type="radio" name="y" id="inputID" value="{{$icono}}" class="radio-iconos" >
-            @endisset
-            <i class="fa {{$icono}}"></i>
-        </label>
-    @endforeach
+
 </div>
 @push('scripts')
     <script>
