@@ -122,6 +122,10 @@
                     });
                 }
 
+                log(url);
+                log(method);
+                log(params);
+
                 var params = {params : params };
 
 
@@ -148,15 +152,39 @@
                             });
                         break;
                     case 'put':
+                            axios.put(url,params).then(response => {
+                                this.result = response;
+                                this.loading = false;
+                            })
+                            .catch(error => {
+                                this.result = error.response;
+                                this.loading = false;
+                            });
                         break;
                     case 'patch':
+                            axios.patch(url,params).then(response => {
+                                this.result = response;
+                                this.loading = false;
+                            })
+                            .catch(error => {
+                                this.result = error.response;
+                                this.loading = false;
+                            });
                         break;
                     case 'delete':
+                            axios.delete(url,params).then(response => {
+                                this.result = response;
+                                this.loading = false;
+                            })
+                            .catch(error => {
+                                this.result = error.response;
+                                this.loading = false;
+                            });
                         break;
 
                 }
+
                 this.result = url;
-                var params= { params: {id: 1} }
 
             }
         }
