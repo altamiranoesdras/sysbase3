@@ -13,6 +13,9 @@ use Response;
 class $MODEL_NAME$Controller extends AppBaseController
 {
 
+    /**
+     * $MODEL_NAME$Controller constructor.
+     */
     public function __construct()
     {
         $this->middleware('auth');

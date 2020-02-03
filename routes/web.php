@@ -1,10 +1,14 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 Auth::routes(['verify' => true]);
 
 Route::group(['prefix' => 'developer'],function (){
 
     Route::get('prueba/api','PruebaApiController@index')->name('developer.prueba.api');
+
+    Route::get('passport/clients', 'PassportClientsController@index')->name('passport.clients');
 
 });
 
@@ -36,3 +40,4 @@ Route::resource('projects', 'ProjectController');
 
 
 Route::resource('configurations', 'ConfigurationController');
+

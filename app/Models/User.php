@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
@@ -30,7 +31,7 @@ use Spatie\Permission\Traits\HasRoles;
  */
 class User extends Authenticatable implements  MustVerifyEmail,HasMedia
 {
-    use Notifiable,HasMediaTrait,HasRoles;
+    use HasApiTokens,Notifiable,HasMediaTrait,HasRoles;
 
     /**
      * The attributes that are mass assignable.

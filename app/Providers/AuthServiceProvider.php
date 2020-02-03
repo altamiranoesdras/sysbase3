@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -40,5 +41,7 @@ class AuthServiceProvider extends ServiceProvider
             return (!Option::all()->contains('ruta',$rutaActual) || $user->options->contains('ruta',$rutaActual));
 
         });
+
+        Passport::routes();
     }
 }

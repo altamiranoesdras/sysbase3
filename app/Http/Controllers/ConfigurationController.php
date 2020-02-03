@@ -14,6 +14,15 @@ use Response;
 class ConfigurationController extends AppBaseController
 {
     /**
+     * ConfigurationController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
+    /**
      * Display a listing of the Configuration.
      *
      * @param ConfigurationDataTable $configurationDataTable

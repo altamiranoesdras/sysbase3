@@ -15,6 +15,14 @@ use Response;
 class RoleController extends AppBaseController
 {
     /**
+     * RoleController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the Role.
      *
      * @param RoleDataTable $roleDataTable

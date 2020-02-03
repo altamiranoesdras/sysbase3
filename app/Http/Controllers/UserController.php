@@ -17,6 +17,15 @@ use Response;
 class UserController extends AppBaseController
 {
     /**
+     * UserController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
+    /**
      * Display a listing of the User.
      *
      * @param UserDataTable $userDataTable

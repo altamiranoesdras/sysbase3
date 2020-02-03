@@ -1,9 +1,7 @@
 <?php
 
 //'middleware' => 'auth:api'
-Route::group(['as'=>'api.'], function () {
-    Route::resource('options', 'OptionAPIController');
-
+Route::group(['as'=>'api.','middleware' => 'auth:api'], function () {
     Route::resource('options', 'OptionAPIController');
 });
 

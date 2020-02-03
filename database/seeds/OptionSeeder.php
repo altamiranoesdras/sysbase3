@@ -70,7 +70,7 @@ class OptionSeeder extends Seeder
             factory(Option::class,1)->create([
                 'option_id' => $option->id,
                 'nombre' => "Clientes Passport",
-                'icono_l' => 'passport',
+                'icono_l' => 'fa-passport',
                 'ruta' => 'passport.clients',
                 'orden' => 7
             ]);

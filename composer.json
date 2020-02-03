@@ -15,6 +15,7 @@
         "infyomlabs/laravel-generator": "6.0.x-dev",
         "jenssegers/date": "^3.5",
         "laravel/framework": "^6.2",
+        "laravel/passport": "^8.3",
         "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",
         "laravelcollective/html": "^6.0",
