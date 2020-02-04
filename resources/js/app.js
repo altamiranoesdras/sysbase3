@@ -54,6 +54,8 @@ require('../../public/vendor/datatables/buttons.server-side');
 
 require('./jquery.bootstrap-duallistbox.js');
 
+window.Cropper  = require('cropperjs/dist/cropper.min');
+
 /**
  * Funciones personalizadas
  */

@@ -2,6 +2,22 @@
 
 @section('title_page',__('Profile'))
 
+@push('styles')
+    <style>
+
+        .icon-edit-avatar{
+            position: absolute;
+            right:20px;
+            top:10px;
+            text-align: center;
+            border-radius: 30px 30px 30px 30px;
+            color:white;
+            padding:5px 10px;
+            font-size:20px;
+        }
+    </style>
+@endpush
+
 @section('content')
 
     <!-- Content Header (Page header) -->
@@ -33,10 +49,55 @@
                     <!-- Profile Image -->
                     <div class="card card-primary card-outline">
                         <div class="card-body box-profile">
-                            <div class="text-center">
+                            <div class="text-center box-img-profile" >
                                 <img class="profile-user-img img-fluid img-circle"
                                      src="{{Auth::user()->img}}"
                                      alt="User profile picture">
+
+                                <!-- Modal -->
+
+
+
+                                <div class="dropdown open icon-edit-avatar" >
+                                    <button class="btn  " type="button" id="triggerId"
+                                            data-toggle="dropdown" >
+                                        <i class="fa fa-camera text-primary" style="font-size: 1.5rem"></i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="triggerId">
+                                        <input id="upload" type="file" style="display: none"/>
+                                        <button class="dropdown-item" href="#" id="upload_link">
+                                            {{__('Upload your photo')}}
+                                        </button>
+                                        <button class="dropdown-item " href="#">
+                                            {{__('Remove photo')}}
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="modal fade" id="modal-edit-avatar" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalLabel">
+                                                    {{__('Crop your new profile picture')}}
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="img-container">
+                                                    <img id="imgNewAvatar" src="{{auth()->user()->img}}" alt="Picture" class="img-fluid">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-success btn-block" data-dismiss="modal">
+                                                    {{__('Set new profile picture')}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <h3 class="profile-username text-center">{{Auth::user()->name}}</h3>
@@ -396,3 +457,57 @@
     <!-- /.content -->
 
 @endsection
+
+@push('scripts')
+    <script>
+        $(function(){
+            $("#upload_link").on('click', function(e){
+                e.preventDefault();
+                $("#upload:hidden").trigger('click');
+            });
+        });
+
+
+        var cropBoxData;
+        var canvasData;
+        var cropper;
+
+
+        $('#modal-edit-avatar').on('shown.bs.modal', function () {
+
+            var image = document.getElementById('imgNewAvatar');
+
+            cropper = new Cropper(image, {
+                autoCropArea: 1,
+                ready: function () {
+                    //Should set crop box data first here
+                    cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
+                }
+            });
+        }).on('hidden.bs.modal', function () {
+            cropBoxData = cropper.getCropBoxData();
+            canvasData = cropper.getCanvasData();
+            cropper.destroy();
+        });
+
+
+        function readURL(input, id) {
+
+        }
+
+        $("#upload").change(function () {
+            log('cambia imagen');
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imgNewAvatar').attr('src', e.target.result);
+                    $("#modal-edit-avatar").modal('show');
+                }
+
+                reader.readAsDataURL(this.files[0]);
+            }
+
+        });
+    </script>
+@endpush

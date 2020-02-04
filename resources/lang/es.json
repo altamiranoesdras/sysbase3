@@ -50,5 +50,9 @@
     "User does not have the right permissions." : "El usuario no tiene los permisos correctos.",
     "Meanwhile, you may" : "Mientras tanto, puedes",
     "return to home" : "regresar al inicio",
-    "or try using the search form." : "o intente usar el formulario de búsqueda."
+    "or try using the search form." : "o intente usar el formulario de búsqueda.",
+    "Upload your photo" : "Sube tu avatar",
+    "Remove photo" : "Eliminar avatar",
+    "Crop your new profile picture" : "Recorta tu nueva foto de perfil",
+    "Set new profile picture" : "Establecer nueva foto de perfil"
 }
