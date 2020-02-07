@@ -91,9 +91,12 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-outline-success btn-block" data-dismiss="modal">
+                                                <button type="button" class="btn btn-outline-success " id="set_new_profile_pictur">
                                                     {{__('Set new profile picture')}}
                                                 </button>
+                                                <div class="spinner-border text-success" role="status" id="uploadaAvatarSpinner" style="display: none">
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -461,52 +464,95 @@
 @push('scripts')
     <script>
         $(function(){
+
+            //para abrir el imput tipo file
             $("#upload_link").on('click', function(e){
                 e.preventDefault();
                 $("#upload:hidden").trigger('click');
             });
-        });
 
 
-        var cropBoxData;
-        var canvasData;
-        var cropper;
+            //después de seleccionar el archivo (carga la imagen en el modal y lo abre)
+            $("#upload").change(function () {
 
+                if (this.files && this.files[0]) {
+                    var reader = new FileReader();
 
-        $('#modal-edit-avatar').on('shown.bs.modal', function () {
+                    reader.onload = function (e) {
+                        $('#imgNewAvatar').attr('src', e.target.result);
+                        $("#modal-edit-avatar").modal('show');
+                    }
 
-            var image = document.getElementById('imgNewAvatar');
-
-            cropper = new Cropper(image, {
-                autoCropArea: 1,
-                ready: function () {
-                    //Should set crop box data first here
-                    cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
+                    reader.readAsDataURL(this.files[0]);
                 }
+
             });
-        }).on('hidden.bs.modal', function () {
-            cropBoxData = cropper.getCropBoxData();
-            canvasData = cropper.getCanvasData();
-            cropper.destroy();
-        });
+
+            var cropBoxData;
+            var canvasData;
+            var cropper;
 
 
-        function readURL(input, id) {
 
-        }
+            //Cuando el modal se abre (inicializa el plugin para recortar la imagen)
+            $('#modal-edit-avatar').on('shown.bs.modal', function () {
 
-        $("#upload").change(function () {
-            log('cambia imagen');
-            if (this.files && this.files[0]) {
-                var reader = new FileReader();
+                var image = document.getElementById('imgNewAvatar');
 
-                reader.onload = function (e) {
-                    $('#imgNewAvatar').attr('src', e.target.result);
-                    $("#modal-edit-avatar").modal('show');
-                }
+                cropper = new Cropper(image, {
+                    autoCropArea: 1,
+                    ready: function () {
+                        //Should set crop box data first here
+                        cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
+                    }
+                });
+            }).on('hidden.bs.modal', function () {
+                cropBoxData = cropper.getCropBoxData();
+                canvasData = cropper.getCanvasData();
+                cropper.destroy();
+            });
 
-                reader.readAsDataURL(this.files[0]);
-            }
+
+            $("#set_new_profile_pictur").click(function (e) {
+
+                e.preventDefault();
+
+                $("#uploadaAvatarSpinner").show();
+
+
+                cropper.getCroppedCanvas().toBlob(function (blob) {
+
+                    const formData = new FormData();
+                    const extension = blob.type.split('/')[1];
+                    const imageFile = new File([blob], `${Date.now()}.${extension}`, {
+                        type: blob.type,
+                    });
+
+                    formData.append('avatar', imageFile);
+                    console.log(blob,formData);
+
+                    const header = {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    };
+
+                    const url = '{{route('profile.edit.avatar',auth()->user()->id)}}';
+
+                    axios.post(url,formData,header)
+                    .then(response => {
+                        log(response);
+
+                        $("#modal-edit-avatar").modal('hide');
+                        location.reload();
+                    })
+                    .catch(error => {
+                        log(error.response);
+                    });
+
+
+                });
+            })
 
         });
     </script>

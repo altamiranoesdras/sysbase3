@@ -62,7 +62,7 @@ class User extends Authenticatable implements  MustVerifyEmail,HasMedia
 
     public function getImgAttribute()
     {
-        $media = $this->getMedia('avatars')->first();
+        $media = $this->getMedia('avatars')->last();
         return $media ? $media->getUrl() : asset('dist/img/avatar5.png');
     }
 
@@ -92,7 +92,7 @@ class User extends Authenticatable implements  MustVerifyEmail,HasMedia
 
     public function getThumbAttribute()
     {
-        $media = $this->getMedia('avatars')->first();
+        $media = $this->getMedia('avatars')->last();
         return $media ? $media->getUrl('thumb') : asset('dist/img/avatar5.png');
     }
 

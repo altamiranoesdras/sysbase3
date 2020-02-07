@@ -26,12 +26,30 @@ class ProfileController extends Controller
     public function update(User $user,Request $request)
     {
 
-//        dd($user->toArray(),$request->toArray());
+
         $user->fill($request->all());
         $user->save();
 
         flash(__('Updated profile!'))->success()->important();
 
         return redirect(route('profile'));
+    }
+
+    public function editAvatar(User $user,Request $request)
+    {
+
+        try {
+            $user->clearMediaCollection('avatars');
+            $user->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+
+
+        } catch (\Exception $exception) {
+
+            return response()->json($exception->getMessage(),500);
+        }
+
+        flash("Imagen Actualizada")->success();
+        return response()->json($user->toArray());
+
     }
 }

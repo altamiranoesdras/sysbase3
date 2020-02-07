@@ -23,6 +23,7 @@ Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallba
 
 Route::get('profile', 'ProfileController@index')->name('profile');
 Route::patch('profile/{user}', 'ProfileController@update')->name('profile.update');
+Route::post('profile/{user}/edit/avatar', 'ProfileController@editAvatar')->name('profile.edit.avatar');
 
 Route::resource('users', 'UserController');
 Route::get('user/{user}/menu', 'UserController@menu')->name('user.menu');;
