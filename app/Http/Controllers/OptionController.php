@@ -64,7 +64,7 @@ class OptionController extends AppBaseController
      */
     public function store(CreateOptionRequest $request)
     {
-        dd($request->all());
+
         $input = $request->all();
 
         /** @var Option $option */

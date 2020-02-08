@@ -30,8 +30,6 @@ class Option extends Model
     const UPDATED_AT = 'updated_at';
 
 
-    protected $with = ['children'];
-
     protected $appends= ['active','text'];
 
     public $fillable = [
@@ -86,7 +84,7 @@ class Option extends Model
 
     public function children()
     {
-        return $this->hasMany(Option::class,'option_id','id')->orderBy('orden');
+        return $this->hasMany(Option::class,'option_id','id')->orderBy('orden')->with('children');
     }
 
     public function hasChildren()

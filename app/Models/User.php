@@ -96,32 +96,45 @@ class User extends Authenticatable implements  MustVerifyEmail,HasMedia
         return $media ? $media->getUrl('thumb') : asset('dist/img/avatar5.png');
     }
 
-    public function menu()
+    public function getAncestros($parent=null,$all=null)
     {
-        $parentOptionUser = $this->options()->padres()->get();
-        $optionsUser = $this->options;
+        $all = $all ?? collect();
 
-        $childres = $optionsUser->pluck('id')->toArray();
+        if (is_null($parent)){
+            foreach ($this->options()->withOut('children')->get() as $op){
 
-        $options = Option::padresDe($childres)->get();
-
-        $options = $options->map(function ($padre) use ($optionsUser){
-
-            $childrens = collect();
-
-            foreach ($optionsUser as $index => $option) {
-                if ($option->option_id==$padre->id){
-                    $childrens->push($option);
+                //si la opción no tine padre
+                if (!$op->option_id){
+                    $all->push($op);
+                }else {
+                    $this->getAncestros($op->parent,$all);
+                }
+            }
+        }else{
+            //si el padre no tiene padre
+            if (!$all->contains('id',$parent->id)){
+                if (!$parent->option_id){
+                    $all->push($parent);
+                }else {
+                    $this->getAncestros($parent->parent,$all);
                 }
             }
 
-            $padre->setRelation('children',$childrens);
-            return $padre;
-        });
+        }
 
-        $options = $parentOptionUser->merge($options);
 
-        return $options;
+        return $all;
+    }
+
+
+    public function optionsIds()
+    {
+        return $this->options->pluck('id');
+    }
+
+    public function menu()
+    {
+        return $this->getAncestros();
     }
 
 }

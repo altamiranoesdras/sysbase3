@@ -25,7 +25,7 @@ class OptionAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $query = Option::query();
+        $query = Option::query()->with('children');
 
         if ($request->get('skip')) {
             $query->skip($request->get('skip'));

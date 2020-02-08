@@ -24,6 +24,8 @@
                 <div class="row">
                     <div class="form-group col-sm-12">
                         @include('admin.roles.show_fields')
+                    </div>
+                    <div class="form-group col-sm-12">
                         <a href="{{ route('roles.index') }}" class="btn btn-outline-secondary">{{__('Back')}}</a>
                     </div>
                 </div>
