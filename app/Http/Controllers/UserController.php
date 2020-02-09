@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Option;
+use App\Models\Role;
 use App\Models\User;
 use Flash;
 use App\Http\Controllers\AppBaseController;
@@ -117,10 +118,16 @@ class UserController extends AppBaseController
      *
      * @return Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        /** @var User $user */
-        $user = User::find($id);
+
+        $authUser = auth()->user();
+
+        //si el usuario autenticado no tiene el rol super admin y trata de editar uno con dicho role
+        if (!$authUser->hasRole(Role::SUPERADMIN) && $user->hasRole(Role::SUPERADMIN) ){
+            flash(__('only user with role superadmin  can edit another with role superadmin'))->error();
+            return redirect(route('users.index'));
+        }
 
         if (empty($user)) {
             Flash::error('User not found');

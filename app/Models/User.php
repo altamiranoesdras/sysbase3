@@ -123,7 +123,7 @@ class User extends Authenticatable implements  MustVerifyEmail,HasMedia
         }
 
 
-        return $all;
+        return $all->sortBy('orden');
     }
 
 

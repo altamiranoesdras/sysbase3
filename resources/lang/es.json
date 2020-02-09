@@ -54,5 +54,6 @@
     "Upload your photo" : "Sube tu avatar",
     "Remove photo" : "Eliminar avatar",
     "Crop your new profile picture" : "Recorta tu nueva foto de perfil",
-    "Set new profile picture" : "Establecer nueva foto de perfil"
+    "Set new profile picture" : "Establecer nueva foto de perfil",
+    "only user with role superadmin  can edit another with role superadmin": "solo el usuario con rol superadmin puede editar otro con rol superadmin"
 }

@@ -25,7 +25,8 @@ class Role extends \Spatie\Permission\Models\Role
     const DEVELOPER =   'Developer';
     const SUPERADMIN =  'Superadmin';
     const ADMIN =       'Admin';
-    const EMPLEADO =    'Empleado';
+    const TESTER =    'Tester';
+    const USER =    'User';
 
     protected $dates = ['deleted_at'];
 

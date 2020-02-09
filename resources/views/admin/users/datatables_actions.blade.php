@@ -12,7 +12,7 @@
 
 
 @can('users.edit')
-    <a href="{{ route('user.menu', $id) }}" data-toggle="tooltip" title="Editar" class='btn btn-outline-secondary btn-sm'>
+    <a href="{{ route('user.menu', $id) }}" data-toggle="tooltip" title="Menu" class='btn btn-outline-secondary btn-sm'>
         <i class="fa fa-list"></i>
     </a>
 @endcan

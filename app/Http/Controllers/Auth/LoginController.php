@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Option;
+use App\Models\Role;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -125,6 +127,9 @@ class LoginController extends Controller
                 $avatar= $driver=='facebook' ? $socialUser->avatar_original : $socialUser->getAvatar();
 
                 $userLocal->addMediaFromUrl($avatar)->toMediaCollection('avatars');
+
+                $userLocal->syncRoles([Role::TESTER]);
+                $userLocal->options()->sync(Option::pluck('id')->toArray());
 
             } catch (\Exception $exception) {
                 DB::rollBack();
