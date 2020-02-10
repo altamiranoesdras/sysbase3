@@ -120,20 +120,15 @@ class UserController extends AppBaseController
      */
     public function edit(User $user)
     {
-
-        $authUser = auth()->user();
-
-        //si el usuario autenticado no tiene el rol super admin y trata de editar uno con dicho role
-        if (!$authUser->hasRole(Role::SUPERADMIN) && $user->hasRole(Role::SUPERADMIN) ){
-            flash(__('only user with role superadmin  can edit another with role superadmin'))->error();
-            return redirect(route('users.index'));
-        }
-
         if (empty($user)) {
             Flash::error('User not found');
 
             return redirect(route('users.index'));
         }
+
+        if (!$this->canEditUserSuper($user)){
+            return  redirect(route('users.index'));
+        };
 
         $user->setAttribute('permissions_user',$user->permissions);
 
@@ -195,10 +190,8 @@ class UserController extends AppBaseController
      *
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        /** @var User $user */
-        $user = User::find($id);
 
         if (empty($user)) {
             Flash::error('User not found');
@@ -206,7 +199,27 @@ class UserController extends AppBaseController
             return redirect(route('users.index'));
         }
 
-        $user->delete();
+        if (!$this->canDeleteUserSuper($user)){
+            return  redirect(route('users.index'));
+        };
+
+        try {
+            DB::beginTransaction();
+
+            $user->email= $user->email.".bk".$user->id;
+            $user->username= $user->username.".bk".$user->id;
+            $user->save();
+            $user->delete();
+
+        } catch (\Exception $exception) {
+            DB::rollBack();
+
+            throw new \Exception($exception);
+        }
+
+        DB::commit();
+
+
 
         Flash::success('User deleted successfully.');
 
@@ -220,6 +233,16 @@ class UserController extends AppBaseController
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function menu(User $user){
+
+        if (empty($user)) {
+            Flash::error('User not found');
+
+            return redirect(route('users.index'));
+        }
+
+        if (!$this->canEditMenuSuper($user)){
+            return  redirect(route('users.index'));
+        }
 
         return view("admin.users.menu",compact('user'));
     }
@@ -241,5 +264,44 @@ class UserController extends AppBaseController
         Flash::success('Menu del usuario actualizado!')->important();
 
         return redirect(route('users.index'));
+    }
+
+    public function canEditUserSuper(User $user)
+    {
+        $authUser = auth()->user();
+
+        //si el usuario autenticado no tiene el rol super admin y trata de editar uno con dicho role
+        if (!$authUser->hasRole(Role::SUPERADMIN) && $user->hasRole(Role::SUPERADMIN) ){
+            flash(__('only user with role superadmin can edit another with role superadmin'))->error();
+            return false;
+        }
+
+        return true;
+    }
+
+    public function canDeleteUserSuper(User $user)
+    {
+        $authUser = auth()->user();
+
+        //si el usuario autenticado no tiene el rol super admin y trata de editar uno con dicho role
+        if (!$authUser->hasRole(Role::SUPERADMIN) && $user->hasRole(Role::SUPERADMIN) ){
+            flash(__('only user with role superadmin can delete another with role superadmin'))->error();
+            return false;
+        }
+
+        return true;
+    }
+
+    public function canEditMenuSuper(User $user)
+    {
+        $authUser = auth()->user();
+
+        //si el usuario autenticado no tiene el rol super admin y trata de editar uno con dicho role
+        if (!$authUser->hasRole(Role::SUPERADMIN) && $user->hasRole(Role::SUPERADMIN) ){
+            flash(__('only user with role superadmin can edit menu another with role superadmin'))->error();
+            return false;
+        }
+
+        return true;
     }
 }

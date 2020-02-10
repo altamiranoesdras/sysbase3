@@ -55,5 +55,7 @@
     "Remove photo" : "Eliminar avatar",
     "Crop your new profile picture" : "Recorta tu nueva foto de perfil",
     "Set new profile picture" : "Establecer nueva foto de perfil",
-    "only user with role superadmin  can edit another with role superadmin": "solo el usuario con rol superadmin puede editar otro con rol superadmin"
+    "only user with role superadmin can edit another with role superadmin": "solo el usuario con rol superadmin puede editar otro con rol superadmin",
+    "only user with role superadmin can delete another with role superadmin": "solo el usuario con rol superadmin puede eliminar otro con rol superadmin",
+    "only user with role superadmin can edit menu another with role superadmin": "solo el usuario con rol superadmin puede editar el menu de otro con rol superadmin"
 }
