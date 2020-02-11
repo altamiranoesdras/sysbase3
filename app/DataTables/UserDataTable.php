@@ -85,7 +85,7 @@ class UserDataTable extends DataTable
             'name',
             'email',
             'provider',
-            'roles' ,
+            'roles' => ['searchable' => false],
         ];
     }
 
