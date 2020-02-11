@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
 
+    <link rel="manifest" href="{{asset('manifest.json')}}">
+    <link rel="apple-touch-icon-precomposed" href="{{asset('icons/180.png')}}" />
+    <meta name="theme-color" content="#007BFF">
+
     <link href="{{ mix('/css/app.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- Google Font: Source Sans Pro -->
@@ -46,7 +50,7 @@
 
     <footer class="main-footer">
         <strong>
-            Copyright &copy; 2014-2019
+            Copyright &copy; 2014-{{anioActual()}}
             <a href="https://solucionesaltamirano.com/">Soluciones Altamirano</a>.
         </strong>
         All rights reserved.
@@ -71,14 +75,11 @@
 <script src="{{ url (mix('/js/app.js')) }}" type="text/javascript"></script>
 
 <script>
-    @if(!env('APP_DEBUG'))
-
-        logConfig.stopLogging = true;
-
-    @else
+    @if(config('app.debug'))
         logW("Modo Debug Activo")
+    @else
+        logConfig.stopLogging = true;
     @endif
-
 </script>
 
 <!--            Scripts inyectados
