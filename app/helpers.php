@@ -105,40 +105,6 @@ function mesLetras($mes=null){
     return strtoupper($meses[$mes-1]);
 }
 
-
-/**
- * Devuelve un numero CUI de un DPI en letras para formatos LEGALES
- * @param $dpi
- * @return string
- */
-function dpiAletras($dpi){
-
-    list($cui1,$cui2,$cui3) = explode(" ",dpiConEspacios($dpi));
-
-    $cui1Letras = trim(NumeroALetras::convertir($cui1));
-    $cui2Letras = trim(NumeroALetras::convertir($cui2));
-    $cui3Letras = trim(NumeroALetras::convertir($cui3));
-
-    $cui3Letras = substr($cui3Letras,0,1)==0 ? "CERO ".$cui3Letras : $cui3Letras;
-
-    return $cui1Letras." ESPACIO ".$cui2Letras." ESPACIO ".$cui3Letras;
-}
-
-/**
- * Separa el numero CUI del DPI con los espacios que se ven en el documento
- * (XXXXXXXXXXXXX) -> (XXXX XXXXX XXXX)
- * @param $dpi
- * @return string
- */
-function dpiConEspacios($dpi){
-    $cui1 = substr($dpi,0,4);
-    $cui2 = substr($dpi,4,5);
-    $cui3 = substr($dpi,9,4);
-
-    return $cui1." ".$cui2." ".$cui3;
-}
-
-
 /**
  * Devuelve el año actual en numeros
  * @return string
@@ -230,9 +196,4 @@ function rutaOpcion($opcion){
     }catch (\Exception $e){
         return route('home');
     }
-}
-
-
-function opcionActiva($opcion){
-
 }
