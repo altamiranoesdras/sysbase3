@@ -126,9 +126,9 @@ class UserController extends AppBaseController
             return redirect(route('users.index'));
         }
 
-        if (!$this->canEditUserSuper($user)){
+        if (!$this->canEditUser($user)){
             return  redirect(route('users.index'));
-        };
+        }
 
         $user->setAttribute('permissions_user',$user->permissions);
 
@@ -143,10 +143,34 @@ class UserController extends AppBaseController
      *
      * @return Response
      */
-    public function update($id, UpdateUserRequest $request)
+    public function update(User $user, UpdateUserRequest $request)
     {
-        /** @var User $user */
-        $user = User::find($id);
+        if ($request->roles){
+            $authUser = auth()->user();
+
+            $maxRolUserAuth = $authUser->roles->min('id');
+
+            /**
+            * DEVELOPER =   1;
+            * SUPERADMIN =  2;
+            * ADMIN =       3;
+            * TESTER =      4;
+            * USER =        5;
+             */
+            //si el maximo rol del usuario es inferior al rol admin
+            if (Role::ADMIN < $maxRolUserAuth){
+                flash(__('You do not have sufficient permissions to associate roles with users'))->error();
+                return  redirect(route('users.edit',$user->id));
+            }else{
+                //si de los roles que se trata de asociar hay uno mayor al mayor del usuario autenticado
+                if ( min($request->roles) < $maxRolUserAuth ){
+                    flash(__('You cannot associate roles superior to yours'))->error();
+                    return  redirect(route('users.edit',$user->id));
+                }
+            }
+
+        }
+
 
         if (empty($user)) {
             Flash::error('User not found');
@@ -199,9 +223,9 @@ class UserController extends AppBaseController
             return redirect(route('users.index'));
         }
 
-        if (!$this->canDeleteUserSuper($user)){
+        if (!$this->canDeleteUser($user)){
             return  redirect(route('users.index'));
-        };
+        }
 
         try {
             DB::beginTransaction();
@@ -240,7 +264,7 @@ class UserController extends AppBaseController
             return redirect(route('users.index'));
         }
 
-        if (!$this->canEditMenuSuper($user)){
+        if (!$this->canEditMenu($user)){
             return  redirect(route('users.index'));
         }
 
@@ -266,39 +290,34 @@ class UserController extends AppBaseController
         return redirect(route('users.index'));
     }
 
-    public function canEditUserSuper(User $user)
+    public function canEditUser(User $user)
     {
-        $authUser = auth()->user();
 
-        //si el usuario autenticado no tiene el rol super admin y trata de editar uno con dicho role
-        if (!$authUser->hasRole(Role::SUPERADMIN) && $user->hasRole(Role::SUPERADMIN) ){
-            flash(__('only user with role superadmin can edit another with role superadmin'))->error();
+        //si el usuario a editar tiene un rol superior al usuario autenticado
+        if ($user->roles->min('id') < auth()->user()->roles->min('id') ){
+            flash(__('You cannot edit user with role superior to yours'))->error();
             return false;
         }
 
         return true;
     }
 
-    public function canDeleteUserSuper(User $user)
+    public function canDeleteUser(User $user)
     {
-        $authUser = auth()->user();
-
-        //si el usuario autenticado no tiene el rol super admin y trata de editar uno con dicho role
-        if (!$authUser->hasRole(Role::SUPERADMIN) && $user->hasRole(Role::SUPERADMIN) ){
-            flash(__('only user with role superadmin can delete another with role superadmin'))->error();
+        //si el usuario a editar tiene un rol superior al usuario autenticado
+        if ($user->roles->min('id') < auth()->user()->roles->min('id') ){
+            flash(__('You cannot delete user with role superior to yours'))->error();
             return false;
         }
 
         return true;
     }
 
-    public function canEditMenuSuper(User $user)
+    public function canEditMenu(User $user)
     {
-        $authUser = auth()->user();
-
-        //si el usuario autenticado no tiene el rol super admin y trata de editar uno con dicho role
-        if (!$authUser->hasRole(Role::SUPERADMIN) && $user->hasRole(Role::SUPERADMIN) ){
-            flash(__('only user with role superadmin can edit menu another with role superadmin'))->error();
+        //si el usuario a editar tiene un rol superior al usuario autenticado
+        if ($user->roles->min('id') < auth()->user()->roles->min('id') ){
+            flash(__('You cannot edit user menu with role superior to yours'))->error();
             return false;
         }
 

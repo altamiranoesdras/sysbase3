@@ -25,7 +25,11 @@ class UserDataTable extends DataTable
 
             return "<img src='{$user->thumb}' alt='' width='50' height='50'>";
 
-        })->rawColumns(['action','avatar']);
+        })->editColumn('roles',function (User $user){
+
+            return view('admin.users.partials.roles',compact('user'));
+
+        })->rawColumns(['action','avatar','roles']);
 
     }
 
@@ -37,7 +41,7 @@ class UserDataTable extends DataTable
      */
     public function query(User $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->with(['roles','media']);
     }
 
     /**
@@ -81,7 +85,7 @@ class UserDataTable extends DataTable
             'name',
             'email',
             'provider',
-            'provider_uid',
+            'roles' ,
         ];
     }
 

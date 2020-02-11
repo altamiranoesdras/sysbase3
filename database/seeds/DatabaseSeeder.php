@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             $this->call(ConfigurationsTableSeeder::class);
         }
 
-        $this->call(UsersTableSeeder::class);
         $this->call(OptionSeeder::class);
+        $this->call(UsersTableSeeder::class);
     }
 }
