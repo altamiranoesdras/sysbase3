@@ -22,11 +22,11 @@ class Role extends \Spatie\Permission\Models\Role
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-    const DEVELOPER =   'Developer';
-    const SUPERADMIN =  'Superadmin';
-    const ADMIN =       'Admin';
-    const TESTER =    'Tester';
-    const USER =    'User';
+    const DEVELOPER =   1;
+    const SUPERADMIN =  2;
+    const ADMIN =       3;
+    const TESTER =      4;
+    const USER =        5;
 
     protected $dates = ['deleted_at'];
 

@@ -55,7 +55,10 @@
     "Remove photo" : "Eliminar avatar",
     "Crop your new profile picture" : "Recorta tu nueva foto de perfil",
     "Set new profile picture" : "Establecer nueva foto de perfil",
-    "only user with role superadmin can edit another with role superadmin": "solo el usuario con rol superadmin puede editar otro con rol superadmin",
-    "only user with role superadmin can delete another with role superadmin": "solo el usuario con rol superadmin puede eliminar otro con rol superadmin",
-    "only user with role superadmin can edit menu another with role superadmin": "solo el usuario con rol superadmin puede editar el menu de otro con rol superadmin"
+    "You do not have sufficient permissions to associate roles with users": "No tiene permisos suficientes para asociar roles con usuarios",
+    "You cannot associate roles superior to yours": "No puedes asociar roles superiores al tuyo",
+    "You cannot edit user with role superior to yours": "No puede editar un usuario con un rol superior al suyo",
+    "You cannot delete user with role superior to yours": "No puede eliminar un usuario con un rol superior al suyo",
+    "You cannot edit user menu with role superior to yours": "No puede editar el menú del usuario con un rol superior al suyo"
+
 }
