@@ -61,6 +61,8 @@ class User extends Authenticatable implements  MustVerifyEmail,HasMedia
         'email_verified_at' => 'datetime',
     ];
 
+    protected $with = ['options.children'];
+
     public function getImgAttribute()
     {
         $media = $this->getMedia('avatars')->last();
@@ -97,45 +99,5 @@ class User extends Authenticatable implements  MustVerifyEmail,HasMedia
         return $media ? $media->getUrl('thumb') : asset('dist/img/avatar5.png');
     }
 
-    public function getAncestros($parent=null,$all=null)
-    {
-        $all = $all ?? collect();
-
-        if (is_null($parent)){
-            foreach ($this->options()->withOut('children')->get() as $op){
-
-                //si la opción no tine padre
-                if (!$op->option_id){
-                    $all->push($op);
-                }else {
-                    $this->getAncestros($op->parent,$all);
-                }
-            }
-        }else{
-            //si el padre no tiene padre
-            if (!$all->contains('id',$parent->id)){
-                if (!$parent->option_id){
-                    $all->push($parent);
-                }else {
-                    $this->getAncestros($parent->parent,$all);
-                }
-            }
-
-        }
-
-
-        return $all->sortBy('orden');
-    }
-
-
-    public function optionsIds()
-    {
-        return $this->options->pluck('id');
-    }
-
-    public function menu()
-    {
-        return $this->getAncestros();
-    }
 
 }

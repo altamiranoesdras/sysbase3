@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class Option
@@ -30,7 +31,7 @@ class Option extends Model
     const UPDATED_AT = 'updated_at';
 
 
-    protected $appends= ['active','text'];
+    protected $appends= ['active','visible_to_user','text'];
 
     public $fillable = [
         'option_id',
@@ -131,6 +132,16 @@ class Option extends Model
     public function getActiveAttribute()
     {
         return $this->active();
+    }
+
+    public function getVisibleToUserAttribute()
+    {
+        if (Auth::user()){
+
+            return is_null($this->option_id) || Auth::user()->options->contains('id',$this->id);
+        }
+
+        return false;
     }
 
     public function scopePadres($query)
