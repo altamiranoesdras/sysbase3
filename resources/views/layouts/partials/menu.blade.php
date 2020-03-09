@@ -1,5 +1,5 @@
 @can('all option menu')
-    @foreach($opciones ?? App\Models\Option::padres()->get() as $option)
+    @foreach($opciones ?? App\Models\Option::padres()->with('children')->get() as $option)
         <li class="nav-item {{$option->hasTreeview()}} {{$option->openTreeView()}}">
             <a href="{{rutaOpcion($option)}}" class="nav-link {{$option->active()}}">
                 <i class="nav-icon fa {{$option->icono_l}}"></i>
@@ -18,9 +18,9 @@
         </li>
     @endforeach
 @else
-    @foreach($opciones ?? Auth::user()->menu() as $option)
+    @foreach($opciones ?? optionsParentAuthUser() as $option)
         <li class="nav-item {{$option->hasTreeview()}} {{$option->openTreeView()}}">
-            <a href="{{rutaOpcion($option)}}" class="nav-link {{$option->active()}}">
+            <a href="{{rutaOpcion($option)}}" class="nav-link {{$option->active()}} {{!$option->visible_to_user ? 'd-none' : ''}}">
                 <i class="nav-icon fa {{$option->icono_l}}"></i>
                 <p>
                     {{$option->nombre}}

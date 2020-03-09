@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Option;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
@@ -196,4 +197,26 @@ function rutaOpcion($opcion){
     }catch (\Exception $e){
         return route('home');
     }
+}
+
+
+function optionsParentAuthUser(){
+    $authUser = Auth::user();
+
+    $allOptions = $authUser->options;
+
+    $optionParent = $allOptions->filter(function ($op){
+        return is_null($op->option_id);
+    });
+
+
+
+    $childres = $allOptions->filter(function ($op){
+        return !is_null($op->option_id);
+    })->pluck('id')->toArray();
+
+    $options = Option::padresDe($childres)->with('children')->get();
+
+    return $optionParent->merge($options)->sortBy('orden');
+
 }
