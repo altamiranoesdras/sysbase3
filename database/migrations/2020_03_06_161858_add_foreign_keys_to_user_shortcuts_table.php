@@ -14,8 +14,8 @@ class AddForeignKeysToUserShortcutsTable extends Migration {
 	{
 		Schema::table('user_shortcuts', function(Blueprint $table)
 		{
-			$table->foreign('option_id', 'fk_options_has_users_options1')->references('id')->on('options')->onUpdate('NO ACTION')->onDelete('NO ACTION');
-			$table->foreign('user_id', 'fk_options_has_users_users1')->references('id')->on('users')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+			$table->foreign('option_id', 'fk_shortcuts_users_options1')->references('id')->on('options')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+			$table->foreign('user_id', 'fk_shortcuts_users_users1')->references('id')->on('users')->onUpdate('NO ACTION')->onDelete('NO ACTION');
 		});
 	}
 
@@ -29,8 +29,8 @@ class AddForeignKeysToUserShortcutsTable extends Migration {
 	{
 		Schema::table('user_shortcuts', function(Blueprint $table)
 		{
-			$table->dropForeign('fk_options_has_users_options1');
-			$table->dropForeign('fk_options_has_users_users1');
+			$table->dropForeign('fk_shortcuts_users_options1');
+			$table->dropForeign('fk_shortcuts_users_users1');
 		});
 	}
 

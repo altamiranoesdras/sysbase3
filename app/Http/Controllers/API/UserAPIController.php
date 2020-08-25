@@ -61,27 +61,29 @@ class UserAPIController extends AppBaseController
      * Display the specified User.
      * GET|HEAD /users/{id}
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
     public function show($id)
     {
         /** @var User $user */
-        $user = User::find($id);
+        $user = User::with(['shortcuts','options' => function($q){
+            $q->whereNotNull('ruta');
+        }])->find($id);
 
         if (empty($user)) {
-            return $this->sendError('User not found');
+            return $this->sendError('User no encontrado');
         }
 
-        return $this->sendResponse($user->toArray(), 'User retrieved successfully');
+        return $this->sendResponse($user->toArray(), 'User recuperado con éxito');
     }
 
     /**
      * Update the specified User in storage.
      * PUT/PATCH /users/{id}
      *
-     * @param int $id
+     * @param  int $id
      * @param UpdateUserAPIRequest $request
      *
      * @return Response
@@ -105,9 +107,7 @@ class UserAPIController extends AppBaseController
      * Remove the specified User from storage.
      * DELETE /users/{id}
      *
-     * @param int $id
-     *
-     * @throws \Exception
+     * @param  int $id
      *
      * @return Response
      */
@@ -123,5 +123,36 @@ class UserAPIController extends AppBaseController
         $user->delete();
 
         return $this->sendSuccess('User deleted successfully');
+    }
+
+    public function addShortcut(User $user,Request $request)
+    {
+
+        if (empty($user)) {
+            return $this->sendError('User no encontrado');
+        }
+
+        if ($user->shortcuts->contains('id',$request->option)){
+            return $this->sendError('Ya cuentas con el '.__('Shortcut'));
+        }
+
+        $user->shortcuts()->attach($request->option);
+
+
+        return $this->sendResponse($user->toArray(), 'Listo!');
+    }
+
+    public function removeShortcut(User $user,Request $request)
+    {
+
+        if (empty($user)) {
+            return $this->sendError('User no encontrado');
+        }
+
+
+        $user->shortcuts()->detach($request->option);
+
+
+        return $this->sendResponse($user->toArray(), 'Listo!');
     }
 }

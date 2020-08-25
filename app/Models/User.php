@@ -99,5 +99,10 @@ class User extends Authenticatable implements  MustVerifyEmail,HasMedia
         return $media ? $media->getUrl('thumb') : asset('dist/img/avatar5.png');
     }
 
+    public function shortcuts()
+    {
+        return $this->belongsToMany(Option::class,'user_shortcuts','user_id','option_id');
+    }
+
 
 }

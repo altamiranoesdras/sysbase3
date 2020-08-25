@@ -14,8 +14,8 @@ class CreateUserShortcutsTable extends Migration {
     {
         Schema::create('user_shortcuts', function(Blueprint $table)
         {
-            $table->integer('option_id')->unsigned()->index('fk_options_has_users_options1_idx');
-            $table->integer('user_id')->unsigned()->index('fk_options_has_users_users1_idx');
+            $table->bigInteger('option_id')->unsigned()->index('fk_options_has_users_options1_idx');
+            $table->bigInteger('user_id')->unsigned()->index('fk_options_has_users_users1_idx');
             $table->string('color')->nullable();
             $table->integer('orden')->nullable();
             $table->primary(['option_id','user_id']);
