@@ -1,10 +1,10 @@
 <?php
 
-
-
-Route::group(['as'=>'api.'], function () {
+Route::group(['as'=>'api.','namespace' => 'API'], function () {
 
     Route::resource('options', 'OptionAPIController');
+
+
 
     Route::group(['middleware' => 'auth:api'], function () {
 
