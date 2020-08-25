@@ -1,271 +1,292 @@
 @extends('layouts.app')
 
-@section('title_page',__('Home'))
-@include('partials.plugins.fullcalendar')
+@section('htmlheader_title',__('Home'))
+
+@push('css')
+
+    <style>
+        .small-box {
+            /*max-width: 10rem;*/
+        }
+        .small-box-footer {
+            padding-bottom: 0.5rem;
+            padding-top: 0.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        li > span.move  {
+            cursor: move;
+        }
+    </style>
+@endpush
+
 
 @section('content')
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">{{__('Home')}}</h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item active">Home</li>
-                    </ol>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
 
-    <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="sticky-top mb-3">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Draggable Events</h4>
-                            </div>
-                            <div class="card-body">
-                                <!-- the events -->
-                                <div id="external-events">
-                                    <div class="external-event bg-success">Lunch</div>
-                                    <div class="external-event bg-warning">Go home</div>
-                                    <div class="external-event bg-info">Do homework</div>
-                                    <div class="external-event bg-primary">Work on UI design</div>
-                                    <div class="external-event bg-danger">Sleep tight</div>
-                                    <div class="checkbox">
-                                        <label for="drop-remove">
-                                            <input type="checkbox" id="drop-remove">
-                                            remove after drop
-                                        </label>
-                                    </div>
+    <div id="root">
+
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        <h1 class="m-0 text-dark">Bienvenido {{Auth::user()->name}}</h1>
+                    </div><!-- /.col -->
+                    <div class="col ">
+                        <button class="btn btn-outline-primary float-right" @click="editShortcut()">
+                            <i class="fa fa-edit"></i>
+                            <span class="d-none d-sm-inline">
+                            {{__('Edit Shortcuts')}}
+                        </span>
+                        </button>
+                        <button class="btn btn-outline-success float-right mr-3" @click="newShortcut()">
+                            <i class="fa fa-plus"></i>
+                            <span class="d-none d-sm-inline">
+                            {{__('New Shortcut')}}
+                        </span>
+                        </button>
+
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <div class="content" >
+            <div class="container-fluid">
+
+
+                <div class="row">
+
+                    <div class="col-6 col-lg-2 px-4" v-for="shortcut in user.shortcuts">
+                        <!-- small card -->
+                        <a :href="shortcut.ruta_evaluada" >
+                            <div class="small-box text-center p-0" :class="shortcut.color">
+                                <div class="inner">
+                                    <h1 class="m-0">
+                                        <i class="fa fa-2x" :class="shortcut.icono_l" style="color: white !important;"></i>
+                                    </h1>
+
                                 </div>
+                                <span class="small-box-footer">
+								    <span v-text="shortcut.nombre"></span>
+                                    <i class="fa fa-arrow-circle-right"></i>
+							    </span>
                             </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Create Event</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
-                                    <!--<button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Color <span class="caret"></span></button>-->
-                                    <ul class="fc-color-picker" id="color-chooser">
-                                        <li><a class="text-primary" href="#"><i class="fas fa-square"></i></a></li>
-                                        <li><a class="text-warning" href="#"><i class="fas fa-square"></i></a></li>
-                                        <li><a class="text-success" href="#"><i class="fas fa-square"></i></a></li>
-                                        <li><a class="text-danger" href="#"><i class="fas fa-square"></i></a></li>
-                                        <li><a class="text-muted" href="#"><i class="fas fa-square"></i></a></li>
+                        </a>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalEditShortCuts" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+             aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modelTitleId">
+                            {{__('Edit your shortcuts')}}
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12"  >
+                                <div class="table-responsive">
+                                    <ul class=" list-group sortable">
+                                        <li  class="list-group-item py-2"  v-for="(op,index) in user.shortcuts">
+                                            <span class="move border-right mr-2 pr-2">
+                                                <i class="fa fa-arrows-alt-v "></i>
+                                            </span>
+                                            <i class="fa " :class="op.icono_l"></i>
+                                            <span v-text="op.nombre"></span>
+                                            <button type="button" class="btn btn-xs btn-outline-danger" @click.prevent="removeShortcut(op,index)">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </li>
                                     </ul>
                                 </div>
-                                <!-- /btn-group -->
-                                <div class="input-group">
-                                    <input id="new-event" type="text" class="form-control" placeholder="Event Title">
-
-                                    <div class="input-group-append">
-                                        <button id="add-new-event" type="button" class="btn btn-primary">Add</button>
-                                    </div>
-                                    <!-- /btn-group -->
-                                </div>
-                                <!-- /input-group -->
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- /.col -->
-                <div class="col-md-9">
-                    <div class="card card-primary">
-                        <div class="card-body p-0">
-                            <!-- THE CALENDAR -->
-                            <div id="calendar"></div>
-                        </div>
-                        <!-- /.card-body -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
+                        <button type="button" class="btn btn-primary">{{__('Save')}}</button>
                     </div>
-                    <!-- /.card -->
                 </div>
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
+        </div>
+
+        <div class="modal fade" id="modalOptionUser" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modelTitleId">
+                            Nuevo {{__('Shortcut')}}
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-6 col-lg-3 p-3"  v-for="op in user.options">
+                                <!-- small card -->
+                                <button type="button" @click.prevent="addShortcut(op)">
+
+                                    <div class="small-box text-center" :class="op.color">
+                                        <div class="inner">
+                                            <h1>
+                                                <i class="fa fa-2x" :class="op.icono_l" style="color: white !important;"></i>
+                                            </h1>
+                                        </div>
+                                        <span class="small-box-footer">
+                                            <span v-text="op.nombre"></span>
+                                            <i class="fa fa-arrow-circle-right"></i>
+                                        </span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+
 @endsection
 
 @push('scripts')
-    <!-- Page specific script -->
     <script>
-        $(function () {
+        const app = new Vue({
+            el: '#root',
+            created() {
+                this.getData();
+            },
+            data: {
+                user : [],
+            },
+            methods: {
+                async getData(){
+                    this.user= [];
+                    {{--let url = "{{route("api.users.show",auth()->user()->id)}}";--}}
+                    let url = "";
 
-            /* initialize the external events
-             -----------------------------------------------------------------*/
-            function ini_events(ele) {
-                ele.each(function () {
+                    try {
+                        let res = await axios.get(url);
 
-                    // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
-                    // it doesn't need to have a start or end
-                    var eventObject = {
-                        title: $.trim($(this).text()) // use the element's text as the event title
+                        this.user = res.data.data;
+
+
+                        logI(res);
+
+                    }catch (e) {
+                        if(e.response.data){
+                            logI(e.response.data);
+                        }else{
+                            logI(e);
+                        }
+
                     }
-
-                    // store the Event Object in the DOM element so we can get to it later
-                    $(this).data('eventObject', eventObject)
-
-                    // make the event draggable using jQuery UI
-                    $(this).draggable({
-                        zIndex        : 1070,
-                        revert        : true, // will cause the event to go back to its
-                        revertDuration: 0  //  original position after the drag
-                    })
-
-                })
-            }
-
-            ini_events($('#external-events div.external-event'))
-
-            /* initialize the calendar
-             -----------------------------------------------------------------*/
-            //Date for the calendar events (dummy data)
-            var date = new Date()
-            var d    = date.getDate(),
-                m    = date.getMonth(),
-                y    = date.getFullYear()
-
-            var Calendar = FullCalendar.Calendar;
-            var Draggable = FullCalendarInteraction.Draggable;
-
-            var containerEl = document.getElementById('external-events');
-            var checkbox = document.getElementById('drop-remove');
-            var calendarEl = document.getElementById('calendar');
-
-            // initialize the external events
-            // -----------------------------------------------------------------
-
-            new Draggable(containerEl, {
-                itemSelector: '.external-event',
-                eventData: function(eventEl) {
-                    console.log(eventEl);
-                    return {
-                        title: eventEl.innerText,
-                        backgroundColor: window.getComputedStyle( eventEl ,null).getPropertyValue('background-color'),
-                        borderColor: window.getComputedStyle( eventEl ,null).getPropertyValue('background-color'),
-                        textColor: window.getComputedStyle( eventEl ,null).getPropertyValue('color'),
-                    };
-                }
-            });
-
-            var calendar = new Calendar(calendarEl, {
-                plugins: [ 'bootstrap', 'interaction', 'dayGrid', 'timeGrid' ],
-                header    : {
-                    left  : 'prev,next today',
-                    center: 'title',
-                    right : 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
-                //Random default events
-                events    : [
-                    {
-                        title          : 'All Day Event',
-                        start          : new Date(y, m, 1),
-                        backgroundColor: '#f56954', //red
-                        borderColor    : '#f56954' //red
-                    },
-                    {
-                        title          : 'Long Event',
-                        start          : new Date(y, m, d - 5),
-                        end            : new Date(y, m, d - 2),
-                        backgroundColor: '#f39c12', //yellow
-                        borderColor    : '#f39c12' //yellow
-                    },
-                    {
-                        title          : 'Meeting',
-                        start          : new Date(y, m, d, 10, 30),
-                        allDay         : false,
-                        backgroundColor: '#0073b7', //Blue
-                        borderColor    : '#0073b7' //Blue
-                    },
-                    {
-                        title          : 'Lunch',
-                        start          : new Date(y, m, d, 12, 0),
-                        end            : new Date(y, m, d, 14, 0),
-                        allDay         : false,
-                        backgroundColor: '#00c0ef', //Info (aqua)
-                        borderColor    : '#00c0ef' //Info (aqua)
-                    },
-                    {
-                        title          : 'Birthday Party',
-                        start          : new Date(y, m, d + 1, 19, 0),
-                        end            : new Date(y, m, d + 1, 22, 30),
-                        allDay         : false,
-                        backgroundColor: '#00a65a', //Success (green)
-                        borderColor    : '#00a65a' //Success (green)
-                    },
-                    {
-                        title          : 'Click for Google',
-                        start          : new Date(y, m, 28),
-                        end            : new Date(y, m, 29),
-                        url            : 'http://google.com/',
-                        backgroundColor: '#3c8dbc', //Primary (light-blue)
-                        borderColor    : '#3c8dbc' //Primary (light-blue)
+                newShortcut(){
+                    $("#modalOptionUser").modal('show');
+                },
+                editShortcut(){
+                    $("#modalEditShortCuts").modal('show');
+                },
+                async addShortcut(option){
+{{--                    let url = "{{route("api.users.add_shortcut",auth()->user()->id)}}";--}}
+                    let url = "";
+
+                    url = url+"?option="+option.id;
+
+                    try {
+                        let res = await axios.get(url);
+
+                        this.user = res.data.data;
+
+                        this.getData();
+                        iziTs(res.data.message);
+                        logI(res);
+
+                    }catch (e) {
+                        if(e.response.data){
+                            logI(e.response.data);
+                            iziTe(e.response.data.message);
+                        }else{
+                            logI(e);
+                        }
+
                     }
-                ],
-                editable  : true,
-                droppable : true, // this allows things to be dropped onto the calendar !!!
-                drop      : function(info) {
-                    // is the "remove after drop" checkbox checked?
-                    if (checkbox.checked) {
-                        // if so, remove the element from the "Draggable Events" list
-                        info.draggedEl.parentNode.removeChild(info.draggedEl);
+                },
+                async removeShortcut(option,index){
+
+                    logI('remove shortcut',option,index);
+
+{{--                    let url = "{{route("api.users.remove_shortcut",auth()->user()->id)}}";--}}
+                    let url = "";
+
+                    url = url+"?option="+option.id;
+
+                    try {
+                        let res = await axios.get(url);
+
+                        iziTs(res.data.message);
+                        this.user.shortcuts.splice(index,1);
+                        logI(res);
+
+                    }catch (e) {
+
+
+                        if(e.response.data){
+                            logI(e.response.data);
+                            iziTe(e.response.data.message);
+                        }else{
+                            logI(e);
+                        }
+
                     }
                 }
+            }
+        });
+
+        $(function(){
+
+            $( ".sortable" ).sortable({
+                update: function( event, ui ) {
+
+                    var  opciones=[];
+                    $(this).find('li').each(function (index,elemet) {
+                        opciones.push($(this).attr('id'));
+                    });
+
+                }
+            }).disableSelection();
+
+            window.Echo.channel('pruebas').listen('PruebaMessageEvent', (e) => {
+                logI('recibio mensaje:',e);
             });
-
-            calendar.render();
-            // $('#calendar').fullCalendar()
-
-            /* ADDING EVENTS */
-            var currColor = '#3c8dbc' //Red by default
-            //Color chooser button
-            var colorChooser = $('#color-chooser-btn')
-            $('#color-chooser > li > a').click(function (e) {
-                e.preventDefault()
-                //Save color
-                currColor = $(this).css('color')
-                //Add color effect to button
-                $('#add-new-event').css({
-                    'background-color': currColor,
-                    'border-color'    : currColor
-                })
-            })
-            $('#add-new-event').click(function (e) {
-                e.preventDefault()
-                //Get value and make sure it is not null
-                var val = $('#new-event').val()
-                if (val.length == 0) {
-                    return
-                }
-
-                //Create events
-                var event = $('<div />')
-                event.css({
-                    'background-color': currColor,
-                    'border-color'    : currColor,
-                    'color'           : '#fff'
-                }).addClass('external-event')
-                event.html(val)
-                $('#external-events').prepend(event)
-
-                //Add draggable funtionality
-                ini_events(event)
-
-                //Remove event from text input
-                $('#new-event').val('')
-            })
-        })
+        });
     </script>
+
 @endpush
+

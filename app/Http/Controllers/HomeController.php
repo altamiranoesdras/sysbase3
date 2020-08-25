@@ -36,4 +36,9 @@ class HomeController extends Controller
     {
         return view('admin.contact');
     }
+
+    public function calendar()
+    {
+        return view('calendar');
+    }
 }
