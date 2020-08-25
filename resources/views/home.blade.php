@@ -187,8 +187,7 @@
             methods: {
                 async getData(){
                     this.user= [];
-                    {{--let url = "{{route("api.users.show",auth()->user()->id)}}";--}}
-                    let url = "";
+                    let url = "{{route("api.users.show",auth()->user()->id)}}";
 
                     try {
                         let res = await axios.get(url);
@@ -214,8 +213,7 @@
                     $("#modalEditShortCuts").modal('show');
                 },
                 async addShortcut(option){
-{{--                    let url = "{{route("api.users.add_shortcut",auth()->user()->id)}}";--}}
-                    let url = "";
+                    let url = "{{route("api.users.add_shortcut",auth()->user()->id)}}";
 
                     url = url+"?option="+option.id;
 
@@ -242,8 +240,7 @@
 
                     logI('remove shortcut',option,index);
 
-{{--                    let url = "{{route("api.users.remove_shortcut",auth()->user()->id)}}";--}}
-                    let url = "";
+                    let url = "{{route("api.users.remove_shortcut",auth()->user()->id)}}";
 
                     url = url+"?option="+option.id;
 
@@ -282,9 +279,6 @@
                 }
             }).disableSelection();
 
-            window.Echo.channel('pruebas').listen('PruebaMessageEvent', (e) => {
-                logI('recibio mensaje:',e);
-            });
         });
     </script>
 
