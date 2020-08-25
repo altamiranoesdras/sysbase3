@@ -22,7 +22,9 @@ class CreateOptionsTable extends Migration {
 			$table->string('icono_l', 100);
 			$table->string('icono_r', 100)->nullable();
 			$table->integer('orden')->nullable()->default(0);
-			$table->timestamps();
+            $table->string('color','50')->nullable();
+
+            $table->timestamps();
 			$table->softDeletes();
 		});
 	}

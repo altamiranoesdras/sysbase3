@@ -31,7 +31,7 @@ class Option extends Model
     const UPDATED_AT = 'updated_at';
 
 
-    protected $appends= ['active','visible_to_user','text'];
+    protected $appends= ['active','visible_to_user','text','ruta_evaluada'];
 
     public $fillable = [
         'option_id',
@@ -166,4 +166,8 @@ class Option extends Model
         return $this->nombre;
     }
 
+    public function getRutaEvaluadaAttribute()
+    {
+        return rutaOpcion($this);
+    }
 }

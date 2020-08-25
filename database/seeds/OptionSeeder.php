@@ -17,14 +17,16 @@ class OptionSeeder extends Seeder
             'nombre' => 'Admin',
             'icono_l' => 'fa-tools',
             'ruta' => '',
-            'orden' => 2
+            'orden' => 2,
+            'color' => 'bg-warning',
         ])->each(function (Option $option){
             factory(Option::class,1)->create([
                 'option_id' => $option->id,
                 'nombre' => 'Usuarios',
                 'icono_l' => 'fa-users',
                 'ruta' => 'users.index',
-                'orden' => 2
+                'orden' => 2,
+                'color' => 'bg-orange',
             ]);
 
 
@@ -33,14 +35,16 @@ class OptionSeeder extends Seeder
                 'nombre' => 'Menu',
                 'icono_l' => 'fa-list',
                 'ruta' => 'options.index',
-                'orden' => 2
+                'orden' => 2,
+                'color' => 'bg-teal',
             ]);
             factory(Option::class,1)->create([
                 'option_id' => $option->id,
                 'nombre' => "Prueba API'S",
                 'icono_l' => 'fa-check-circle',
                 'ruta' => 'developer.prueba.api',
-                'orden' => 3
+                'orden' => 3,
+                'color' => 'bg-orange',
             ]);
 
             factory(Option::class,1)->create([
@@ -48,7 +52,8 @@ class OptionSeeder extends Seeder
                 'nombre' => "Roles",
                 'icono_l' => 'fa-user-tag',
                 'ruta' => 'roles.index',
-                'orden' => 4
+                'orden' => 4,
+                'color' => 'bg-info',
             ]);
 
             factory(Option::class,1)->create([
@@ -56,7 +61,8 @@ class OptionSeeder extends Seeder
                 'nombre' => "Permisos",
                 'icono_l' => 'fa-key',
                 'ruta' => 'permissions.index',
-                'orden' => 5
+                'orden' => 5,
+                'color' => 'bg-purple',
             ]);
 
             factory(Option::class,1)->create([
@@ -64,7 +70,8 @@ class OptionSeeder extends Seeder
                 'nombre' => "Configuraciones",
                 'icono_l' => 'fa-cogs',
                 'ruta' => 'configurations.index',
-                'orden' => 6
+                'orden' => 6,
+                'color' => 'bg-teal',
             ]);
 
             factory(Option::class,1)->create([
@@ -72,7 +79,8 @@ class OptionSeeder extends Seeder
                 'nombre' => "Clientes Passport",
                 'icono_l' => 'fa-passport',
                 'ruta' => 'passport.clients',
-                'orden' => 7
+                'orden' => 7,
+                'color' => 'bg-teal',
             ]);
         });
 
@@ -80,28 +88,32 @@ class OptionSeeder extends Seeder
             'nombre' => "Dashboard",
             'icono_l' => 'fa-chart-line',
             'ruta' => 'dashboard',
-            'orden' => 1
+            'orden' => 1,
+            'color' => 'bg-warning',
         ]);
 
         factory(Option::class,1)->create([
             'nombre' => "Proyectos",
             'icono_l' => 'fa-project-diagram',
             'ruta' => '',
-            'orden' => 3
+            'orden' => 3,
+            'color' => 'bg-success',
         ])->each(function (Option $option){
             factory(Option::class,1)->create([
                 'option_id' => $option->id,
                 'nombre' => "Listado",
                 'icono_l' => 'fa-list',
                 'ruta' => 'projects.index',
-                'orden' => 1
+                'orden' => 1,
+                'color' => 'bg-warning',
             ]);
             factory(Option::class,1)->create([
                 'option_id' => $option->id,
                 'nombre' => "Nuevo",
                 'icono_l' => 'fa-plus-circle',
                 'ruta' => 'projects.create',
-                'orden' => 1
+                'orden' => 1,
+                'color' => 'bg-success',
             ]);
         });
 
