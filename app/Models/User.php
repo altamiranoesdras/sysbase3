@@ -7,10 +7,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\Models\Media;
-use Spatie\Permission\Traits\HasPermissions;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Permission\Traits\HasRoles;
 
 /**
@@ -32,7 +31,7 @@ use Spatie\Permission\Traits\HasRoles;
  */
 class User extends Authenticatable implements  MustVerifyEmail,HasMedia
 {
-    use HasApiTokens,Notifiable,HasMediaTrait,HasRoles,SoftDeletes;
+    use HasApiTokens,Notifiable,InteractsWithMedia,HasRoles,SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -86,7 +85,7 @@ class User extends Authenticatable implements  MustVerifyEmail,HasMedia
         return $this->belongsToMany(\App\Models\Option::class, 'option_user');
     }
 
-    public function registerMediaConversions(Media $media = null)
+    public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')
             ->width(50)
