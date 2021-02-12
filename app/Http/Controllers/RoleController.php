@@ -6,6 +6,7 @@ use App\DataTables\RoleDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
+use App\Models\Permission;
 use Illuminate\Support\Facades\DB;
 use App\Models\Role;
 use Flash;
@@ -151,7 +152,9 @@ class RoleController extends AppBaseController
             $role->fill($request->all());
             $role->save();
 
-            $role->syncPermissions($request->permissions);
+            $permissions = Permission::whereIn('id',$request->permissions)->get();
+
+            $role->syncPermissions($permissions);
 
         } catch (Exception $exception) {
             DB::rollBack();
