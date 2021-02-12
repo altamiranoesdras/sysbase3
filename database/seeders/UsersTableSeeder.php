@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Models\Option;
 use App\Models\Role;
 use App\Models\User;
@@ -16,14 +18,9 @@ class UsersTableSeeder extends Seeder
     {
 
 
-        if (Storage::exists('avatars')){
-
-            Storage::deleteDirectory('avatars');
-        }
-        Storage::makeDirectory('avatars');
 
         //Usuario admin
-        factory(User::class,1)->create([
+        User::factory(1)->create([
             "username" => "dev",
             "name" => "Developer",
             "password" => bcrypt("admin")
@@ -32,7 +29,7 @@ class UsersTableSeeder extends Seeder
             $user->options()->sync(Option::pluck('id')->toArray());
         });
 
-        factory(User::class,1)->create([
+        User::factory(1)->create([
             "username" => "Super",
             "name" => "Super Admin",
             "password" => bcrypt("123")
@@ -41,7 +38,7 @@ class UsersTableSeeder extends Seeder
             $user->options()->sync(Option::pluck('id')->toArray());
         });
 
-        factory(User::class,1)->create([
+        User::factory(1)->create([
             "username" => "Admin",
             "name" => "Administrador",
             "password" => bcrypt("123")
@@ -50,7 +47,7 @@ class UsersTableSeeder extends Seeder
             $user->options()->sync(Option::pluck('id')->toArray());
         });
 
-        factory(User::class,1)->create([
+        User::factory(1)->create([
             "username" => "Tester",
             "name" => "Tester",
             "password" => bcrypt("123")
@@ -59,7 +56,7 @@ class UsersTableSeeder extends Seeder
             $user->options()->sync(Option::pluck('id')->toArray());
         });
 
-        factory(User::class,6)->create([
+        User::factory(6)->create([
             "password" => bcrypt("123")
         ])->each(function (User $user){
             $user->syncRoles(Role::USER);
