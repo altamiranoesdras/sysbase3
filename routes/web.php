@@ -4,25 +4,28 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
 
+Route::get('login/{driver}', 'Auth\LoginController@redirectToProvider')->name('social_auth');
+Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallback');
 
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::group(['prefix' => 'developer'],function (){
 
-        Route::get('prueba/api','PruebaApiController@index')->name('developer.prueba.api');
+    Route::group(['prefix' => 'dev','as' => 'dev.'],function (){
+
+        Route::get('prueba/api','PruebaApiController@index')->name('prueba.api');
 
         Route::get('passport/clients', 'PassportClientsController@index')->name('passport.clients');
 
+        Route::resource('configurations', 'ConfigurationController');
+
     });
+
 
     Route::get('/', 'HomeController@index')->name('index');
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('/contact', 'HomeController@contact')->name('contact');
     Route::get('/calendar', 'HomeController@calendar')->name('calendar');
-
-    Route::get('login/{driver}', 'Auth\LoginController@redirectToProvider')->name('social_auth');
-    Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallback');
 
     Route::get('profile', 'ProfileController@index')->name('profile');
     Route::patch('profile/{user}', 'ProfileController@update')->name('profile.update');
@@ -42,7 +45,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('projects', 'ProjectController');
 
-    Route::resource('configurations', 'ConfigurationController');
+    Route::get('business_profile','BusinessProfileController@index')->name('business_profile.index');
+    Route::post('business_profile/store','BusinessProfileController@store')->name('business_profile.store');
+
 
 });
 

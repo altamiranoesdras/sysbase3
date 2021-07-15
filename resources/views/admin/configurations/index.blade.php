@@ -15,7 +15,7 @@
                     <ol class="breadcrumb float-right">
                         <li class="breadcrumb-item">
                             <a class="btn btn-outline-success"
-                                href="{!! route('configurations.create') !!}">
+                                href="{!! route('dev.configurations.create') !!}">
                                 <i class="fa fa-plus"></i>
                                 <span class="d-none d-sm-inline">{{__('New')}}</span>
                             </a>
@@ -30,7 +30,7 @@
         <div class="container-fluid">
             <div class="clearfix"></div>
 
-            @include('partials.flash_alert')
+
 
             <div class="clearfix"></div>
             <div class="card card-primary">

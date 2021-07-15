@@ -220,3 +220,16 @@ function optionsParentAuthUser(){
     return $optionParent->merge($options)->sortBy('orden');
 
 }
+
+function getLogo($thumb=false){
+
+    /**
+     * @var \App\Models\Configuration $config
+     */
+    $config = \App\Models\Configuration::find(1);
+
+    if ($thumb)
+        return $config->thumb;
+
+    return $config->img ?? false;
+}
