@@ -25,8 +25,28 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->user->id;
+
         $rules = User::$rules;
-        
+        $rules['username'] = $rules['username'] . ',username,' . $id;
+        $rules['email'] = $rules['email'] . ',email,' . $id;
+        unset($rules['password']);
+
+
         return $rules;
+    }
+
+    public function all($keys = null)
+    {
+        $inputs = parent::input();
+
+        if ($inputs['password']){
+
+            $inputs['password'] = bcrypt($inputs['password']);
+        }else{
+            unset($inputs['password']);
+        }
+
+        return $inputs;
     }
 }

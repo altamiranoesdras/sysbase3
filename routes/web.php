@@ -27,6 +27,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/contact', 'HomeController@contact')->name('contact');
     Route::get('/calendar', 'HomeController@calendar')->name('calendar');
 
+
+    Route::get('profile/business', 'BusinessProfileController@index')->name('profile.business');
+    Route::post('profile/business', 'BusinessProfileController@store')->name('profile.business.store');
+
     Route::get('profile', 'ProfileController@index')->name('profile');
     Route::patch('profile/{user}', 'ProfileController@update')->name('profile.update');
     Route::post('profile/{user}/edit/avatar', 'ProfileController@editAvatar')->name('profile.edit.avatar');
@@ -44,10 +48,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('permissions', 'PermissionController');
 
     Route::resource('projects', 'ProjectController');
-
-    Route::get('business_profile','BusinessProfileController@index')->name('business_profile.index');
-    Route::post('business_profile/store','BusinessProfileController@store')->name('business_profile.store');
-
 
 });
 
