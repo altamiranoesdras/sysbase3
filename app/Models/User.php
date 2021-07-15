@@ -75,7 +75,10 @@ class User extends Authenticatable implements  MustVerifyEmail,HasMedia
      * @var array
      */
     public static $rules = [
-        'name' => 'required'
+        'name' => 'required',
+        'username' => 'sometimes|required|max:255|unique:users',
+        'email'    => 'sometimes|required|email|max:255|unique:users',
+        'password' => 'required|min:6',
     ];
 
     /**
