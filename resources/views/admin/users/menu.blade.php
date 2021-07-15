@@ -25,7 +25,7 @@
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
-            @include('partials.flash_alert')
+
 
             <div class="row">
                 <div class="col-lg-12">

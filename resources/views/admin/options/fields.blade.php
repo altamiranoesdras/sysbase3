@@ -26,7 +26,7 @@
 
 <div class="form-group col-6">
     {!! Form::label('ruta', 'Icono izquierdo:') !!} <a href="https://fontawesome.com/icons?d=gallery&m=free" target="_blank">fontawesome</a>
-    {!! Form::text('icono_l', 'fa-circle-notch', ['class' => 'form-control input-icon']) !!}
+    {!! Form::text('icono_l', $option->icono_l ?? 'fa-circle-notch', ['class' => 'form-control input-icon']) !!}
 
 </div>
 

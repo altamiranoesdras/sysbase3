@@ -30,7 +30,7 @@
         <div class="container-fluid">
             <div class="clearfix"></div>
 
-            @include('partials.flash_alert')
+
 
             <div class="clearfix"></div>
             <div class="card card-primary">

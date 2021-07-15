@@ -1,16 +1,16 @@
-@can('roles.show')
+@can('Ver roles')
     <a href="{{ route('roles.show', $id) }}" data-toggle="tooltip" title="Ver" class='btn btn-outline-secondary btn-sm'>
         <i class="fa fa-eye"></i>
     </a>
 @endcan
 
-@can('roles.edit')
+@can('Editar roles')
     <a href="{{ route('roles.edit', $id) }}" data-toggle="tooltip" title="Editar" class='btn btn-outline-info btn-sm'>
         <i class="fa fa-edit"></i>
     </a>
 @endcan
 
-@can('roles.destroy')
+@can('Eliminar roles')
     <a href="#" onclick="deleteItemDt(this)" data-id="{{$id}}" data-toggle="tooltip" title="Eliminar" class='btn btn-outline-danger btn-sm'>
         <i class="fa fa-trash-alt"></i>
     </a>
