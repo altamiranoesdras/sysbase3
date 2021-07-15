@@ -2,7 +2,7 @@
 
 @section('title_page',__('Profile'))
 
-@push('styles')
+@push('css')
     <style>
 
         .icon-edit-avatar{

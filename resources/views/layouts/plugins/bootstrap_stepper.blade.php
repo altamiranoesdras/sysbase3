@@ -1,4 +1,4 @@
-@push('styles')
+@push('css')
 <link rel="stylesheet" href="{{asset('css/bs-stepper.min.css')}}" />
 @endpush
 @push('scripts')

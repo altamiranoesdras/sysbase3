@@ -3,6 +3,6 @@
     <script src="{{asset("js/messages.es-es.min.js")}}"></script>
 @endpush
 
-@push('styles')
+@push('css')
     <link href="{{ asset('css/gijgo.min.css') }}" rel="stylesheet" type="text/css" />
 @endpush

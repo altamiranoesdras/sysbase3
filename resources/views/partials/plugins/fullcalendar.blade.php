@@ -1,4 +1,4 @@
-@push('styles')
+@push('css')
     <link rel="stylesheet" href="{{asset("plugins/fullcalendar/main.min.css")}}">
     <link rel="stylesheet" href="{{asset("plugins/fullcalendar-daygrid/main.min.css")}}">
     <link rel="stylesheet" href="{{asset("plugins/fullcalendar-timegrid/main.min.css")}}">
