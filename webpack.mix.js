@@ -12,6 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .vue({ version: 2 })
    .sass('resources/sass/app.scss', 'public/css')
     .copy('node_modules/admin-lte/dist/img','public/dist/img')
     .copy('node_modules/admin-lte/plugins/sparklines/sparkline.js','public/js')
