@@ -11,7 +11,7 @@
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                @include('partials.flash_alert')
+
 {{--                @include('layouts.partials.request_errors')--}}
 
                 <p class="login-box-msg">{{__("Sign in to start your session")}}</p>

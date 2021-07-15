@@ -28,7 +28,9 @@
 
     <!--            Estilos inyectados
     ------------------------------------------------------------------------>
-    @stack('styles')
+    @yield('css')
+    @stack('css')
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -67,6 +69,11 @@
 </div>
 <!-- ./wrapper -->
 
+
+{{--Para utilizar las rutas en java script https://github.com/tighten/ziggy--}}
+{{--@routes--}}
+
+@include('partials.flash_alert')
 
 <script src="{{asset("js/sparkline.js")}}"></script>
 
@@ -130,6 +137,7 @@
 
 <!--            Scripts inyectados
 ------------------------------------------------------------------------>
+@yield('scripts')
 @stack('scripts')
 
 </body>
