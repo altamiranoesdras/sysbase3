@@ -2,7 +2,7 @@
 <aside class="main-sidebar elevation-4 sidebar-dark-primary">
     <!-- Brand Logo -->
     <a href="{{route('home')}}" class="brand-link navbar-primary">
-        <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+        <img src="{{getLogo()}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">
         <span class="brand-text font-weight-light">{{config('app.name')}}</span>
     </a>

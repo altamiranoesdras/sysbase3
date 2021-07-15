@@ -82,7 +82,7 @@
 <script src="{{ url (mix('/js/app.js')) }}" type="text/javascript"></script>
 
 <script>
-    @if(config('app.debug'))
+    @if(appIsDebug())
         logW("Modo Debug Activo")
     @else
         logConfig.stopLogging = true;

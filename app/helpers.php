@@ -233,3 +233,7 @@ function getLogo($thumb=false){
 
     return $config->img ?? false;
 }
+
+function appIsDebug(){
+    return (boolean) json_decode(strtolower(config('app.debug')));
+}
