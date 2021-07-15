@@ -64,7 +64,7 @@ class ConfigurationController extends AppBaseController
 
         Flash::success('Configuration saved successfully.');
 
-        return redirect(route('configurations.index'));
+        return redirect(route('dev.configurations.index'));
     }
 
     /**
@@ -82,7 +82,7 @@ class ConfigurationController extends AppBaseController
         if (empty($configuration)) {
             Flash::error('Configuration not found');
 
-            return redirect(route('configurations.index'));
+            return redirect(route('dev.configurations.index'));
         }
 
         return view('admin.configurations.show')->with('configuration', $configuration);
@@ -103,7 +103,7 @@ class ConfigurationController extends AppBaseController
         if (empty($configuration)) {
             Flash::error('Configuration not found');
 
-            return redirect(route('configurations.index'));
+            return redirect(route('dev.configurations.index'));
         }
 
         return view('admin.configurations.edit')->with('configuration', $configuration);
@@ -125,15 +125,15 @@ class ConfigurationController extends AppBaseController
         if (empty($configuration)) {
             Flash::error('Configuration not found');
 
-            return redirect(route('configurations.index'));
+            return redirect(route('dev.configurations.index'));
         }
 
         $configuration->fill($request->all());
         $configuration->save();
 
-        flash('Configuration updated successfully.')->error();
+        Flash::success('Configuration updated successfully.');
 
-        return redirect(route('configurations.index'));
+        return redirect(route('dev.configurations.index'));
     }
 
     /**
@@ -153,13 +153,13 @@ class ConfigurationController extends AppBaseController
         if (empty($configuration)) {
             Flash::error('Configuration not found');
 
-            return redirect(route('configurations.index'));
+            return redirect(route('dev.configurations.index'));
         }
 
         $configuration->delete();
 
         Flash::success('Configuration deleted successfully.');
 
-        return redirect(route('configurations.index'));
+        return redirect(route('dev.configurations.index'));
     }
 }

@@ -25,13 +25,21 @@ class OptionAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $query = Option::query()->with('children');
+        $query = Option::query();
 
         if ($request->get('skip')) {
             $query->skip($request->get('skip'));
         }
         if ($request->get('limit')) {
             $query->limit($request->get('limit'));
+        }
+
+        if ($request->no_dev){
+            $query->where('dev',0)->with(['children' => function ($query) {
+                $query->where('dev', 0);
+            }]);
+        }else{
+            $query->with('children');
         }
 
         if ($request->parentes){
@@ -60,7 +68,7 @@ class OptionAPIController extends AppBaseController
         /** @var Option $option */
         $option = Option::create($input);
 
-        return $this->sendResponse($option->toArray(), 'Option saved successfully');
+        return $this->sendResponse($option->toArray(), 'Option guardado exitosamente');
     }
 
     /**
@@ -104,7 +112,7 @@ class OptionAPIController extends AppBaseController
         $option->fill($request->all());
         $option->save();
 
-        return $this->sendResponse($option->toArray(), 'Option updated successfully');
+        return $this->sendResponse($option->toArray(), 'Option actualizado exitosamente');
     }
 
     /**
@@ -128,6 +136,6 @@ class OptionAPIController extends AppBaseController
 
         $option->delete();
 
-        return $this->sendSuccess('Option deleted successfully');
+        return $this->sendSuccess('Option borrado exitosamente');
     }
 }

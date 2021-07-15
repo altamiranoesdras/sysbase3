@@ -67,7 +67,7 @@
             var tree = $('#tree').tree({
                 primaryKey: 'id',
                 uiLibrary: 'bootstrap4',
-                dataSource: "{{route('api.options.index')}}?parentes=1",
+                dataSource: "{{route('api.options.index')}}?parentes=1&no_dev=1",
                 checkboxes: true
             }).on('checkboxChange', function (e, $node, record, state) {
                 var checkedIds = tree.getCheckedNodes();
