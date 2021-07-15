@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Option;
+use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
 use Flash;
@@ -23,11 +24,11 @@ class UserController extends AppBaseController
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('permission:users.index')->only('index');
-        $this->middleware('permission:users.show')->only('show');
-        $this->middleware('permission:users.create')->only(['create','store']);
-        $this->middleware('permission:users.edit')->only(['edit','update']);
-        $this->middleware('permission:users.destroy')->only('destroy');
+//        $this->middleware('permission:users.index')->only('index');
+//        $this->middleware('permission:users.show')->only('show');
+//        $this->middleware('permission:users.create')->only(['create','store']);
+//        $this->middleware('permission:users.edit')->only(['edit','update']);
+//        $this->middleware('permission:users.destroy')->only('destroy');
     }
 
 
@@ -74,8 +75,13 @@ class UserController extends AppBaseController
                 $user->addMediaFromRequest('avatar')->toMediaCollection('avatars');
             }
 
-            $user->syncRoles($request->roles);
-            $user->syncPermissions($request->permissions_user);
+
+            $roles = Role::whereIn('id',$request->roles ?? [])->get();
+            $permissions = Permission::whereIn('id',$request->permissions_user ?? [])->get();
+
+            $user->syncRoles($roles);
+            $user->syncPermissions($permissions);
+
 
         } catch (Exception $exception) {
             DB::rollBack();
@@ -85,7 +91,7 @@ class UserController extends AppBaseController
 
         DB::commit();
 
-        Flash::success('User saved successfully.');
+        Flash::success('User guardado exitosamente.');
 
         return redirect(route('users.index'));
     }
@@ -151,11 +157,11 @@ class UserController extends AppBaseController
             $maxRolUserAuth = $authUser->roles->min('id');
 
             /**
-            * DEVELOPER =   1;
-            * SUPERADMIN =  2;
-            * ADMIN =       3;
-            * TESTER =      4;
-            * USER =        5;
+             * DEVELOPER =   1;
+             * SUPERADMIN =  2;
+             * ADMIN =       3;
+             * TESTER =      4;
+             * USER =        5;
              */
             //si el maximo rol del usuario es inferior al rol admin
             if (Role::ADMIN < $maxRolUserAuth){
@@ -187,8 +193,11 @@ class UserController extends AppBaseController
                 $user->addMediaFromRequest('avatar')->toMediaCollection('avatars');
             }
 
-            $user->syncRoles($request->roles);
-            $user->syncPermissions($request->permissions_user);
+            $roles = Role::whereIn('id',$request->roles ?? [])->get();
+            $permissions = Permission::whereIn('id',$request->permissions_user ?? [])->get();
+
+            $user->syncRoles($roles);
+            $user->syncPermissions($permissions);
 
         } catch (Exception $exception) {
             DB::rollBack();
@@ -200,7 +209,7 @@ class UserController extends AppBaseController
 
 
 
-        Flash::success('User updated successfully.');
+        Flash::success('User actualizado exitosamente.');
 
         return redirect(route('users.index'));
     }
@@ -245,7 +254,7 @@ class UserController extends AppBaseController
 
 
 
-        Flash::success('User deleted successfully.');
+        Flash::success('User borrado exitosamente.');
 
         return redirect(route('users.index'));
     }
@@ -292,9 +301,11 @@ class UserController extends AppBaseController
 
     public function canEditUser(User $user)
     {
+        $maxRolUserEdit = $user->roles->min('id') ?? 1000;
+        $maxAuthUser = auth()->user()->roles->min('id') ?? 1000;
 
         //si el usuario a editar tiene un rol superior al usuario autenticado
-        if ($user->roles->min('id') < auth()->user()->roles->min('id') ){
+        if ($maxRolUserEdit < $maxAuthUser ){
             flash(__('You cannot edit user with role superior to yours'))->error();
             return false;
         }
@@ -304,8 +315,12 @@ class UserController extends AppBaseController
 
     public function canDeleteUser(User $user)
     {
+
+        $maxRolUserEdit = $user->roles->min('id') ?? 1000;
+        $maxAuthUser = auth()->user()->roles->min('id') ?? 1000;
+
         //si el usuario a editar tiene un rol superior al usuario autenticado
-        if ($user->roles->min('id') < auth()->user()->roles->min('id') ){
+        if ($maxRolUserEdit < $maxAuthUser ){
             flash(__('You cannot delete user with role superior to yours'))->error();
             return false;
         }
@@ -315,8 +330,12 @@ class UserController extends AppBaseController
 
     public function canEditMenu(User $user)
     {
+
+        $maxRolUserEdit = $user->roles->min('id') ?? 1000;
+        $maxAuthUser = auth()->user()->roles->min('id') ?? 1000;
+
         //si el usuario a editar tiene un rol superior al usuario autenticado
-        if ($user->roles->min('id') < auth()->user()->roles->min('id') ){
+        if ($maxRolUserEdit < $maxAuthUser ){
             flash(__('You cannot edit user menu with role superior to yours'))->error();
             return false;
         }
