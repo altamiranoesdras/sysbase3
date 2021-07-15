@@ -1,0 +1,43 @@
+//---// Fix color de letras select2
+.select2-container--default .select2-selection--multiple .select2-selection__choice{
+  color: #0A0A0A;
+}
+
+//---//  Estilo ios para bootstrap-toggle
+.toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
+.toggle.ios .toggle-handle { border-radius: 20px; }
+
+
+//---// vue-js-toggle-button
+.vue-js-switch#changed-font {
+  font-size: 16px;
+}
+
+#toast-container > div {
+  opacity:1;
+  margin-top: 50px;
+}
+
+.table-xtra-condensed > thead > tr > th,
+.table-xtra-condensed > tbody > tr > th,
+.table-xtra-condensed > tfoot > tr > th,
+.table-xtra-condensed > thead > tr > td,
+.table-xtra-condensed > tbody > tr > td,
+.table-xtra-condensed > tfoot > tr > td {
+  padding: 2px;
+}
+
+.dataTables_processing {
+    top: 64px !important;
+    z-index: 11000 !important;
+    font-weight: bolder !important;
+}
+
+div.dataTables_info{
+    padding-top: 0px !important;
+    white-space: normal !important;
+}
+
+ul.pagination {
+    flex-wrap: wrap !important;
+}

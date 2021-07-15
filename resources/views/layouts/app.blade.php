@@ -111,6 +111,21 @@
 
     }
 
+    $(function () {
+
+        $(".wait-on-submit").submit(function( event ) {
+
+            Swal.fire({
+                title: 'Espera por favor...',
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                timerProgressBar: true,
+            });
+
+            Swal.showLoading();
+        });
+    })
+
 </script>
 
 <!--            Scripts inyectados
