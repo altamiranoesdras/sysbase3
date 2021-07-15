@@ -18,12 +18,10 @@ class PermissionController extends AppBaseController
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('permission:permissions.index')->only('index');
-        $this->middleware('permission:permissions.show')->only('show');
-        $this->middleware('permission:permissions.create')->only(['create','store']);
-        $this->middleware('permission:permissions.edit')->only(['edit','update']);
-        $this->middleware('permission:permissions.destroy')->only('destroy');
+        $this->middleware('permission:Ver permisos')->only('show');
+        $this->middleware('permission:Crear permisos')->only(['create','store']);
+        $this->middleware('permission:Editar permisos')->only(['edit','update']);
+        $this->middleware('permission:Eliminar permisos')->only('destroy');
     }
 
     /**

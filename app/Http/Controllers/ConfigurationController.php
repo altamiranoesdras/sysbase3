@@ -18,12 +18,10 @@ class ConfigurationController extends AppBaseController
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('permission:configurations.index')->only('index');
-        $this->middleware('permission:configurations.show')->only('show');
-        $this->middleware('permission:configurations.create')->only(['create','store']);
-        $this->middleware('permission:configurations.edit')->only(['edit','update']);
-        $this->middleware('permission:configurations.destroy')->only('destroy');
+        $this->middleware('permission:Ver Configuración')->only('show');
+        $this->middleware('permission:Crear Configuración')->only(['create','store']);
+        $this->middleware('permission:Editar Configuración')->only(['edit','update']);
+        $this->middleware('permission:Eliminar Configuración')->only('destroy');
     }
 
 
