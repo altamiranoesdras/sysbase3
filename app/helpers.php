@@ -172,14 +172,6 @@ function porcentaje($value1, $valueTotal){
 }
 
 
-function nfp($numero=0){
-    if ($numero<=0){
-        return 0;
-    }
-
-    return number_format($numero,2,'.',',');
-}
-
 /**
  * Convierte una fecha en formato latino
  * @param string $fecha
@@ -236,4 +228,38 @@ function getLogo($thumb=false){
 
 function appIsDebug(){
     return (boolean) json_decode(strtolower(config('app.debug')));
+}
+
+
+/**
+ * Devuelve el símbolo de la moneda que esta guardada en las variables de configuración en la tabla configurations
+ * @return \Illuminate\Config\Repository|mixed
+ */
+function dvs(){
+    return config('app.divisa') ?? "$";
+}
+
+/**
+ * Formatea los números de cantidades con separador de miles, separador decimales y cantidad de decimales mediante llaves de configuración
+ */
+function nf($numero,$cantidad_decimales=null,$separador_decimal=null,$separador_miles=null){
+
+    $cantidad_decimales = $cantidad_decimales ?? config('app.cantidad_decimales');
+    $separador_decimal = $separador_decimal ?? config('app.separador_decimal');
+    $separador_miles = $separador_miles ?? config('app.separador_miles');
+
+    return number_format($numero,$cantidad_decimales,$separador_decimal,$separador_miles);
+}
+
+/**
+ * Formatea los números de precios con separador de miles, separador decimales y cantidad de decimales mediante llaves de configuración
+ */
+function nfp($numero,$cantidad_decimales=null,$separador_decimal=null,$separador_miles=null){
+
+
+    $cantidad_decimales = $cantidad_decimales ?? config('app.cantidad_decimales_precio');
+    $separador_decimal = $separador_decimal ?? config('app.separador_decimal');
+    $separador_miles = $separador_miles ?? config('app.separador_miles');
+
+    return number_format($numero,$cantidad_decimales,$separador_decimal,$separador_miles);
 }

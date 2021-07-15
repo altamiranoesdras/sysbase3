@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('htmlheader_title',__('Home'))
+@section('title_page',__('Home'))
 
 @push('css')
 
