@@ -19,6 +19,7 @@ class CreateTareasTable extends Migration
             $table->text('descripcion');
             $table->boolean('lista');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
