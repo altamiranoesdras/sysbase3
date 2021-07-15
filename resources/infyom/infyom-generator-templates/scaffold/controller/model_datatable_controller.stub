@@ -13,6 +13,15 @@ use Response;
 
 class $MODEL_NAME$Controller extends AppBaseController
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:Ver $MODEL_NAME_PLURAL_HUMAN$')->only(['show']);
+        $this->middleware('permission:Crear $MODEL_NAME_PLURAL_HUMAN$')->only(['create','store']);
+        $this->middleware('permission:Editar $MODEL_NAME_PLURAL_HUMAN$')->only(['edit','update',]);
+        $this->middleware('permission:Eliminar $MODEL_NAME_PLURAL_HUMAN$')->only(['destroy']);
+    }
+
     /**
      * Display a listing of the $MODEL_NAME$.
      *
@@ -48,7 +57,7 @@ class $MODEL_NAME$Controller extends AppBaseController
         /** @var $MODEL_NAME$ $$MODEL_NAME_CAMEL$ */
         $$MODEL_NAME_CAMEL$ = $MODEL_NAME$::create($input);
 
-        Flash::success('$MODEL_NAME_HUMAN$ saved successfully.');
+        Flash::success('$MODEL_NAME_HUMAN$ guardado exitosamente.');
 
         return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
     }
@@ -66,7 +75,7 @@ class $MODEL_NAME$Controller extends AppBaseController
         $$MODEL_NAME_CAMEL$ = $MODEL_NAME$::find($id);
 
         if (empty($$MODEL_NAME_CAMEL$)) {
-            Flash::error('$MODEL_NAME_HUMAN$ not found');
+            Flash::error('$MODEL_NAME_HUMAN$ no encontrado');
 
             return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
         }
@@ -87,7 +96,7 @@ class $MODEL_NAME$Controller extends AppBaseController
         $$MODEL_NAME_CAMEL$ = $MODEL_NAME$::find($id);
 
         if (empty($$MODEL_NAME_CAMEL$)) {
-            Flash::error('$MODEL_NAME_HUMAN$ not found');
+            Flash::error('$MODEL_NAME_HUMAN$ no encontrado');
 
             return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
         }
@@ -109,7 +118,7 @@ class $MODEL_NAME$Controller extends AppBaseController
         $$MODEL_NAME_CAMEL$ = $MODEL_NAME$::find($id);
 
         if (empty($$MODEL_NAME_CAMEL$)) {
-            Flash::error('$MODEL_NAME_HUMAN$ not found');
+            Flash::error('$MODEL_NAME_HUMAN$ no encontrado');
 
             return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
         }
@@ -117,7 +126,7 @@ class $MODEL_NAME$Controller extends AppBaseController
         $$MODEL_NAME_CAMEL$->fill($request->all());
         $$MODEL_NAME_CAMEL$->save();
 
-        Flash::success('$MODEL_NAME_HUMAN$ updated successfully.');
+        Flash::success('$MODEL_NAME_HUMAN$ actualizado con éxito.');
 
         return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
     }
@@ -137,7 +146,7 @@ class $MODEL_NAME$Controller extends AppBaseController
         $$MODEL_NAME_CAMEL$ = $MODEL_NAME$::find($id);
 
         if (empty($$MODEL_NAME_CAMEL$)) {
-            Flash::error('$MODEL_NAME_HUMAN$ not found');
+            Flash::error('$MODEL_NAME_HUMAN$ no encontrado');
 
             return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
         }
