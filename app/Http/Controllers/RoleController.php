@@ -66,7 +66,9 @@ class RoleController extends AppBaseController
             /** @var Role $role */
             $role = Role::create($input);
 
-            $role->syncPermissions($request->permissions);
+            $permissions = Permission::whereIn('id',$request->permissions ?? [])->get();
+
+            $role->syncPermissions($permissions);
 
         } catch (Exception $exception) {
             DB::rollBack();
@@ -77,7 +79,7 @@ class RoleController extends AppBaseController
         DB::commit();
 
 
-        Flash::success('Role saved successfully.');
+        Flash::success('Role guardado exitosamente.');
 
         return redirect(route('roles.index'));
     }
@@ -135,6 +137,7 @@ class RoleController extends AppBaseController
      */
     public function update($id, UpdateRoleRequest $request)
     {
+
         /** @var Role $role */
         $role = Role::find($id);
 
@@ -152,7 +155,7 @@ class RoleController extends AppBaseController
             $role->fill($request->all());
             $role->save();
 
-            $permissions = Permission::whereIn('id',$request->permissions)->get();
+            $permissions = Permission::whereIn('id',$request->permissions ?? [])->get();
 
             $role->syncPermissions($permissions);
 
@@ -164,7 +167,7 @@ class RoleController extends AppBaseController
 
         DB::commit();
 
-        Flash::success('Role updated successfully.');
+        Flash::success('Role actualizado exitosamente.');
 
         return redirect(route('roles.index'));
     }
@@ -191,7 +194,7 @@ class RoleController extends AppBaseController
 
         $role->delete();
 
-        Flash::success('Role deleted successfully.');
+        Flash::success('Role borrado exitosamente.');
 
         return redirect(route('roles.index'));
     }
