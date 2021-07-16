@@ -27,6 +27,7 @@ class UsersTableSeeder extends Seeder
         ])->each(function (User $user){
             $user->syncRoles([Role::DEVELOPER]);
             $user->options()->sync(Option::pluck('id')->toArray());
+            $user->shortcuts()->sync([3,4,5,6]);
         });
 
         User::factory(1)->create([
@@ -36,6 +37,8 @@ class UsersTableSeeder extends Seeder
         ])->each(function (User $user){
             $user->syncRoles(Role::SUPERADMIN);
             $user->options()->sync(Option::pluck('id')->toArray());
+            $user->shortcuts()->sync([3,4,5,6]);
+
         });
 
         User::factory(1)->create([
@@ -45,6 +48,8 @@ class UsersTableSeeder extends Seeder
         ])->each(function (User $user){
             $user->syncRoles(Role::ADMIN);
             $user->options()->sync(Option::pluck('id')->toArray());
+            $user->shortcuts()->sync([3,4,5,6]);
+
         });
 
         User::factory(1)->create([
@@ -54,6 +59,8 @@ class UsersTableSeeder extends Seeder
         ])->each(function (User $user){
             $user->syncRoles(Role::TESTER);
             $user->options()->sync(Option::pluck('id')->toArray());
+            $user->shortcuts()->sync([3,4,5,6]);
+
         });
 
         User::factory(6)->create([
@@ -61,6 +68,8 @@ class UsersTableSeeder extends Seeder
         ])->each(function (User $user){
             $user->syncRoles(Role::USER);
             $user->options()->sync(Option::pluck('id')->toArray());
+            $user->shortcuts()->sync([3,4,5,6]);
+
         });
     }
 }
