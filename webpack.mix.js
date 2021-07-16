@@ -31,6 +31,11 @@ mix.js('resources/js/app.js', 'public/js')
     // .copy('node_modules/admin-lte/plugins/fullcalendar-timegrid/main.min.js','public/plugins/fullcalendar-timegrid')
     // .copy('node_modules/admin-lte/plugins/fullcalendar-bootstrap/main.min.js','public/plugins/fullcalendar-bootstrap')
 
+
+    .copy('node_modules/bootstrap-fileinput','public/plugins/bootstrap-fileinput')
+    .copy('node_modules/select2','public/plugins/select2')
+
+
     .copy('node_modules/gijgo/js/gijgo.min.js','public/js')
     .copy('node_modules/gijgo/js/messages/messages.es-es.min.js','public/js')
     .copy('node_modules/gijgo/css/gijgo.min.css','public/css')
