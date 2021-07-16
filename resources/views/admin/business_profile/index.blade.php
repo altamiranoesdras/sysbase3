@@ -30,7 +30,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{route('business_profile.store')}}" method="post" enctype="multipart/form-data">
+                            <form action="{{route('profile.business.store')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-row">
 
@@ -60,7 +60,7 @@
                                     </div>
 
                                     <div class="form-group col-sm-12 mt-3">
-                                        <a href="{!! route('business_profile.index') !!}" class="btn btn-outline-secondary ml-2">Cancelar</a>
+                                        <a href="{!! route('profile.business') !!}" class="btn btn-outline-secondary ml-2">Cancelar</a>
                                         <button type="submit" onClick="this.form.submit(); this.disabled=true;" class="btn btn-outline-success ml-3">Guardar</button>
                                     </div>
 
