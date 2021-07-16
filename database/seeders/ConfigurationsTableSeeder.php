@@ -23,10 +23,10 @@ class ConfigurationsTableSeeder extends Seeder
             array (
                 'id' => 1,
                 'key' => 'name',
-                'value' => 'ASISTENCIA',
-                'descripcion' => 'Nombre de la aplicacion',
+                'value' => 'SysBase',
+                'descripcion' => 'SysBase',
                 'created_at' => '2004-07-23 07:21:12',
-                'updated_at' => '2008-11-11 10:47:48',
+                'updated_at' => '2021-07-16 09:30:10',
                 'deleted_at' => NULL,
             ),
             1 => 
@@ -87,6 +87,36 @@ class ConfigurationsTableSeeder extends Seeder
                 'descripcion' => 'Email al que se envían los correos cuando el entorno de la aplicación esta en modo debug o local',
                 'created_at' => '2005-06-14 13:13:09',
                 'updated_at' => '1993-12-16 05:19:18',
+                'deleted_at' => NULL,
+            ),
+            7 => 
+            array (
+                'id' => 8,
+                'key' => 'telefono_negocio',
+                'value' => '12345678',
+                'descripcion' => '12345678',
+                'created_at' => '2021-07-16 09:30:10',
+                'updated_at' => '2021-07-16 09:30:10',
+                'deleted_at' => NULL,
+            ),
+            8 => 
+            array (
+                'id' => 9,
+                'key' => 'direccion_negocio',
+                'value' => 'Dirección Empresa',
+                'descripcion' => 'Dirección Empresa',
+                'created_at' => '2021-07-16 09:30:10',
+                'updated_at' => '2021-07-16 09:30:10',
+                'deleted_at' => NULL,
+            ),
+            9 => 
+            array (
+                'id' => 10,
+                'key' => 'correo_negocio',
+                'value' => 'cooreo@empresa.com',
+                'descripcion' => 'cooreo@empresa.com',
+                'created_at' => '2021-07-16 09:30:10',
+                'updated_at' => '2021-07-16 09:30:10',
                 'deleted_at' => NULL,
             ),
         ));

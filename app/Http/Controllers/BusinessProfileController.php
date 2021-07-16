@@ -77,6 +77,6 @@ class BusinessProfileController extends Controller
 
         flash('Listo guardado!')->success();
 
-        return redirect(route('business_profile.index'));
+        return redirect(route('profile.business'));
     }
 }

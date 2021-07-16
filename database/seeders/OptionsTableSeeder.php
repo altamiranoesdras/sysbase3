@@ -104,7 +104,7 @@ class OptionsTableSeeder extends Seeder
                 'id' => 6,
                 'option_id' => 2,
                 'nombre' => 'Configuraciones',
-                'ruta' => 'business_profile.index',
+                'ruta' => 'profile.business',
                 'descripcion' => NULL,
                 'icono_l' => 'fa-cogs',
                 'icono_r' => NULL,
