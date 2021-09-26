@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Role
  * @package App\Models
- * @version January 30, 2020, 4:01 pm CST
+ * @version September 21, 2021, 3:52 pm CST
  *
- * @property \App\Models\ModelHasRole modelHasRole
- * @property \Illuminate\Database\Eloquent\Collection permissions
- * @property string name
- * @property string guard_name
+ * @property \App\Models\ModelHasRole $modelHasRole
+ * @property \Illuminate\Database\Eloquent\Collection $options
+ * @property \Illuminate\Database\Eloquent\Collection $permissions
+ * @property string $name
+ * @property string $guard_name
  */
 class Role extends \Spatie\Permission\Models\Role
 {
@@ -56,5 +57,12 @@ class Role extends \Spatie\Permission\Models\Role
         'guard_name' => 'required'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
+    public function options()
+    {
+        return $this->belongsToMany(\App\Models\Option::class, 'option_role')->with('children');
+    }
 
 }

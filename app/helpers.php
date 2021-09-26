@@ -192,10 +192,11 @@ function rutaOpcion($opcion){
 }
 
 
-function optionsParentAuthUser(){
-    $authUser = Auth::user();
+function optionsParentAuthUser($user = null){
+    $authUser = $user ?? Auth::user();
 
-    $allOptions = $authUser->options;
+//    $allOptions = $authUser->options;
+    $allOptions = $authUser->getAllOptions();
 
     $optionParent = $allOptions->filter(function ($op){
         return is_null($op->option_id);
@@ -209,7 +210,9 @@ function optionsParentAuthUser(){
 
     $options = Option::padresDe($childres)->with('children')->get();
 
-    return $optionParent->merge($options)->sortBy('orden');
+    $options = $optionParent->merge($options)->sortBy('orden');
+
+    return $options;
 
 }
 
@@ -262,4 +265,27 @@ function nfp($numero,$cantidad_decimales=null,$separador_decimal=null,$separador
     $separador_miles = $separador_miles ?? config('app.separador_miles');
 
     return number_format($numero,$cantidad_decimales,$separador_decimal,$separador_miles);
+}
+
+/**
+ * @param \Illuminate\Database\Eloquent\Collection $items
+ * @param $id
+ * @return null
+ */
+function validaCheched($items = null,$id){
+    if (!$items){
+        return null;
+    }
+
+
+    if ($items->contains('id',$id)){
+        return 'checked';
+    }else{
+        return null;
+    }
+
+}
+
+function prefijoCeros($numero,$cantidadCeros){
+    return str_pad($numero,$cantidadCeros,"0",STR_PAD_LEFT);
 }

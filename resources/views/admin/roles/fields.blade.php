@@ -22,3 +22,50 @@
         )
     !!}
 </div>
+
+<div class="form-group col-sm-12">
+
+    <div class="card card-outline card-success">
+        <div class="card-header">
+            <h3 class="card-title">Opciones del menu</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div class="form-group col-sm-12">
+                <div id="tree"></div>
+                <input type="hidden" name="options" id="options">
+            </div>
+        </div>
+        <!-- /.card-body -->
+    </div>
+
+</div>
+
+
+@push('scripts')
+    <script>
+        $(function () {
+
+            var tree = $('#tree').tree({
+                primaryKey: 'id',
+                uiLibrary: 'bootstrap4',
+                dataSource: "{{route('api.options.index')}}?parentes=1&no_dev=1",
+                checkboxes: true
+            }).on('checkboxChange', function (e, $node, record, state) {
+                var checkedIds = tree.getCheckedNodes();
+
+                $("#options").val(checkedIds);
+            });
+
+            tree.on('dataBound', function() {
+
+                @isset($role)
+                    @foreach($role->options as $op)
+                    tree.check(tree.getNodeById('{{$op->id}}'));
+                    @endforeach
+                @endisset
+            })
+
+        })
+    </script>
+@endpush

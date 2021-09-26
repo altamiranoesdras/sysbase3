@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\RoleDataTable;
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests;
 use App\Http\Requests\CreateRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
 use App\Models\Permission;
 use Illuminate\Support\Facades\DB;
 use App\Models\Role;
-use Flash;
-use App\Http\Controllers\AppBaseController;
+use Illuminate\View\View;
 use Response;
 
 class RoleController extends AppBaseController
@@ -40,7 +40,7 @@ class RoleController extends AppBaseController
     /**
      * Show the form for creating a new Role.
      *
-     * @return Response
+     * @return View
      */
     public function create()
     {
@@ -68,6 +68,9 @@ class RoleController extends AppBaseController
 
             $role->syncPermissions($permissions);
 
+            $opciones = $request->options ?  explode(",",$request->options) : [];
+            $role->options()->sync($opciones);
+
         } catch (Exception $exception) {
             DB::rollBack();
 
@@ -77,7 +80,7 @@ class RoleController extends AppBaseController
         DB::commit();
 
 
-        Flash::success('Role guardado exitosamente.');
+        flash()->success('Role guardado exitosamente.');
 
         return redirect(route('roles.index'));
     }
@@ -87,7 +90,7 @@ class RoleController extends AppBaseController
      *
      * @param  int $id
      *
-     * @return Response
+     * @return View
      */
     public function show($id)
     {
@@ -95,7 +98,7 @@ class RoleController extends AppBaseController
         $role = Role::find($id);
 
         if (empty($role)) {
-            Flash::error('Role not found');
+            flash()->error('Role not found');
 
             return redirect(route('roles.index'));
         }
@@ -109,7 +112,7 @@ class RoleController extends AppBaseController
      *
      * @param  int $id
      *
-     * @return Response
+     * @return View
      */
     public function edit($id)
     {
@@ -117,7 +120,7 @@ class RoleController extends AppBaseController
         $role = Role::find($id);
 
         if (empty($role)) {
-            Flash::error('Role not found');
+            flash()->error('Role not found');
 
             return redirect(route('roles.index'));
         }
@@ -135,12 +138,11 @@ class RoleController extends AppBaseController
      */
     public function update($id, UpdateRoleRequest $request)
     {
-
         /** @var Role $role */
         $role = Role::find($id);
 
         if (empty($role)) {
-            Flash::error('Role not found');
+            flash()->error('Role not found');
 
             return redirect(route('roles.index'));
         }
@@ -157,6 +159,9 @@ class RoleController extends AppBaseController
 
             $role->syncPermissions($permissions);
 
+            $opciones = $request->options ?  explode(",",$request->options) : [];
+            $role->options()->sync($opciones);
+
         } catch (Exception $exception) {
             DB::rollBack();
 
@@ -165,7 +170,7 @@ class RoleController extends AppBaseController
 
         DB::commit();
 
-        Flash::success('Role actualizado exitosamente.');
+        flash()->success('Role actualizado exitosamente.');
 
         return redirect(route('roles.index'));
     }
@@ -185,14 +190,14 @@ class RoleController extends AppBaseController
         $role = Role::find($id);
 
         if (empty($role)) {
-            Flash::error('Role not found');
+            flash()->error('Role not found');
 
             return redirect(route('roles.index'));
         }
 
         $role->delete();
 
-        Flash::success('Role borrado exitosamente.');
+        flash()->success('Role borrado exitosamente.');
 
         return redirect(route('roles.index'));
     }

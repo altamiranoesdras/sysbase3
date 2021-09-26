@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('title_page',__('New Role'))
+@include('partials.plugins.gijgo')
 
 @section('content')
 

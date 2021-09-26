@@ -38,7 +38,7 @@ class AuthServiceProvider extends ServiceProvider
             $rutaActual = request()->route()->getName();
 
             //si la ruta actual no esta en las opciones o la ruta actual no esta asignada al usuario
-            return (!Option::all()->contains('ruta',$rutaActual) || $user->options->contains('ruta',$rutaActual));
+            return (!Option::all()->contains('ruta',$rutaActual) || $user->getAllOptions()->contains('ruta',$rutaActual));
 
         });
 

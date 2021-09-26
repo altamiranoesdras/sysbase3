@@ -107,5 +107,27 @@ class User extends Authenticatable implements  MustVerifyEmail,HasMedia
         return $this->belongsToMany(Option::class,'user_shortcuts','user_id','option_id');
     }
 
+    public function getAllOptions()
+    {
+        $opcionesDirectas = $this->options;
+
+        $opcionesPorRol = collect();
+
+
+        /**
+         * @var Role $role
+         */
+        foreach ($this->roles as $index => $role) {
+            $opcionesPorRol = $opcionesPorRol->merge($role->options);
+        }
+
+        $allOptions = $opcionesDirectas->merge($opcionesPorRol);
+
+
+//        dd($this->id,$opcionesDirectas->toArray(),$opcionesPorRol->toArray(),$allOptions->toArray());
+
+        return $allOptions;
+    }
+
 
 }
