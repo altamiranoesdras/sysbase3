@@ -28,7 +28,7 @@
 
             <div class="card">
                 <div class="card-body">
-                    {!! Form::open(['route' => 'dev.configurations.store']) !!}
+                    {!! Form::open(['route' => 'dev.configurations.store','class' => 'wait-on-submit']) !!}
                         <div class="form-row">
 
                             @include('admin.configurations.fields')

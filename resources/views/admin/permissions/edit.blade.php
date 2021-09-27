@@ -30,7 +30,7 @@
             <div class="card">
                 <div class="card-body">
 
-                   {!! Form::model($permission, ['route' => ['permissions.update', $permission->id], 'method' => 'patch']) !!}
+                   {!! Form::model($permission, ['route' => ['permissions.update', $permission->id], 'method' => 'patch','class' => 'wait-on-submit']) !!}
                         <div class="form-row">
 
                             @include('admin.permissions.fields')

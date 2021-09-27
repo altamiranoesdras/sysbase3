@@ -30,7 +30,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{route('profile.business.store')}}" method="post" enctype="multipart/form-data">
+                            <form action="{{route('profile.business.store')}}" method="post" class="wait-on-submit" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-row">
 

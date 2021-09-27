@@ -30,7 +30,7 @@
             <div class="card">
                 <div class="card-body">
 
-                   {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'patch',"enctype"=>"multipart/form-data"]) !!}
+                   {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'patch',"enctype"=>"multipart/form-data",'class' => 'wait-on-submit']) !!}
                         <div class="form-row">
 
                             @include('admin.users.fields')

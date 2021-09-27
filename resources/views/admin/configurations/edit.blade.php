@@ -30,7 +30,7 @@
             <div class="card">
                 <div class="card-body">
 
-                   {!! Form::model($configuration, ['route' => ['dev.configurations.update', $configuration->id], 'method' => 'patch']) !!}
+                   {!! Form::model($configuration, ['route' => ['dev.configurations.update', $configuration->id], 'method' => 'patch','class' => 'wait-on-submit']) !!}
                         <div class="form-row">
 
                             @include('admin.configurations.fields')
