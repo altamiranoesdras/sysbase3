@@ -23,7 +23,6 @@
     <!-- Main content -->
     <div class="content" id="root">
         <div class="container-fluid">
-            @include('flash::message')
 
             <div class="row">
                 <div class="col-lg-12">
