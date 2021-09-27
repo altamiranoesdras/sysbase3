@@ -29,13 +29,13 @@
 
             <div class="card">
                 <div class="card-body">
-                    {!! Form::open(['route' => 'roles.store']) !!}
+                    {!! Form::open(['route' => 'roles.store','class' => 'wait-on-submit']) !!}
                         <div class="form-row">
 
                             @include('admin.roles.fields')
                             <!-- Submit Field -->
                             <div class="form-group col-sm-12">
-                                <button type="submit" onClick="this.form.submit(); this.disabled=true;" class="btn btn-outline-success">Guardar</button>
+                                <button type="submit"  class="btn btn-outline-success">Guardar</button>
                                 <a href="{!! route('roles.index') !!}" class="btn btn-outline-secondary">Cancelar</a>
                             </div>
                         </div>

@@ -61,7 +61,7 @@
 
                                     <div class="form-group col-sm-12 mt-3">
                                         <a href="{!! route('profile.business') !!}" class="btn btn-outline-secondary ml-2">Cancelar</a>
-                                        <button type="submit" onClick="this.form.submit(); this.disabled=true;" class="btn btn-outline-success ml-3">Guardar</button>
+                                        <button type="submit"  class="btn btn-outline-success ml-3">Guardar</button>
                                     </div>
 
                                 </div>

@@ -85,3 +85,24 @@ Vue.component(
     'passport-personal-access-tokens',
     require('./components/passport/PersonalAccessTokens.vue').default
 );
+
+require('bootstrap-toggle/js/bootstrap-toggle.js');
+
+
+import Multiselect from 'vue-multiselect'
+
+// register globally
+Vue.component('multiselect', Multiselect);
+
+
+import ToggleButton from 'vue-js-toggle-button';
+Vue.use(ToggleButton);
+
+window.number_format = require("number_format-php");
+
+
+import { VTooltip, VPopover, VClosePopover } from 'v-tooltip';
+
+Vue.directive('tooltip', VTooltip);
+Vue.directive('close-popover', VClosePopover);
+Vue.component('v-popover', VPopover);

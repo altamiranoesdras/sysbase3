@@ -29,13 +29,13 @@
             <div class="card">
                 <div class="card-body">
 
-                    {!! Form::open(['route' => 'users.store', "enctype"=>"multipart/form-data"]) !!}
+                    {!! Form::open(['route' => 'users.store', "enctype"=>"multipart/form-data",'class' => 'wait-on-submit']) !!}
                         <div class="form-row">
 
                             @include('admin.users.fields')
                             <!-- Submit Field -->
                             <div class="form-group col-sm-12">
-                                <button type="submit" onClick="this.form.submit(); this.disabled=true;" class="btn btn-outline-success">Guardar</button>
+                                <button type="submit"  class="btn btn-outline-success">Guardar</button>
                                 <a href="{!! route('users.index') !!}" class="btn btn-outline-secondary">Cancelar</a>
                             </div>
                         </div>

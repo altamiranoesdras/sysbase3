@@ -117,21 +117,7 @@ window.alertError = (title,text,html,time) => {
     Swal.fire(options);
 
 }
-window.errors2List = (errors) => {
 
-    var res ="<b><ul style='list-style-type: none; padding:0px;'>";
-
-    $.each(errors,function (field,fieldErrors) {
-
-        $.each(fieldErrors,function (index,error) {
-            res = res+'<li>'+error+'</li>';
-        })
-    })
-
-    res =res+'</ul></b>';
-
-    return res;
-}
 
 window.$.fn.serializeObject = function()
 {
@@ -171,20 +157,68 @@ window.deleteItemDt = (data) =>{
     });
 }
 
-$('div.alert').not('.alert-important').delay(3000).fadeOut(350);
 
-window.erroresToList =  (errors) => {
 
+// oculta los alertas de request error
+// $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+
+window.errorToList = (errors) => {
     var res ="<ul style='list-style-type: none; padding:0px;'>";
 
-    $.each(errors,function (field,fieldErrors) {
 
-        $.each(fieldErrors,function (index,error) {
-            res = res+'<li>'+error+'</li>';
+    if (Array.isArray(errors)){
+        errors.forEach(function (value) {
+            res = res+'<li style="margin-bottom: .5rem">'+value+'</li>';
+
         })
-    })
+    }else {
 
-    res = res+"</ul>";
+
+        const entries = Object.entries(errors);
+
+        for (const [field, fieldErrors] of entries) {
+
+            fieldErrors.forEach(function (value) {
+                res = res+'<li style="margin-bottom: .5rem">'+value+'</li>';
+
+            })
+        }
+    }
+
+    res= res+'<ul/>';
 
     return res;
 }
+
+
+window.notifyErrorApi = (e) =>{
+
+    logW(e.response);
+
+    var errors = e.response.data.errors;
+
+    if(typeof errors !== 'undefined'){
+
+        iziTe(errorToList(errors));
+
+    }else if(e.response.data.message){
+
+        iziTe(e.response.data.message)
+    }
+}
+
+// Global event bus
+Vue.prototype.$eventBus = new Vue();
+
+
+$(".wait-on-submit").submit(function( event ) {
+
+    Swal.fire({
+        title: 'Espera por favor...',
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        timerProgressBar: true,
+    });
+
+    Swal.showLoading();
+});
