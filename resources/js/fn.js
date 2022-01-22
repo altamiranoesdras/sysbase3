@@ -193,18 +193,24 @@ window.errorToList = (errors) => {
 
 window.notifyErrorApi = (e) =>{
 
-    logW(e.response);
 
-    var errors = e.response.data.errors;
+    if (typeof e.response !== 'undefined'){
 
-    if(typeof errors !== 'undefined'){
 
-        iziTe(errorToList(errors));
+        var errors = e.response.data.errors;
 
-    }else if(e.response.data.message){
+        if(typeof errors !== 'undefined'){
 
-        iziTe(e.response.data.message)
+            iziTe(errorToList(errors));
+
+        }else if(e.response.data.message){
+
+            iziTe(e.response.data.message)
+        }
     }
+
+    logW(e);
+
 }
 
 // Global event bus
