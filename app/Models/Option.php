@@ -186,4 +186,9 @@ class Option extends Model
     {
         return rutaOpcion($this);
     }
+
+    public function scopeNoDev($q)
+    {
+        $q->where('dev',0);
+    }
 }
