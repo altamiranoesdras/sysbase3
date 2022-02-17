@@ -289,3 +289,11 @@ function validaCheched($items = null,$id){
 function prefijoCeros($numero,$cantidadCeros){
     return str_pad($numero,$cantidadCeros,"0",STR_PAD_LEFT);
 }
+
+
+function autoIncrementFaker()
+{
+    for ($i = 0; $i < 1000; $i++) {
+        yield $i;
+    }
+}
