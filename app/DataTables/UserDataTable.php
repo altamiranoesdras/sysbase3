@@ -2,6 +2,7 @@
 
 namespace App\DataTables;
 
+use App\Models\Role;
 use App\Models\User;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
@@ -41,7 +42,18 @@ class UserDataTable extends DataTable
      */
     public function query(User $model)
     {
-        return $model->newQuery()->with(['roles','media']);
+        $query = $model->newQuery()->with(['roles','media']);
+
+        //si el usuario no puede ver a todos los usuarios
+        if (auth()->user()->cannot('ver todos los usuarios')){
+
+            //excluir los roles dev y super
+            $query->whereDoesntHave('roles',function ($q){
+                $q->whereIn('id',[Role::DEVELOPER,Role::SUPERADMIN]);
+            });
+        }
+
+        return $query;
     }
 
     /**
