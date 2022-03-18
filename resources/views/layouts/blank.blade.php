@@ -27,7 +27,7 @@
             position: absolute;
             left: 0;
             top: 0;
-            background: url("{{asset('/img/fondo_login.png')}}") no-repeat;
+            background: url("{{getFondoLogin()}}") no-repeat;
             background-size: cover;
             -moz-background-size: cover;
             -webkit-background-size: cover;

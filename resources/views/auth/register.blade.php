@@ -84,7 +84,7 @@
                     </div>
                 </form>
 
-                @include('partials.social_links')
+{{--                @include('partials.social_links')--}}
 
                 <a href="{{route('login')}}" class="text-center">
                     {{__('I already have a membership')}}

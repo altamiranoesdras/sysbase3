@@ -31,22 +31,22 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            {!! Form::model($user, ['route' => ['users.menuStore', $user->id], 'method' => 'patch','class' => 'wait-on-submit']) !!}
+                            {!! Form::model($user, ['route' => ['users.menuStore', $user->id], 'method' => 'patch']) !!}
 
-                            <div class="form-row">
+                                <div class="form-row">
 
-                                <div class="form-group col-sm-12">
-                                    <div id="tree"></div>
+                                    <div class="form-group col-sm-12">
+                                        <div id="tree"></div>
+                                    </div>
+
+                                    <div class="form-group col-sm-12">
+
+                                        <input type="hidden" name="options" id="options">
+                                        <button type="button" id="#btnSave"  class="btn btn-outline-success">Guardar</button>
+                                        <a href="{!! route('users.index') !!}" class="btn btn-outline-secondary">Cancelar</a>
+                                    </div>
+
                                 </div>
-
-                                <div class="form-group col-sm-12">
-
-                                    <input type="hidden" name="options" id="options">
-                                    <button type="submit"  class="btn btn-outline-success">Guardar</button>
-                                    <a href="{!! route('users.index') !!}" class="btn btn-outline-secondary">Cancelar</a>
-                                </div>
-
-                            </div>
                             {!! Form::close() !!}
                         </div>
                     </div>
@@ -77,8 +77,8 @@
 
             tree.on('dataBound', function() {
 
-                @foreach($user->options()->noDev()->get() as $op)
-                tree.check(tree.getNodeById('{{$op->id}}'));
+                @foreach($user->options as $op)
+                    tree.check(tree.getNodeById('{{$op->id}}'));
                 @endforeach
             })
 

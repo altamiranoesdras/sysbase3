@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Configuration;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\File;
 
 class BusinessProfileController extends Controller
 {
 
 
-        //
+    //
     /**
      * BusinessProfileController constructor.
      */
@@ -21,16 +23,14 @@ class BusinessProfileController extends Controller
 
     public function index()
     {
+
         return view('admin.business_profile.index');
     }
 
     public function store(Request $request)
     {
 
-        /**
-         * @var Configuration $config
-         */
-        $config = Configuration::updateOrCreate([
+        Configuration::updateOrCreate([
             'key' => 'name',
         ],[
             'key' => 'name',
@@ -72,11 +72,35 @@ class BusinessProfileController extends Controller
         }
 
         if ($request->hasFile('logo')){
+            /**
+             * @var Configuration $config
+             */
+            $config = Configuration::find(Configuration::LOGO);
+            $config->clearMediaCollection('logo');
             $config->addMediaFromRequest('logo')->toMediaCollection('logo');
+
+
         }
+
+        if ($request->hasFile('icono')){
+            /**
+             * @var Configuration $config
+             */
+            $config = Configuration::find(Configuration::ICONO);
+            $config->clearMediaCollection('icono');
+            $config->addMediaFromRequest('icono')
+                ->toMediaCollection('icono');
+
+
+        }
+
+        generarManifest();
+
 
         flash('Listo guardado!')->success();
 
         return redirect(route('profile.business'));
     }
+
+
 }

@@ -1,11 +1,14 @@
 <?php
 
+use App\Models\Configuration;
 use App\Models\Option;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use App\Extenciones\NumeroALetras;
+use Illuminate\Support\Facades\File;
 
 
 /**
@@ -216,17 +219,42 @@ function optionsParentAuthUser($user = null){
 
 }
 
-function getLogo($thumb=false){
+function getLogo($conversion=''){
 
     /**
-     * @var \App\Models\Configuration $config
+     * @var Configuration $config
      */
-    $config = \App\Models\Configuration::find(1);
+    $config = Configuration::find(Configuration::LOGO);
 
-    if ($thumb)
-        return $config->thumb;
+    $media = $config->getMediaLogo();
 
-    return $config->img ?? false;
+    return $media ? $media->getUrl($conversion) : asset('img/default.svg');
+}
+
+function getFondoLogin($conversion=''){
+
+    /**
+     * @var Configuration $config
+     */
+    $config = Configuration::find(Configuration::FONDO_LOGIN);
+
+    $media = $config->getMediaFondoLogin();
+
+    return $media ? $media->getUrl($conversion) : asset('img/default.svg');
+}
+
+
+
+function getIcono($conversion=''){
+
+    /**
+     * @var Configuration $config
+     */
+    $config = Configuration::find(Configuration::ICONO);
+
+    $media = $config->getMediaIcono();
+
+    return $media ? $media->getUrl($conversion) : asset('img/default.svg');
 }
 
 function appIsDebug(){
@@ -288,6 +316,49 @@ function validaCheched($items = null,$id){
 
 function prefijoCeros($numero,$cantidadCeros){
     return str_pad($numero,$cantidadCeros,"0",STR_PAD_LEFT);
+}
+
+function generarManifest()
+{
+
+    $iconos = collect();
+
+    /**
+     * @var Configuration $config
+     */
+    $config = Configuration::find(Configuration::ICONO);
+
+    $media = $config->getMediaIcono();
+
+    if ($media){
+
+        foreach ($media->getMediaConversionNames() as $index => $conversionName) {
+
+            $pathIcon = "storage/".$media->id."/conversions/".$media->name."-".$conversionName.".".$media->getExtensionAttribute();
+
+            $new = [
+                "src" => $pathIcon,
+                "type" => "image/png",
+                "sizes" => $conversionName
+            ];
+
+            $iconos->push($new);
+        }
+    }
+
+
+    $json = Collection::make([
+        "short_name" => config('app.name'),
+        "name" => config('app.name'),
+        "background_color" => "#007BFF",
+        "orientation" => "portrait",
+        "theme_color" => "#007BFF",
+        "icons" => $iconos,
+        "start_url" => "/",
+        "display" => "standalone"
+    ])->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+    File::put(public_path('manifest.json'),$json);
 }
 
 

@@ -31,11 +31,13 @@ require ('admin-lte/plugins/chart.js/Chart.min.js');
 
 require ('admin-lte/plugins/jqvmap/jquery.vmap.min.js');
 
-require ('admin-lte/plugins/jqvmap/maps/jquery.vmap.usa.js');
+require ('admin-lte/plugins/jqvmap/maps/jquery.vmap.usa');
 
-require ('admin-lte/plugins/jquery-knob/jquery.knob.min.js');
+require ('admin-lte/plugins/jquery-knob/jquery.knob.min');
 
-require ('admin-lte/plugins/daterangepicker/daterangepicker.js');
+require ('admin-lte/plugins/sparklines/sparkline');
+
+require ('admin-lte/plugins/daterangepicker/daterangepicker');
 
 require ('admin-lte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min');
 

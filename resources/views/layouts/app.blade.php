@@ -71,7 +71,7 @@
 
 
 {{--Para utilizar las rutas en java script https://github.com/tighten/ziggy--}}
-{{--@routes--}}
+@routes
 
 @include('partials.flash_alert')
 

@@ -103,7 +103,7 @@
                 </form>
 
 
-                @include('partials.social_links')
+{{--                @include('partials.social_links')--}}
 
 
                 <p class="mb-1">
@@ -113,11 +113,11 @@
                         </a>
                     @endif
                 </p>
-                <p class="mb-0">
-                    <a href="{{route("register")}}" class="text-center">
-                        {{__("Register a new membership")}}
-                    </a>
-                </p>
+{{--                <p class="mb-0">--}}
+{{--                    <a href="{{route("register")}}" class="text-center">--}}
+{{--                        {{__("Register a new membership")}}--}}
+{{--                    </a>--}}
+{{--                </p>--}}
             </div>
             <!-- /.login-card-body -->
         </div>
