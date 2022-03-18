@@ -9,10 +9,21 @@
  * @Modified by Doston Usmonov <doston1533@gmail.com> 20.09.2019
  * NOTE: this file must be saved in UTF-8 encoding.
  */
-(function ($) {
+(function (factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], factory);
+    } else if (typeof module === 'object' && typeof module.exports === 'object') {
+        factory(require('jquery'));
+    } else {
+        factory(window.jQuery);
+    }
+}(function ($) {
     "use strict";
 
     $.fn.fileinputLocales.uz = {
+        sizeUnits: ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'], 
+        bitRateUnits: ['B/s', 'KB/s', 'MB/s', 'GB/s', 'TB/s', 'PB/s', 'EB/s', 'ZB/s', 'YB/s'],
         fileSingle: 'fayl',
         filePlural: 'fayllar',
         browseLabel: 'Tanlash &hellip;',
@@ -111,4 +122,4 @@
             close: 'Batafsil ko‘rishni yopish'
         }
     };
-})(window.jQuery);
+}));

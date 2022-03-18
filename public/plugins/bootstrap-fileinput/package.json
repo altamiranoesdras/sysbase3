@@ -1,26 +1,26 @@
 {
-  "_from": "bootstrap-fileinput@^5.2.2",
-  "_id": "bootstrap-fileinput@5.2.2",
+  "_from": "bootstrap-fileinput@^5.2.7",
+  "_id": "bootstrap-fileinput@5.2.7",
   "_inBundle": false,
-  "_integrity": "sha512-hrFvpxkO06oyoBo6sdLnAZGsGZMrLbBNx17A4e+VtoBSTphOaupiX68r9yo3N0LmnpEi7J7O3ESAJm1m/37KOA==",
+  "_integrity": "sha512-YPWn4PeLXOpayOiYp0Vv61IGihgMnHlihHkOH/AE46leD9gvg54u9KWFfoDE1fbFiamo8ubdimp6S2Ztw2diCw==",
   "_location": "/bootstrap-fileinput",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "bootstrap-fileinput@^5.2.2",
+    "raw": "bootstrap-fileinput@^5.2.7",
     "name": "bootstrap-fileinput",
     "escapedName": "bootstrap-fileinput",
-    "rawSpec": "^5.2.2",
+    "rawSpec": "^5.2.7",
     "saveSpec": null,
-    "fetchSpec": "^5.2.2"
+    "fetchSpec": "^5.2.7"
   },
   "_requiredBy": [
     "#DEV:/"
   ],
-  "_resolved": "https://registry.npmjs.org/bootstrap-fileinput/-/bootstrap-fileinput-5.2.2.tgz",
-  "_shasum": "076e23c456258138d41d11c26e90866807453c40",
-  "_spec": "bootstrap-fileinput@^5.2.2",
+  "_resolved": "https://registry.npmjs.org/bootstrap-fileinput/-/bootstrap-fileinput-5.2.7.tgz",
+  "_shasum": "2b48ebcc61750918c0a58322e011de6a5af39486",
+  "_spec": "bootstrap-fileinput@^5.2.7",
   "_where": "C:\\laragon\\www\\sysbase3",
   "authors": [
     "Kartik Visweswaran <kartikv2@gmail.com>"
@@ -39,7 +39,7 @@
     "opencollective-postinstall": "^2.0.2"
   },
   "deprecated": false,
-  "description": "An enhanced HTML 5 file input for Bootstrap 3.x with file preview, multiple selection, ajax uploads, and more features.",
+  "description": "An enhanced HTML 5 file input for Bootstrap 5.x, 4.x, and 3.x with file preview, multiple selection, ajax uploads, and more features.",
   "homepage": "https://github.com/kartik-v/bootstrap-fileinput",
   "keywords": [
     "file",
@@ -69,5 +69,5 @@
     "postinstall": "opencollective-postinstall || true"
   },
   "style": "./css/fileinput.css",
-  "version": "5.2.2"
+  "version": "5.2.7"
 }

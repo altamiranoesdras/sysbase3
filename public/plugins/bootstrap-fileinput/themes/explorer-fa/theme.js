@@ -1,5 +1,5 @@
 /*!
- * bootstrap-fileinput v5.2.2
+ * bootstrap-fileinput v5.2.7
  * http://plugins.krajee.com/file-input
  *
  * Krajee Explorer Font Awesome theme configuration for bootstrap-fileinput. 
@@ -12,7 +12,16 @@
  * Licensed under the BSD-3-Clause
  * https://github.com/kartik-v/bootstrap-fileinput/blob/master/LICENSE.md
  */
-(function ($) {
+(function (factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'],factory);
+    } else if (typeof module === 'object' && typeof module.exports === 'object') {
+        factory(require('jquery'));
+    } else {
+        factory(window.jQuery);
+    }
+}(function ($) {
     'use strict';
     $.fn.fileinputThemes['explorer-fa'] = {
         layoutTemplates: {
@@ -53,8 +62,8 @@
             indicatorPaused: '<i class="fa fa-pause text-info"></i>'
         },
         previewZoomButtonIcons: {
-            prev: '<i class="fa fa-caret-left fa-lg"></i>',
-            next: '<i class="fa fa-caret-right fa-lg"></i>',
+            prev: '<i class="fa fa-chevron-left"></i>',
+            next: '<i class="fa fa-chevron-right"></i>',
             toggleheader: '<i class="fa fa-fw fa-arrows-v"></i>',
             fullscreen: '<i class="fa fa-fw fa-arrows-alt"></i>',
             borderless: '<i class="fa fa-fw fa-external-link"></i>',
@@ -68,4 +77,4 @@
         uploadIcon: '<i class="fa fa-upload"></i>',
         msgValidationErrorIcon: '<i class="fa fa-exclamation-circle"></i> '
     };
-})(window.jQuery);
+}));

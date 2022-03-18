@@ -108,7 +108,7 @@
             function ini_events(ele) {
                 ele.each(function () {
 
-                    // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+                    // create an Event Object (https://fullcalendar.io/docs/event-object)
                     // it doesn't need to have a start or end
                     var eventObject = {
                         title: $.trim($(this).text()) // use the element's text as the event title
@@ -138,7 +138,7 @@
                 y    = date.getFullYear()
 
             var Calendar = FullCalendar.Calendar;
-            var Draggable = FullCalendarInteraction.Draggable;
+            var Draggable = FullCalendar.Draggable;
 
             var containerEl = document.getElementById('external-events');
             var checkbox = document.getElementById('drop-remove');
@@ -150,7 +150,6 @@
             new Draggable(containerEl, {
                 itemSelector: '.external-event',
                 eventData: function(eventEl) {
-                    console.log(eventEl);
                     return {
                         title: eventEl.innerText,
                         backgroundColor: window.getComputedStyle( eventEl ,null).getPropertyValue('background-color'),
@@ -161,19 +160,20 @@
             });
 
             var calendar = new Calendar(calendarEl, {
-                plugins: [ 'bootstrap', 'interaction', 'dayGrid', 'timeGrid' ],
-                header    : {
+                headerToolbar: {
                     left  : 'prev,next today',
                     center: 'title',
                     right : 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
+                themeSystem: 'bootstrap',
                 //Random default events
-                events    : [
+                events: [
                     {
                         title          : 'All Day Event',
                         start          : new Date(y, m, 1),
                         backgroundColor: '#f56954', //red
-                        borderColor    : '#f56954' //red
+                        borderColor    : '#f56954', //red
+                        allDay         : true
                     },
                     {
                         title          : 'Long Event',
@@ -209,7 +209,7 @@
                         title          : 'Click for Google',
                         start          : new Date(y, m, 28),
                         end            : new Date(y, m, 29),
-                        url            : 'http://google.com/',
+                        url            : 'https://www.google.com/',
                         backgroundColor: '#3c8dbc', //Primary (light-blue)
                         borderColor    : '#3c8dbc' //Primary (light-blue)
                     }
@@ -230,13 +230,12 @@
 
             /* ADDING EVENTS */
             var currColor = '#3c8dbc' //Red by default
-            //Color chooser button
-            var colorChooser = $('#color-chooser-btn')
+            // Color chooser button
             $('#color-chooser > li > a').click(function (e) {
                 e.preventDefault()
-                //Save color
+                // Save color
                 currColor = $(this).css('color')
-                //Add color effect to button
+                // Add color effect to button
                 $('#add-new-event').css({
                     'background-color': currColor,
                     'border-color'    : currColor
@@ -244,26 +243,26 @@
             })
             $('#add-new-event').click(function (e) {
                 e.preventDefault()
-                //Get value and make sure it is not null
+                // Get value and make sure it is not null
                 var val = $('#new-event').val()
                 if (val.length == 0) {
                     return
                 }
 
-                //Create events
+                // Create events
                 var event = $('<div />')
                 event.css({
                     'background-color': currColor,
                     'border-color'    : currColor,
                     'color'           : '#fff'
                 }).addClass('external-event')
-                event.html(val)
+                event.text(val)
                 $('#external-events').prepend(event)
 
-                //Add draggable funtionality
+                // Add draggable funtionality
                 ini_events(event)
 
-                //Remove event from text input
+                // Remove event from text input
                 $('#new-event').val('')
             })
         })

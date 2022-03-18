@@ -39,7 +39,7 @@ require ('admin-lte/plugins/daterangepicker/daterangepicker.js');
 
 require ('admin-lte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min');
 
-require('admin-lte/plugins/summernote/summernote-bs4.min.js');
+// require('admin-lte/plugins/summernote/summernote-bs4.min.js');
 
 require('admin-lte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js');
 
