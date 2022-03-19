@@ -50,9 +50,9 @@ require('admin-lte/dist/js/adminlte.min');
 
 require('datatables.net-bs4');
 require('datatables.net-buttons-bs4');
-require('datatables.net-fixedheader-bs4');
 require('datatables.net-responsive-bs4');
 require('../../public/vendor/datatables/buttons.server-side');
+
 
 require('./jquery.bootstrap-duallistbox.js');
 
