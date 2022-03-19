@@ -17,7 +17,7 @@ mix.js('resources/js/app.js', 'public/js')
     .copy('node_modules/admin-lte/dist/img','public/dist/img')
     .copy('node_modules/admin-lte/plugins/sparklines/sparkline.js','public/js')
     .copy('node_modules/admin-lte/plugins/moment/moment.min.js','public/js')
-    .copy('node_modules/admin-lte/dist/js/pages/dashboard.js','public/js')
+    // .copy('node_modules/admin-lte/dist/js/pages/dashboard.js','public/js')
     .copy('node_modules/admin-lte/dist/js/demo.js','public/js')
 
     .copy('node_modules/admin-lte/plugins/fullcalendar/main.min.css','public/plugins/fullcalendar')
@@ -41,4 +41,4 @@ mix.js('resources/js/app.js', 'public/js')
     .copy('node_modules/gijgo/css/gijgo.min.css','public/css')
     .copy('node_modules/gijgo/fonts','public/fonts')
 
-    .copy('node_modules/bootstrap/dist/css/bootstrap.min.css', 'public/css');
+    // .copy('node_modules/bootstrap/dist/css/bootstrap.min.css', 'public/css');
