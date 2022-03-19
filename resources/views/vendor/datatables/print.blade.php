@@ -1,37 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Print Table</title>
-        <meta charset="UTF-8">
-        <meta name=description content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Bootstrap CSS -->
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-        <style>
-            body {margin: 20px}
-        </style>
-    </head>
-    <body>
-        <table class="table table-bordered table-condensed table-striped">
-            @foreach($data as $row)
-                @if ($loop->first)
-                    <tr>
-                        @foreach($row as $key => $value)
-                            <th>{!! $key !!}</th>
-                        @endforeach
-                    </tr>
-                @endif
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title> {{config('app.name')}} </title>
+
+
+    <link href="{{ asset('/css/bootstrap5.min.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{asset('plugins/fontawesome/css/all.min.css')}}">
+    <style>
+        body {margin: 20px}
+    </style>
+
+
+</head>
+{{--    <body onload="window.print()">--}}
+    <body >
+        <table class="table table-borderless">
+            <tr>
+                <th  class="text-center">
+                    <h3>
+                        <i class="fa fa-book"></i>
+                        {{ config('app.name') }}
+                    </h3>
+                    <span class="font-weight-light">Generado por {{ auth()->user()->name }}</span>  <br>
+                    <span class="text-sm font-weight-light"> {{ now()->format('d/m/Y H:i') }}</span>
+                </th>
+            </tr>
+        </table>
+        <table class="table table-sm table-bordered table-striped">
+
+            <thead>
                 <tr>
-                    @foreach($row as $key => $value)
-                        @if(is_string($value) || is_numeric($value))
-                            <td>{!! $value !!}</td>
-                        @else
-                            <td></td>
-                        @endif
+                    @foreach($data[0] as $key => $value)
+                        <th>{!! $key !!}</th>
                     @endforeach
                 </tr>
-            @endforeach
+            </thead>
+            <tbody>
+                @foreach($data as $index => $row)
+
+                    <tr>
+                        @foreach($row as $key => $value)
+                            @if(is_string($value) || is_numeric($value))
+                                <td>{!! $value !!}</td>
+                            @else
+                                <td></td>
+                            @endif
+                        @endforeach
+                    </tr>
+                @endforeach
+            </tbody>
+
         </table>
     </body>
 </html>

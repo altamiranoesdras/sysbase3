@@ -39,5 +39,6 @@ mix.js('resources/js/app.js', 'public/js')
     .copy('node_modules/gijgo/js/gijgo.min.js','public/js')
     .copy('node_modules/gijgo/js/messages/messages.es-es.min.js','public/js')
     .copy('node_modules/gijgo/css/gijgo.min.css','public/css')
-    .copy('node_modules/gijgo/fonts','public/fonts');
+    .copy('node_modules/gijgo/fonts','public/fonts')
 
+    .copy('node_modules/bootstrap/dist/css/bootstrap.min.css', 'public/css');

@@ -4,8 +4,11 @@ namespace App\DataTables;
 
 use App\Models\Role;
 use App\Models\User;
+use Yajra\DataTables\Html\Button;
+use Yajra\DataTables\Html\Column;
+use Yajra\DataTables\Html\Editor\Editor;
+use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
-use Yajra\DataTables\EloquentDataTable;
 
 class UserDataTable extends DataTable
 {
@@ -17,21 +20,20 @@ class UserDataTable extends DataTable
      */
     public function dataTable($query)
     {
-        $dataTable = new EloquentDataTable($query);
+        return datatables()
+            ->eloquent($query)
+            ->addColumn('action', function($User){
+                $id = $User->id;
+                return view('admin.users.datatables_actions',compact('User','id'));
+            })->editColumn('avatar',function (User $user){
 
-        return $dataTable->addColumn('action', function($User){
-            $id = $User->id;
-            return view('admin.users.datatables_actions',compact('User','id'));
-        })->editColumn('avatar',function (User $user){
+                return "<img src='{$user->thumb}' alt='' width='50' height='50'>";
 
-            return "<img src='{$user->thumb}' alt='' width='50' height='50'>";
+            })->editColumn('roles',function (User $user){
 
-        })->editColumn('roles',function (User $user){
+                return view('admin.users.partials.roles',compact('user'));
 
-            return view('admin.users.partials.roles',compact('user'));
-
-        })->rawColumns(['action','avatar','roles']);
-
+            })->rawColumns(['action','avatar','roles']);
     }
 
     /**
@@ -66,21 +68,35 @@ class UserDataTable extends DataTable
         return $this->builder()
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->addAction(['width' => '15%', 'printable' => false])
-            ->parameters([
-                'dom'     => 'Bfltrip',
-                'order'   => [[1, 'asc']],
-                'language' => ['url' => asset('js/SpanishDataTables.json')],
-                //'scrollX' => false,
-                'responsive' => true,
-                'buttons' => [
-                    ['extend' => 'create', 'text' => '<i class="fa fa-plus"></i> <span class="d-none d-sm-inline">Crear</span>'],
-                    ['extend' => 'print', 'text' => '<i class="fa fa-print"></i> <span class="d-none d-sm-inline">Imprimir</span>'],
-                    ['extend' => 'reload', 'text' => '<i class="fa fa-sync-alt"></i> <span class="d-none d-sm-inline">Recargar</span>'],
-                    ['extend' => 'reset', 'text' => '<i class="fa fa-undo"></i> <span class="d-none d-sm-inline">Reiniciar</span>'],
-                    ['extend' => 'export', 'text' => '<i class="fa fa-download"></i> <span class="d-none d-sm-inline">Exportar</span>'],
-                ],
-            ]);
+            ->ajax([
+                'data' => "function(data) { formatDataDataTables($('#formFiltersDatatables').serializeArray(), data);   }"
+            ])
+            ->info(true)
+            ->language(['url' => asset('js/SpanishDataTables.json')])
+            ->responsive(true)
+            ->orderBy(1,'desc')
+            ->dom('
+                <"row mb-2"
+                    <"col-sm-12 col-md-6" B>
+                    <"col-sm-12 col-md-6" f>
+                >
+                rt
+                <"row"
+                    <"col-sm-6 order-2 order-sm-1" ip>
+                    <"col-sm-6 order-1 order-sm-2 text-right" l>
+
+                >
+            ')
+            ->buttons(
+
+                Button::make('print')
+                    ->formTitle('Titulo')->titleAttr('Titutlo2')
+                    ->text('<i class="fa fa-print"></i> <span class="d-none d-sm-inline">Imprimir</span>'),
+                Button::make('reset')
+                    ->text('<i class="fa fa-undo"></i> <span class="d-none d-sm-inline">Reiniciar</span>'),
+                Button::make('export')
+                    ->text('<i class="fa fa-download"></i> <span class="d-none d-sm-inline">Exportar</span>'),
+            );
     }
 
     /**
@@ -91,13 +107,18 @@ class UserDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'avatar' => ['searchable' => false],
-            'id',
-            'username',
-            'name',
-            'email',
-            'provider',
-            'roles' => ['searchable' => false],
+
+            Column::make('avatar')->orderable('false')->searchable(false),
+            Column::make('id'),
+            Column::make('username'),
+            Column::make('name'),
+            Column::make('email'),
+            Column::make('provider'),
+            Column::computed('action')
+                ->exportable(false)
+                ->printable(false)
+                ->width('20%')
+                ->addClass('text-center'),
         ];
     }
 
@@ -108,6 +129,6 @@ class UserDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'usersdatatable_' . time();
+        return 'UserDataTable2_' . date('YmdHis');
     }
 }

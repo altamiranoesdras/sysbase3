@@ -1,5 +1,14 @@
 <?php
 
+
+if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+    $binaryPdf = '"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf"';
+    $binaryImg = '"C:\Program Files\wkhtmltopdf\bin\wkhtmltoimage"';
+}else{
+    $binaryPdf = '"/opt/wkhtmltox/bin/wkhtmltopdf"';
+    $binaryImg = '"/opt/wkhtmltox/bin/wkhtmltoimage"';
+}
+
 return [
 
     /*
@@ -10,15 +19,15 @@ return [
     | This option contains settings for PDF generation.
     |
     | Enabled:
-    |    
+    |
     |    Whether to load PDF / Image generation.
     |
     | Binary:
-    |    
+    |
     |    The file path of the wkhtmltopdf / wkhtmltoimage executable.
     |
     | Timout:
-    |    
+    |
     |    The amount of time to wait (in seconds) before PDF / Image generation is stopped.
     |    Setting this to false disables the timeout (unlimited processing time).
     |
@@ -32,18 +41,18 @@ return [
     |    The environment variables to set while running the wkhtmltopdf process.
     |
     */
-    
+
     'pdf' => [
         'enabled' => true,
-        'binary'  => env('WKHTML_PDF_BINARY', '/usr/local/bin/wkhtmltopdf'),
+        'binary'  => $binaryPdf,
         'timeout' => false,
         'options' => [],
         'env'     => [],
     ],
-    
+
     'image' => [
         'enabled' => true,
-        'binary'  => env('WKHTML_IMG_BINARY', '/usr/local/bin/wkhtmltoimage'),
+        'binary'  => $binaryImg,
         'timeout' => false,
         'options' => [],
         'env'     => [],
