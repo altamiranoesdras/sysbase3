@@ -72,6 +72,7 @@ class UserDataTable extends DataTable
             ->info(true)
             ->language(['url' => asset('js/SpanishDataTables.json')])
             ->responsive(true)
+            ->stateSave(true)
             ->orderBy(1,'desc')
             ->dom('
                 <"row mb-2"
