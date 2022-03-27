@@ -73,13 +73,11 @@ class Configuration extends Model implements HasMedia
         return $this->getMedia('logo')->first();
     }
 
-    /**
-     * @return \App\Models\Media
-     */
     public function getMediaFondoLogin()
     {
         return $this->getMedia('fondo_login')->first();
     }
+
 
     /**
      * @return \App\Models\Media
@@ -178,6 +176,13 @@ class Configuration extends Model implements HasMedia
             ->performOnCollections('icono');
 
 
+        $this->addMediaConversion('webp')
+            ->format(Manipulations::FORMAT_WEBP)
+            ->performOnCollections('fondo_login');
+
+        $this->addMediaConversion('webp')
+            ->format(Manipulations::FORMAT_WEBP)
+            ->performOnCollections('logo');
 
 
 

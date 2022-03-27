@@ -73,14 +73,10 @@
     $(function () {
 
 
-        var initialPreview = false;
-        @if (getLogo())
-            initialPreview = "{{asset(getLogo())}}";
-        @endif
 
         $("#logo").fileinput({
             language: "es",
-            initialPreview: initialPreview,
+            initialPreview: @json(getLogo()),
             dropZoneEnabled: true,
             maxFileCount: 1,
             maxFileSize: 2000,
@@ -95,14 +91,29 @@
             initialPreviewFileType: 'image',
         });
 
-        initialPreview = false;
-        @if (getIcono())
-            initialPreview = "{{asset(getIcono())}}";
-        @endif
 
         $("#icono").fileinput({
             language: "es",
-            initialPreview: initialPreview,
+            initialPreview: @json(getIcono()),
+            dropZoneEnabled: true,
+            maxFileCount: 1,
+            maxFileSize: 2000,
+            showUpload: false,
+            initialPreviewAsData: true,
+            showBrowse: true,
+            showRemove: true,
+            theme: "fa",
+            browseOnZoneClick: true,
+            allowedPreviewTypes: ["image"],
+            allowedFileTypes: ["image"],
+            initialPreviewFileType: 'image',
+        });
+
+
+
+        $("#fondo_login").fileinput({
+            language: "es",
+            initialPreview: @json(getFondoLogin()),
             dropZoneEnabled: true,
             maxFileCount: 1,
             maxFileSize: 2000,

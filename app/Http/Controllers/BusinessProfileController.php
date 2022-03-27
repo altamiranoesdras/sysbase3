@@ -145,8 +145,16 @@ class BusinessProfileController extends Controller
             $config = Configuration::find(Configuration::LOGO);
             $config->clearMediaCollection('logo');
             $config->addMediaFromRequest('logo')->toMediaCollection('logo');
+        }
 
 
+        if ($request->hasFile('fondo_login')){
+            /**
+             * @var Configuration $config
+             */
+            $config = Configuration::find(Configuration::FONDO_LOGIN);
+            $config->clearMediaCollection('fondo_login');
+            $config->addMediaFromRequest('fondo_login')->toMediaCollection('fondo_login');
         }
 
         if ($request->hasFile('icono')){
