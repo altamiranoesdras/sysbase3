@@ -24,7 +24,18 @@ class BusinessProfileController extends Controller
     public function index()
     {
 
-        return view('admin.business_profile.index');
+        $meta_keywords = [];
+
+        if (config('app.meta_keywords')){
+
+            foreach (explode(",",config('app.meta_keywords')) as $index => $value) {
+                $meta_keywords[$value] = $value ?? '';
+            }
+        }
+
+
+
+        return view('admin.business_profile.index', compact('meta_keywords'));
     }
 
     public function store(Request $request)
@@ -49,6 +60,18 @@ class BusinessProfileController extends Controller
             ]);
         }
 
+        if($request->whatsapp_negocio){
+
+            Configuration::updateOrCreate([
+                'key' => 'whatsapp_negocio',
+            ],[
+                'key' => 'whatsapp_negocio',
+                'value' => $request->whatsapp_negocio,
+                'descripcion' => $request->whatsapp_negocio,
+            ]);
+        }
+
+
         if ($request->direccion_negocio){
 
             Configuration::updateOrCreate([
@@ -68,6 +91,50 @@ class BusinessProfileController extends Controller
                 'key' => 'correo_negocio',
                 'value' => $request->correo_negocio,
                 'descripcion' => $request->correo_negocio,
+            ]);
+        }
+
+        if ($request->horario_negocio){
+
+            Configuration::updateOrCreate([
+                'key' => 'horario_negocio',
+            ],[
+                'key' => 'horario_negocio',
+                'value' => $request->horario_negocio,
+                'descripcion' => $request->horario_negocio,
+            ]);
+        }
+
+        if ($request->meta_descripcion){
+
+            Configuration::updateOrCreate([
+                'key' => 'meta_descripcion',
+            ],[
+                'key' => 'meta_descripcion',
+                'value' => $request->meta_descripcion,
+                'descripcion' => $request->meta_descripcion,
+            ]);
+        }
+
+        if ($request->meta_titulo){
+
+            Configuration::updateOrCreate([
+                'key' => 'meta_titulo',
+            ],[
+                'key' => 'meta_titulo',
+                'value' => $request->meta_titulo,
+                'descripcion' => $request->meta_titulo,
+            ]);
+        }
+
+        if ($request->meta_keywords){
+
+            Configuration::updateOrCreate([
+                'key' => 'meta_keywords',
+            ],[
+                'key' => 'meta_keywords',
+                'value' => implode(',', $request->meta_keywords),
+                'descripcion' => '',
             ]);
         }
 

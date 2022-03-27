@@ -6,10 +6,9 @@
             <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{route('home')}}" class="nav-link">Home</a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{route('contact')}}" class="nav-link">Contact</a>
+            <a href="{{route('home')}}" class="nav-link">
+                <i class="fa fa-globe"></i>
+            </a>
         </li>
     </ul>
 
@@ -30,7 +29,7 @@
 
         <!-- Calendarios -->
         <li class="nav-item ">
-            <a class="nav-link"  href="{{route('calendar')}}">
+            <a class="nav-link"  href="{{route('admin.calendar')}}">
                 <i class="far fa-calendar"></i>
             </a>
         </li>

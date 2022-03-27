@@ -190,7 +190,7 @@ function rutaOpcion($opcion){
     try{
         return route($opcion->ruta.'');
     }catch (\Exception $e){
-        return route('home');
+        return route('admin.home');
     }
 }
 
@@ -219,7 +219,7 @@ function optionsParentAuthUser($user = null){
 
 }
 
-function getLogo($conversion=''){
+function getLogo($conversion='webp'){
 
     /**
      * @var Configuration $config
@@ -242,7 +242,6 @@ function getFondoLogin($conversion=''){
 
     return $media ? $media->getUrl($conversion) : asset('img/default.svg');
 }
-
 
 
 function getIcono($conversion=''){
@@ -362,9 +361,17 @@ function generarManifest()
 }
 
 
-function autoIncrementFaker()
-{
-    for ($i = 0; $i < 1000; $i++) {
-        yield $i;
-    }
+
+
+
+function getLenguajeActualDesc(){
+
+    $idiomas = [
+        'es' => 'Spanish',
+        'en' => 'English',
+    ];
+
+    $actual = app()->getLocale();
+
+    return __($idiomas[$actual]);
 }

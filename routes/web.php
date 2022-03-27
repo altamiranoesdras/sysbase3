@@ -7,8 +7,22 @@ Auth::routes(['verify' => true]);
 Route::get('login/{driver}', 'Auth\LoginController@redirectToProvider')->name('social_auth');
 Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallback');
 
-Route::group(['middleware' => ['auth']], function () {
 
+
+/**
+ * Rutas admin
+ */
+Route::group(['prefix' => 'admin','middleware' => ['role:Admin|Superadmin|Developer','auth']], function () {
+
+
+    Route::group(['as' => 'admin.'],function (){
+
+        Route::get('/', 'HomeAdminController@index')->name('index');
+        Route::get('/home', 'HomeAdminController@index')->name('home');
+        Route::get('/dashboard', 'HomeAdminController@dashboard')->name('dashboard');
+        Route::get('/calendar', 'HomeAdminController@calendar')->name('calendar');
+
+    });
 
     Route::group(['prefix' => 'dev','as' => 'dev.'],function (){
 
@@ -20,12 +34,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     });
 
-
-    Route::get('/', 'HomeController@index')->name('index');
-    Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-    Route::get('/contact', 'HomeController@contact')->name('contact');
-    Route::get('/calendar', 'HomeController@calendar')->name('calendar');
 
 
     Route::get('profile/business', 'BusinessProfileController@index')->name('profile.business');
@@ -47,8 +55,30 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('permissions', 'PermissionController');
 
-    Route::resource('projects', 'ProjectController');
+
 
 });
 
 
+
+
+
+/**
+ * Rutas web
+ */
+Route::group(['prefix' => ''], function () {
+
+
+    Route::get('/', 'HomeController@index')->name('index');
+    Route::get('home', 'HomeController@index')->name('home');
+
+    Route::get('about', 'HomeController@about')->name('about');
+    Route::get('contact', 'HomeController@contact')->name('contact');
+    Route::get('cambio/idioma/{lang}', 'HomeController@cambioIdioma')
+        ->where([
+            'lang' => 'en|es'
+        ])
+        ->name('cambio.idioma');
+
+
+});

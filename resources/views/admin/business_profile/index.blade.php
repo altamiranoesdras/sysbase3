@@ -2,6 +2,7 @@
 
 @section('title_page','Configuraciones')
 @include('layouts.plugins.bootstrap_fileinput')
+@include('layouts.plugins.select2')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -12,7 +13,7 @@
                     <h1 class="m-0 text-dark">Configuraciones</h1>
                 </div><!-- /.col -->
                 <div class="col">
-                    <a class="btn btn-outline-info float-right" href="{!! route('home') !!}">
+                    <a class="btn btn-outline-info float-right" href="{!! route('admin.home') !!}">
                         <i class="fa fa-home"></i>
                         <span class="d-none d-sm-inline">Inicio</span>
                     </a>
@@ -28,52 +29,34 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <form action="{{route('profile.business.store')}}" method="post" class="wait-on-submit" enctype="multipart/form-data">
-                                @csrf
-                                <div class="form-row">
-
-                                    <div class="form-group col-sm-6">
-                                        {!! Form::label('name', 'Logo:') !!}
-                                        <input type="file" name="logo" class="form-control" id="logo">
+                    <form action="{{route('profile.business.store')}}" method="post" class="wait-on-submit" enctype="multipart/form-data">
+                        @csrf
+                        <div class="card">
+                            <div class="card-header p-2">
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item"><a class="nav-link active" href="#basicas" data-toggle="tab">Basicas</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#seo" data-toggle="tab">SEO</a></li>
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="basicas">
+                                        @include('admin.business_profile.basic')
                                     </div>
-                                    <div class="form-group col-sm-6">
-                                        {!! Form::label('name', 'Icono:') !!}
-                                        <span class="text-muted">
-                                            Se utliza en diferntes lugares como: favicon, pwa, preload
-                                        </span>
-                                        <input type="file" name="icono" class="form-control" id="icono">
+                                    <div class="tab-pane" id="seo">
+                                        @include('admin.business_profile.seo')
                                     </div>
-                                    <div class="form-group col-sm-4">
-                                        {!! Form::label('nombre_negocio', 'Nombre Empresa:') !!}
-                                        {!! Form::text('name', config('app.name'), ['class' => 'form-control']) !!}
-                                    </div>
-                                    <div class="form-group col-sm-4">
-                                        {!! Form::label('telefono_negocio', 'Teléfono Empresa:') !!}
-                                        {!! Form::text('telefono_negocio', config('app.telefono_negocio'), ['class' => 'form-control']) !!}
-                                    </div>
-                                    <div class="form-group col-sm-4">
-                                        {!! Form::label('direccion_negocio', 'Dirección Empresa:') !!}
-                                        {!! Form::text('direccion_negocio', config('app.direccion_negocio'), ['class' => 'form-control']) !!}
-                                    </div>
-                                    <div class="form-group col-sm-4">
-                                        {!! Form::label('correo_negocio', 'Correo Empresa:') !!}
-                                        {!! Form::text('correo_negocio', config('app.correo_negocio'), ['class' => 'form-control']) !!}
-                                    </div>
-
-                                    <div class="form-group col-sm-12 text-right mt-3">
-                                        <a href="{!! route('profile.business') !!}" class="btn btn-outline-secondary ml-2">Cancelar</a>
-                                        <button type="submit"  class="btn btn-outline-success ml-3">Guardar</button>
-                                    </div>
-
                                 </div>
-
-                            </form>
-
+                            </div>
+                            <div class="card-footer">
+                                <div class="form-group col-sm-12 text-right mt-3">
+                                    <a href="{!! route('profile.business') !!}" class="btn btn-outline-secondary ml-2">Cancelar</a>
+                                    <button type="submit"  class="btn btn-outline-success ml-3">Guardar</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <!-- /.card -->
+                        <!-- /.card -->
+                    </form>
                 </div>
                 <!-- /.col-md-6 -->
             </div>
