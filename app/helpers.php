@@ -244,6 +244,7 @@ function getFondoLogin($conversion=''){
 }
 
 
+
 function getIcono($conversion=''){
 
     /**
@@ -296,10 +297,11 @@ function nfp($numero,$cantidad_decimales=null,$separador_decimal=null,$separador
 
 /**
  * @param \Illuminate\Database\Eloquent\Collection $items
+ * @param $items
  * @param $id
  * @return null
  */
-function validaCheched($items = null,$id){
+function validaChecked($items,$id){
     if (!$items){
         return null;
     }
@@ -360,10 +362,6 @@ function generarManifest()
     File::put(public_path('manifest.json'),$json);
 }
 
-
-
-
-
 function getLenguajeActualDesc(){
 
     $idiomas = [
@@ -374,4 +372,26 @@ function getLenguajeActualDesc(){
     $actual = app()->getLocale();
 
     return __($idiomas[$actual]);
+}
+
+function autoIncrementFaker()
+{
+    for ($i = 0; $i < 1000; $i++) {
+        yield $i;
+    }
+}
+
+function separaNombreCompleto($nombre_completo){
+
+    $nombres = explode(' ',$nombre_completo,3);
+
+    if(count($nombres)==1){
+        return [$nombres[0],''];
+    }
+    elseif(count($nombres)>2){
+        return [$nombres[0]." ".$nombres[1],$nombres[2]];
+    }else{
+        return $nombres;
+    }
+
 }
