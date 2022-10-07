@@ -1,63 +1,66 @@
-## Instalación
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-### Programas necesarios
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-#### Laragon https://sourceforge.net/projects/laragon/files/releases/4.0/laragon-full.exe
+## About Laravel
 
-#### Visual studio code  https://code.visualstudio.com/Download
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-### Crear una base de datos llamada sysbase
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-     (Esto en cualquier administrador de base de datos como heidi)
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-### Configuraciones para laragon
+## Learning Laravel
 
-#### Cambiara {name}.test por {name}.local
-![](preferencias_larago1.png)
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-#### Desmarcar casilla de apache, marcar casilla de Nginx y cambiar el puerto del mismo a 80
+You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-![](preferencias_larago2.png)
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-### Ejecutar los siguientes comando en la terminal que incluye laragon
+## Laravel Sponsors
 
-![](terminal_laragon.png)
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-##### clonar repo
-    git clone https://github.com/altamiranoesdras/sysbase.git
+### Premium Partners
 
-##### Acceder a la carpeta
-    cd sysbase
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Cubet Techno Labs](https://cubettech.com)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[Many](https://www.many.co.uk)**
+- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+- **[DevSquad](https://devsquad.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[OP.GG](https://op.gg)**
+- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+- **[Lendio](https://lendio.com)**
 
-##### instalar dependencias
+## Contributing
 
-    composer install 		
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-#### crear archivo de entornos
+## Code of Conduct
 
-    cp .env.example .env   
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-##### generar clave de seguridad de la aplicación
-    php artisan key:generate  
+## Security Vulnerabilities
 
-##### crear tablas y datos
-    php artisan migrate --seed
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-##### crear enlace simbólico para carpeta storage
-     php artisan storage:link
+## License
 
-##### Instalar clientes por defecto de Laravel Passport (Autenticación para apis)
-     php artisan passport:install
-
-### Recargar servidor web de laragon para que se genere el virtual host
-
-![](recargar_webserver_laragon.png)
-
-### Puedes ingresar por el navegador con  http://sysbase.local/
-
-#### Credenciales de acceso
-    Usuario : dev
-    Password : admin
- 
-
-
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

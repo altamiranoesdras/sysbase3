@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Configuration;
+use Doctrine\DBAL\Query\QueryBuilder;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
@@ -31,7 +32,7 @@ class ConfigurationDataTable extends DataTable
      * @param \App\Models\Configuration $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Configuration $model)
+    public function query(Configuration $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -70,7 +71,7 @@ class ConfigurationDataTable extends DataTable
      *
      * @return array
      */
-    protected function getColumns()
+    protected function getColumns(): array
     {
         return [
             'id',
@@ -85,7 +86,7 @@ class ConfigurationDataTable extends DataTable
      *
      * @return string
      */
-    protected function filename()
+    protected function filename(): string
     {
         return 'configurationsdatatable_' . time();
     }

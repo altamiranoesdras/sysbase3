@@ -4,6 +4,7 @@ namespace App\DataTables;
 
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
@@ -40,7 +41,7 @@ class UserDataTable extends DataTable
      * @param \App\Models\User $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(User $model)
+    public function query(User $model): QueryBuilder
     {
         $query = $model->newQuery()->with(['roles','media']);
 
@@ -103,7 +104,7 @@ class UserDataTable extends DataTable
      *
      * @return array
      */
-    protected function getColumns()
+    protected function getColumns(): array
     {
         return [
 
@@ -126,7 +127,7 @@ class UserDataTable extends DataTable
      *
      * @return string
      */
-    protected function filename()
+    protected function filename(): string
     {
         return 'UserDataTable2_' . date('YmdHis');
     }

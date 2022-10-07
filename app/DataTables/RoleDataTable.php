@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Role;
+use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
@@ -31,7 +32,7 @@ class RoleDataTable extends DataTable
      * @param \App\Models\Role $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Role $model)
+    public function query(Role $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -68,7 +69,7 @@ class RoleDataTable extends DataTable
      *
      * @return array
      */
-    protected function getColumns()
+    protected function getColumns(): array
     {
         return [
             'name',
@@ -81,7 +82,7 @@ class RoleDataTable extends DataTable
      *
      * @return string
      */
-    protected function filename()
+    protected function filename(): string
     {
         return 'rolesdatatable_' . time();
     }

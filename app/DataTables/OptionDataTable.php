@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Option;
+use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
@@ -31,7 +32,7 @@ class OptionDataTable extends DataTable
      * @param \App\Models\Option $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Option $model)
+    public function query(Option $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -68,7 +69,7 @@ class OptionDataTable extends DataTable
      *
      * @return array
      */
-    protected function getColumns()
+    protected function getColumns(): array
     {
         return [
             'option_id',
@@ -86,7 +87,7 @@ class OptionDataTable extends DataTable
      *
      * @return string
      */
-    protected function filename()
+    protected function filename(): string
     {
         return 'optionsdatatable_' . time();
     }
