@@ -1,11 +1,11 @@
 /*!
- * bootstrap-fileinput v5.2.7
+ * bootstrap-fileinput v5.5.1
  * http://plugins.krajee.com/file-input
  *
  * Krajee default styling for bootstrap-fileinput.
  *
  * Author: Kartik Visweswaran
- * Copyright: 2014 - 2021, Kartik Visweswaran, Krajee.com
+ * Copyright: 2014 - 2022, Kartik Visweswaran, Krajee.com
  *
  * Licensed under the BSD-3-Clause
  * https://github.com/kartik-v/bootstrap-fileinput/blob/master/LICENSE.md
@@ -22,7 +22,6 @@ $green: #008000 !default;
 $mine-shaft: #333 !default;
 $boston-blue: #428bca !default;
 $pelorous: #17a2b8 !default;
-$tapa: #777 !default;
 $black: #000 !default;
 $white: #fff !default;
 $black-20: rgba(0, 0, 0, 0.2) !default;
@@ -203,6 +202,10 @@ input[type=file].file-loading {
 
 .file-caption {
   @extend %set-relative;
+
+  .input-group {
+    align-items: center;
+  }
 
   .file-caption-name {
     width: 100%;
@@ -385,7 +388,7 @@ input[type=file].file-loading {
     text-align: center;
     padding-top: multiply($pad, 0.8);
     font-size: multiply($pad, 2.2);
-    color: $tapa;
+    color: $mountain-mist;
     margin-bottom: multiply($pad, 3);
   }
 
@@ -837,8 +840,49 @@ input[type=file].file-loading {
   box-shadow: none;
 }
 
-.file-preview-other-frame, .file-preview-object, .kv-zoom-body {
+.file-preview-other-frame, .file-preview-object, .kv-file-content, .kv-zoom-body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.btn-kv-rotate {
+  display: none;
+}
+
+.kv-file-rotate {
+  display: none;
+}
+
+.rotatable {
+  &:not(.hide-rotate) {
+    .btn-kv-rotate {
+      display: inline-block;
+    }
+
+    .kv-file-rotate {
+      display: inline-block;
+    }
+  }
+
+  .file-zoom-detail {
+    transform-origin: center center;
+  }
+
+  .kv-file-content {
+    transform-origin: center center;
+
+    > :first-child {
+      transform-origin: center center;
+    }
+
+  }
+}
+
+.rotate-animate {
+  transition: transform 0.3s ease;
+}
+
+.kv-overflow-hidden {
+  overflow: hidden;
 }

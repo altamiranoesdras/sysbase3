@@ -1,6 +1,93 @@
 Change Log: `bootstrap-fileinput`
 =================================
 
+## version 5.5.1
+
+**Date**: 17-Aug-2022
+
+- (enh #1809, #1810): Correct minified plugins file "filetype.min.js".
+- (enh #1803): Add image/vnd.dwg signature.
+- (bug #1802): Fix SassError Invalid parent selector.
+- (bug #1782): Fix loading indicator reset for same file selected again.
+
+## version 5.5.0
+
+**Major Release: BC Breaking**
+
+**Date**: 29-Jun-2022
+
+- (enh #1800): Styling enhancements for thumbnail content and rotatable images.
+- (enh #1799): Correct translations containing `{maxSize}, {minSize}, {size}`.
+- (enh #1796): Add two new Font Awesome 6.x themes.
+  - `fa6`
+  - `explorer-fa6` 
+- (enh #1795): Refactoring and renaming of all Font Awesome based themes.
+  - Refactor and rename `fa` theme to `fa4`
+  - Refactor and rename `fas` theme to `fa5`
+  - Refactor and rename `explorer-fa` theme to `explorer-fa4`
+  - Refactor and rename `explorer-fas` theme to `explorer-fa5`
+- (enh #1792): Advanced file mime type detection for preview irrespective of file extension.
+   - Load the following new plugin files before fileinput.min.js
+```html
+<!-- buffer.min.js and filetype.min.js are necessary in the order listed for advanced mime type parsing and more correct
+     preview. This is a feature available since v5.5.0 and is needed if you want to ensure file mime type is parsed 
+     correctly even if the local file's extension is named incorrectly. This will ensure more correct preview of the
+     selected file (note: this will involve a small processing overhead in scanning of file contents locally). -->
+<script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/js/plugins/buffer.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/js/plugins/filetype.min.js" type="text/javascript"></script>
+```   
+- (enh #1791): Enhance preview update automatically when `addToStack` is called.
+- (enh #1785): Image rotation button action feature in thumbnail and zoom.
+  - New property `rotatableFileExtensions` defaults to ['jpg', 'jpeg', 'png', 'gif'], 
+  - New properties in `fileActionSettings` (`rotateIcon`, `rotateTitle`, `rotateClass`)
+  - New properties `previewZoomButtonIcons.rotate`, `previewZoomButtonClasses.rotate`  and `previewZoomButtonTitles.rotate`
+
+- (enh #1788): Enhancements to `showUserError` method.
+  - New 3rd parameter `retainErrorHistory` which allows you to retain previous errors (defaults to false) 
+```js
+var $input = $('#file-input-id');
+$input.on('fileuploaderror', function(event, data) {
+  var userMessage = 'We could not process the upload because of a server error.',
+      retainErrorHistory = true; // whether to retain error history
+  // to show error specific to each file pass `data` as received above (the `data` object must contain the `fileId` property)
+  $input.fileinput('showUserError', userMessage, data, retainErrorHistory);
+
+  // to show a constant global error not specific to each file do not pass `data` (uncomment below line to achieve this)
+  // $input.fileinput('showUserError', userMessage); 
+});
+```
+- (enh #1694): Thumbnail of images only but detailed preview/iconic view of all other files.
+    - New property `alwaysPreviewFileExtensions` - setup as an array list of extensions whose content will always be shown in preview (irrespective of `preferIconPreview` or `previewFileIconSettings` which will be used to control icon preview for configured types).
+
+## version 5.2.8
+
+**Date**: 10-May-2022
+
+- (enh #1787): Enhance image size validation messages.
+- (enh #1786): Correct Uzbek Cyrillic Translation file name.
+- (enh #1784): Correct documentation for `layoutTemplates.fileIcon`.
+- (bug #1783): Correct image size validation checks (for min and max width/height).
+- (enh #1782): Correct loading indicator reset for file selection.
+- (bug #1780): Correct `autoReplace` behavior to clear already uploaded thumbnails.
+- (enh #1779): New plugin method `showUserError` and new event `fileusererror`. 
+  Usage:
+```js
+var $input = $('#file-input-id');
+$input.on('fileuploaderror', function(event, data) {
+  var userMessage = 'We could not process the upload because of a server error.';
+
+  // to show error specific to each file pass `data` as received above (the `data` object must contain the `fileId` property)
+  $input.fileinput('showUserError', userMessage, data);
+
+  // to show a constant global error not specific to each file do not pass `data` (uncomment below line to achieve this)
+  // $input.fileinput('showUserError', userMessage); 
+});
+```
+- (enh #1777): Ensure `alt` property for image is applied via intial preview config if set.
+- (bug #1775): Correct syntax error for Danish translations.
+- (bug #1773): Fix blank preview issue for large files > `maxFilePreviewSize`.
+- (enh #1771): Human readable sizes in messages like `msgSizeTooLarge`.
+
 ## version 5.2.7
 
 **Date**: 17-Dec-2021
