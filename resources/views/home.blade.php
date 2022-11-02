@@ -1,172 +1,110 @@
 @extends('layouts.app')
 
-@section('title_page',__('Home'))
+@section('titulo_pagina',__('Home'))
 
-@push('css')
-
-    <style>
-        .small-box {
-            /*max-width: 10rem;*/
-        }
-        .small-box-footer {
-            padding-bottom: 0.5rem;
-            padding-top: 0.5rem;
-            font-size: 1rem;
-            font-weight: bold;
-        }
-        li > span.move  {
-            cursor: move;
-        }
-    </style>
-@endpush
-
+@include('layouts.plugins.jquery-ui')
 
 @section('content')
 
     <div id="root">
 
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col">
-                        <h1 class="m-0 text-dark">Bienvenido {{Auth::user()->name}}</h1>
-                    </div><!-- /.col -->
-                    <div class="col ">
-                        <button class="btn btn-outline-primary float-right" @click="editShortcut()">
-                            <i class="fa fa-edit"></i>
-                            <span class="d-none d-sm-inline">
+        <div class="content-header row">
+            <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h2 class="content-header-title float-start mb-0">
+                            Bienvenido {{Auth::user()->name}}
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
+                <div class="mb-1 breadcrumb-right">
+                    <button class="btn btn-outline-primary float-right" :class="{'btn-outline-success' : editando}" @click="editando=!editando">
+                        <i class="fa fa-edit" v-if="!editando"></i>
+                        <i class="fa fa-save" v-if="editando"></i>
+                        <span class="d-none d-sm-inline" v-if="!editando">
                             {{__('Edit Shortcuts')}}
                         </span>
-                        </button>
-                        <button class="btn btn-outline-success float-right mr-3" @click="newShortcut()">
-                            <i class="fa fa-plus"></i>
-                            <span class="d-none d-sm-inline">
-                            {{__('New Shortcut')}}
+                        <span class="d-none d-sm-inline" v-if="editando">
+                            {{__('Finish edition')}}
                         </span>
-                        </button>
+                    </button>
 
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
+                </div>
+            </div>
         </div>
-        <!-- /.content-header -->
+
 
         <!-- Main content -->
-        <div class="content" >
-            <div class="container-fluid">
+
+        <div class="content-body">
+            <br>
+            <div class="row">
+
+                <div class="col-6 col-lg-3 px-2" v-for="shortcut in user.shortcuts">
 
 
-                <div class="row">
-
-                    <div class="col-6 col-lg-2 px-4" v-for="shortcut in user.shortcuts">
-                        <!-- small card -->
+                    <div class="card text-center">
+                        <span class="badge rounded-pill bg-danger badge-up badge-glow" v-if="editando">
+                            <button type="button" class="btn btn-flat-warning btn-sm px-1" @click="removerAcceso(shortcut)">
+                                <i class="fa fa-trash fa-3x  text-white"></i>
+                            </button>
+                        </span>
                         <a :href="shortcut.ruta_evaluada" >
-                            <div class="small-box text-center p-0" :class="shortcut.color">
-                                <div class="inner">
-                                    <h1 class="m-0">
+                            <div class="card-body p-1">
+                                <div class="avatar p-50 mb-1" :class="shortcut.color">
+                                    <div class="avatar-content">
                                         <i class="fa fa-2x" :class="shortcut.icono_l" style="color: white !important;"></i>
-                                    </h1>
-
+                                    </div>
                                 </div>
-                                <span class="small-box-footer">
-								    <span v-text="shortcut.nombre"></span>
-                                    <i class="fa fa-arrow-circle-right"></i>
-							    </span>
+                                <p class="card-text" v-text="shortcut.nombre">
+                                </p>
                             </div>
                         </a>
                     </div>
 
-
-
                 </div>
 
             </div>
-            <!-- /.container-fluid -->
-        </div>
-        <!-- /.content -->
 
+            <div class="row" v-show="editando">
 
-        <!-- Modal -->
-        <div class="modal fade" id="modalEditShortCuts" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-             aria-hidden="true">
-            <div class="modal-dialog " role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modelTitleId">
-                            {{__('Edit your shortcuts')}}
-                        </h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-12"  >
-                                <div class="table-responsive">
-                                    <ul class=" list-group sortable">
-                                        <li  class="list-group-item py-2"  v-for="(op,index) in user.shortcuts">
-                                            <span class="move border-right mr-2 pr-2">
-                                                <i class="fa fa-arrows-alt-v "></i>
-                                            </span>
-                                            <i class="fa " :class="op.icono_l"></i>
-                                            <span v-text="op.nombre"></span>
-                                            <button type="button" class="btn btn-xs btn-outline-danger" @click.prevent="removeShortcut(op,index)">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
-                        <button type="button" class="btn btn-primary">{{__('Save')}}</button>
-                    </div>
+                <div class="col-12">
+                    <hr>
+                    <br>
                 </div>
-            </div>
-        </div>
 
-        <div class="modal fade" id="modalOptionUser" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modelTitleId">
-                            Nuevo {{__('Shortcut')}}
-                        </h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-6 col-lg-3 p-3"  v-for="op in user.options">
-                                <!-- small card -->
-                                <button type="button" @click.prevent="addShortcut(op)">
+                <div class="col-6 col-lg-3 px-2" v-for="option in opcionesFiltradas">
 
-                                    <div class="small-box text-center" :class="op.color">
-                                        <div class="inner">
-                                            <h1>
-                                                <i class="fa fa-2x" :class="op.icono_l" style="color: white !important;"></i>
-                                            </h1>
-                                        </div>
-                                        <span class="small-box-footer">
-                                            <span v-text="op.nombre"></span>
-                                            <i class="fa fa-arrow-circle-right"></i>
-                                        </span>
+                    <div class="card text-center">
+                        <span class="badge rounded-pill bg-success badge-up badge-glow" v-if="editando">
+                            <button type="button" class="btn btn-flat-warning btn-sm px-1" @click="agregarAcceso(option)">
+                                <i class="fa fa-plus text-white"></i>
+                            </button>
+                        </span>
+                        <a :href="option.ruta_evaluada" >
+                            <div class="card-body p-1">
+                                <div class="avatar p-50 mb-1" :class="option.color">
+                                    <div class="avatar-content">
+                                        <i class="fa fa-2x" :class="option.icono_l" style="color: white !important;"></i>
                                     </div>
-                                </button>
+                                </div>
+                                <p class="card-text" v-text="option.nombre">
+                                </p>
                             </div>
-                        </div>
+                        </a>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
-                    </div>
+
                 </div>
+
             </div>
+
         </div>
+
+
+
+
     </div>
 
 
@@ -175,6 +113,7 @@
 @endsection
 
 @push('scripts')
+    <script src="{{asset('app-assets/vendors/js/blockui/blockui.min.js')}}"></script>
     <script>
         const app = new Vue({
             el: '#root',
@@ -182,91 +121,104 @@
                 this.getData();
             },
             data: {
-                user : [],
+                user : @json($user),
+                editando: false,
             },
             methods: {
                 async getData(){
-                    this.user= [];
-                    let url = "{{route("api.users.show",auth()->user()->id)}}";
+
 
                     try {
-                        let res = await axios.get(url);
+                        let res = await axios.get(route("api.users.show",this.user.id));
 
                         this.user = res.data.data;
-
-
                         logI(res);
 
                     }catch (e) {
-                        if(e.response.data){
-                            logI(e.response.data);
-                        }else{
-                            logI(e);
-                        }
-
+                        notifyErrorApi(e)
                     }
                 },
-                newShortcut(){
-                    $("#modalOptionUser").modal('show');
-                },
-                editShortcut(){
-                    $("#modalEditShortCuts").modal('show');
-                },
-                async addShortcut(option){
-                    let url = "{{route("api.users.add_shortcut",auth()->user()->id)}}";
+                async agregarAcceso(option){
 
-                    url = url+"?option="+option.id;
+                    this.bloquear();
 
                     try {
-                        let res = await axios.get(url);
-
-                        this.user = res.data.data;
+                        let res = await axios.post(route("api.users.add_shortcut",this.user.id), {'option' : option.id});
 
                         this.getData();
+
                         iziTs(res.data.message);
+
                         logI(res);
 
                     }catch (e) {
-                        if(e.response.data){
-                            logI(e.response.data);
-                            iziTe(e.response.data.message);
-                        }else{
-                            logI(e);
-                        }
-
+                        notifyErrorApi(e)
                     }
+
+                    this.desbloquear();
                 },
-                async removeShortcut(option,index){
+                async removerAcceso(option){
 
-                    logI('remove shortcut',option,index);
+                    this.bloquear();
+                    logI('remove shortcut',option);
 
-                    let url = "{{route("api.users.remove_shortcut",auth()->user()->id)}}";
-
-                    url = url+"?option="+option.id;
 
                     try {
-                        let res = await axios.get(url);
+                        let res = await axios.post(route("api.users.remove_shortcut",this.user.id),{'option' : option.id});
 
                         iziTs(res.data.message);
-                        this.user.shortcuts.splice(index,1);
+                        this.getData();
                         logI(res);
 
                     }catch (e) {
 
-
-                        if(e.response.data){
-                            logI(e.response.data);
-                            iziTe(e.response.data.message);
-                        }else{
-                            logI(e);
-                        }
+                        notifyErrorApi(e)
 
                     }
+
+                    this.desbloquear();
+                },
+                bloquear(){
+                    $.blockUI({
+                        message: `
+                            <div class="d-flex justify-content-center align-items-center">
+                                <p class="me-50 mb-0">{{__('Please wait')}}...</p>
+                                <div class="spinner-grow spinner-grow-sm text-white" role="status">
+                                </div>
+                            </div>
+                        `,
+                        css: {
+                            backgroundColor: 'transparent',
+                            color: '#fff',
+                            border: '0'
+                        },
+                        overlayCSS: {
+                            opacity: 0.5
+                        }
+                    });
+                },
+                desbloquear(){
+                    $.unblockUI();
+                }
+            },
+            computed: {
+                opcionesFiltradas(){
+                    return this.user.options.filter( (opcion) => {
+                        let esAcceso = this.user.shortcuts.find(shortcut => shortcut.id == opcion.id)
+
+                        if (!esAcceso && opcion.ruta!=''){
+                            return  opcion;
+                        }
+
+                    });
                 }
             }
+
         });
 
         $(function(){
+
+
 
             $( ".sortable" ).sortable({
                 update: function( event, ui ) {
@@ -281,6 +233,7 @@
 
         });
     </script>
+
 
 @endpush
 
