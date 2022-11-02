@@ -4,7 +4,7 @@
 
 
 <!-- Name Field -->
-{!! Form::label('name', 'Name:') !!}
+{!! Form::label('name', 'Nombre:') !!}
 {!! $user->name !!}<br>
 
 
