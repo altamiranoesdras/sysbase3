@@ -27,4 +27,14 @@ class CreateUserRequest extends FormRequest
     {
         return User::$rules;
     }
+
+    public function all($keys = null)
+    {
+        $inputs = parent::input();
+
+
+        $inputs['password'] = bcrypt($inputs['password']);
+
+        return $inputs;
+    }
 }
