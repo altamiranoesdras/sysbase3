@@ -40,6 +40,8 @@
     @include('layouts.partials.navbar')
     @include('layouts.partials.sidebar')
 
+
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         @can('access_option')
