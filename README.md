@@ -27,7 +27,7 @@
     git clone https://github.com/altamiranoesdras/sysbase3.git
 
 ##### Acceder a la carpeta
-    cd sysbase
+    cd sysbase3
 
 ##### instalar dependencias
 
