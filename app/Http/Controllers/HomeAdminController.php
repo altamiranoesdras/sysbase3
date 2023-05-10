@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeAdminController extends Controller
@@ -24,7 +25,10 @@ class HomeAdminController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = User::with(['shortcuts','options'])->find(auth()->user()->id);
+
+
+        return view('home',compact('user'));
     }
 
     public function dashboard()

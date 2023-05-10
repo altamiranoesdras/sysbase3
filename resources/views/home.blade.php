@@ -121,7 +121,7 @@
                 this.getData();
             },
             data: {
-                user : @json($user ?? null),
+                user : @json($user),
                 editando: false,
             },
             methods: {
