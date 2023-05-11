@@ -32,7 +32,7 @@
     @stack('css')
 
 </head>
-<body class="hold-transition sidebar-mini layout-fixed dark-mode">
+<body class="hold-transition sidebar-mini layout-fixed ">
 <div class="wrapper">
 
 
