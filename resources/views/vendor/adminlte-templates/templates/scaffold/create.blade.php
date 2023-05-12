@@ -1,45 +1,71 @@
 @@extends('layouts.app')
 
+@@section('titulo_pagina', 'Crear {{$config->modelNames->human}}')
+
 @@section('content')
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-12">
-                    <h1>
-@if($config->options->localized)
-                    @@lang('crud.create') @@lang('models/{!! $config->modelNames->camelPlural !!}.singular')
-@else
-                    Create {{ $config->modelNames->humanPlural }}
-@endif
-                    </h1>
+
+
+    <div class="content-header row">
+        <div class="content-header-left col-md-9 col-12 mb-2">
+            <div class="row breadcrumbs-top">
+                <div class="col-12">
+                    <h2 class="content-header-title float-start mb-0">
+                        Crear {{ $config->modelNames->human }}
+                    </h2>
                 </div>
             </div>
         </div>
-    </section>
-
-    <div class="content px-3">
-
-        @@include('adminlte-templates::common.errors')
-
-        <div class="card">
-
-            @{!! Form::open(['route' => '{{ $config->prefixes->getRoutePrefixWith('.') }}{{ $config->modelNames->camelPlural }}.store']) !!}
-
-            <div class="card-body">
-
-                <div class="row">
-                    @@include('{{ $config->prefixes->getViewPrefixForInclude() }}{{ $config->modelNames->snakePlural }}.fields')
+        <div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
+            <div class="mb-1 breadcrumb-right">
+                <div class="dropdown">
+                    <a class="btn btn-outline-secondary float-right"
+                       href="@{{ url()->previous() }}"
+                    >
+                        <i class="fa fa-arrow-left"></i>
+                        Regresar
+                    </a>
                 </div>
-
             </div>
-
-            <div class="card-footer">
-                @{!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="@{{ route('{!! $config->prefixes->getRoutePrefixWith('.') !!}{!! $config->modelNames->camelPlural !!}.index') }}" class="btn btn-default">@if($config->options->localized) @@lang('crud.cancel') @else Cancel @endif</a>
-            </div>
-
-            @{!! Form::close() !!}
-
         </div>
     </div>
+
+    <div class="content-body">
+
+        <div class="row">
+            <div class="col-12">
+
+                @@include('layouts.partials.request_errors')
+
+                <div class="card">
+                    @{!! Form::open(['route' => '{{ $config->prefixes->getRoutePrefixWith('.') }}{{ $config->modelNames->camelPlural }}.store','class' => 'esperar']) !!}
+
+                    <div class="card-body">
+
+                        <div class="row">
+                            @@include('{{ $config->prefixes->getViewPrefixForInclude() }}{{ $config->modelNames->snakePlural }}.fields')
+                        </div>
+
+                    </div>
+
+                    <div class="card-footer text-end">
+
+                        <a href="@{{ route('{!! $config->prefixes->getRoutePrefixWith('.') !!}{!! $config->modelNames->camelPlural !!}.index') }}"
+                           class="btn btn-outline-secondary round me-1">
+                            <i class="fa fa-ban"></i>
+                            Cancelar
+                        </a>
+
+                        <button type="submit" class="btn btn-success round">
+                            <i class="fa fa-save"></i>
+                            Guardar
+                        </button>
+                    </div>
+
+                    @{!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 @@endsection

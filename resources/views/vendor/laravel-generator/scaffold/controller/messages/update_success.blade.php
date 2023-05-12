@@ -1,5 +1,5 @@
 @if($config->options->localized)
-    Flash::success(__('messages.updated', ['model' => __('models/{{ $config->modelNames->camelPlural }}.singular')]));
+    flash()->success(__('messages.updated', ['model' => __('models/{{ $config->modelNames->camelPlural }}.singular')]));
 @else
-    Flash::success('{{ $config->modelNames->human }} updated successfully.');
+    flash()->success('{{ $config->modelNames->human }} actualizado.');
 @endif

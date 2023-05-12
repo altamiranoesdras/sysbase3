@@ -34,7 +34,7 @@ class {{ $config->modelNames->name }}APIController extends AppBaseController
             __('messages.retrieved', ['model' => __('models/{{ $config->modelNames->camelPlural }}.plural')])
         );
 @else
-        return $this->sendResponse(${{ $config->modelNames->camelPlural }}->toArray(), '{{ $config->modelNames->humanPlural }} retrieved successfully');
+        return $this->sendResponse(${{ $config->modelNames->camelPlural }}->toArray(), '{{ $config->modelNames->humanPlural }} ');
 @endif
     }
 
@@ -52,7 +52,7 @@ class {{ $config->modelNames->name }}APIController extends AppBaseController
             __('messages.saved', ['model' => __('models/{{ $config->modelNames->camelPlural }}.singular')])
         );
 @else
-        return $this->sendResponse(${{ $config->modelNames->camel }}->toArray(), '{{ $config->modelNames->human }} saved successfully');
+        return $this->sendResponse(${{ $config->modelNames->camel }}->toArray(), '{{ $config->modelNames->human }} guardado');
 @endif
     }
 
@@ -68,7 +68,7 @@ class {{ $config->modelNames->name }}APIController extends AppBaseController
                 __('messages.not_found', ['model' => __('models/{{ $config->modelNames->camelPlural }}.singular')])
             );
 @else
-            return $this->sendError('{{ $config->modelNames->human }} not found');
+            return $this->sendError('{{ $config->modelNames->human }} no encontrado');
 @endif
         }
 
@@ -78,7 +78,7 @@ class {{ $config->modelNames->name }}APIController extends AppBaseController
             __('messages.retrieved', ['model' => __('models/{{ $config->modelNames->camelPlural }}.singular')])
         );
 @else
-        return $this->sendResponse(${{ $config->modelNames->camel }}->toArray(), '{{ $config->modelNames->human }} retrieved successfully');
+        return $this->sendResponse(${{ $config->modelNames->camel }}->toArray(), '{{ $config->modelNames->human }} ');
 @endif
     }
 
@@ -94,7 +94,7 @@ class {{ $config->modelNames->name }}APIController extends AppBaseController
             __('messages.not_found', ['model' => __('models/{{ $config->modelNames->camelPlural }}.singular')])
             );
 @else
-            return $this->sendError('{{ $config->modelNames->human }} not found');
+            return $this->sendError('{{ $config->modelNames->human }} no encontrado');
 @endif
         }
 
@@ -107,7 +107,7 @@ class {{ $config->modelNames->name }}APIController extends AppBaseController
             __('messages.updated', ['model' => __('models/{{ $config->modelNames->camelPlural }}.singular')])
         );
 @else
-        return $this->sendResponse(${{ $config->modelNames->camel }}->toArray(), '{{ $config->modelNames->name }} updated successfully');
+        return $this->sendResponse(${{ $config->modelNames->camel }}->toArray(), '{{ $config->modelNames->name }} actualizado');
 @endif
     }
 
@@ -123,7 +123,7 @@ class {{ $config->modelNames->name }}APIController extends AppBaseController
                 __('messages.not_found', ['model' => __('models/{{ $config->modelNames->camelPlural }}.singular')])
             );
 @else
-            return $this->sendError('{{ $config->modelNames->human }} not found');
+            return $this->sendError('{{ $config->modelNames->human }} no encontrado');
 @endif
         }
 
@@ -135,7 +135,7 @@ class {{ $config->modelNames->name }}APIController extends AppBaseController
             __('messages.deleted', ['model' => __('models/{{ $config->modelNames->camelPlural }}.singular')])
         );
 @else
-        return $this->sendSuccess('{{ $config->modelNames->human }} deleted successfully');
+        return $this->sendSuccess('{{ $config->modelNames->human }} eliminado');
 @endif
     }
 }

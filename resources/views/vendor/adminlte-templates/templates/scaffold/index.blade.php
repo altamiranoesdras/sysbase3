@@ -1,39 +1,44 @@
 @@extends('layouts.app')
 
+@@section('titulo_pagina', '{{$config->modelNames->humanPlural}}')
+
 @@section('content')
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-@if($config->options->localized)
-                    <h1>@@lang('models/{{ $config->modelNames->camelPlural }}.plural')</h1>
-@else
-                    <h1>{{ $config->modelNames->humanPlural }}</h1>
-@endif
+
+    <div class="content-header row">
+        <div class="content-header-left col-md-9 col-12 mb-2">
+            <div class="row breadcrumbs-top">
+                <div class="col-12">
+                    <h2 class="content-header-title float-start mb-0">
+                        <h1>{{ $config->modelNames->humanPlural }}</h1>
+                    </h2>
                 </div>
-                <div class="col-sm-6">
-                    <a class="btn btn-primary float-right"
+            </div>
+        </div>
+        <div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
+            <div class="mb-1 breadcrumb-right">
+                <div class="dropdown">
+                    <a class="btn btn-outline-success float-end round"
                        href="@{{ route('{!! $config->prefixes->getRoutePrefixWith('.') !!}{!! $config->modelNames->camelPlural !!}.create') }}">
-@if($config->options->localized)
-                         @@lang('crud.add_new')
-@else
-                        Add New
-@endif
+                        <i class="fa fa-plus"></i>
+                        Agregar
                     </a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <div class="content px-3">
 
-        @@include('flash::message')
 
-        <div class="clearfix"></div>
+    <div class="content-body">
 
-        <div class="card">
-            {!! $table !!}
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    {!! $table !!}
+                </div>
+            </div>
         </div>
+
     </div>
 
 @@endsection

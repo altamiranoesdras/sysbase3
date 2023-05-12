@@ -30,4 +30,9 @@ class Update{{ $config->modelNames->name }}Request extends FormRequest
         {!! $uniqueRules !!}
         return $rules;
     }
+
+    public function messages()
+    {
+        return {{ $config->modelNames->name }}::$messages;
+    }
 }

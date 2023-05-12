@@ -64,25 +64,29 @@ class {{ $config->modelNames->name }}DataTable extends DataTable
                 ->stateSave(false)
                 ->orderBy(1,'desc')
                 ->dom('
-                    <"row mb-2"
-                        <"col-sm-12 col-md-6" B>
-                        <"col-sm-12 col-md-6" f>
+                    <"card-header border-bottom p-1"
+                    <"head-label">
+                    <"dt-action-buttons text-start" B>
                     >
-                    rt
-                    <"row"
-                        <"col-sm-6 order-2 order-sm-1" ip>
-                        <"col-sm-6 order-1 order-sm-2 text-right" l>
+                    <"d-flex justify-content-between align-items-center mx-0 row"
+                    <"col-sm-12 col-md-6" l>
+                    <"col-sm-12 col-md-6" f>
                     >
+                    t
+                    <"d-flex justify-content-between mx-0 row"
+                    <"col-sm-12 col-md-6" i>
+                    <"col-sm-12 col-md-6" p>
+                    o>
                 ')
                 ->buttons(
 
                     Button::make('reset')
-                        ->addClass('')
+                        ->addClass('btn btn-outline-secondary')
                         ->text('<i class="fa fa-undo"></i> <span class="d-none d-sm-inline">Reiniciar</span>'),
 
                     Button::make('export')
                         ->extend('collection')
-                        ->addClass('')
+                        ->addClass('dt-button buttons-collection btn btn-outline-secondary dropdown-toggle me-2')
                         ->text('<i class="fa fa-download"></i> <span class="d-none d-sm-inline">Exportar</span>')
                         ->buttons([
                             Button::make('print')

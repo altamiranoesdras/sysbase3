@@ -12,10 +12,17 @@ use {{ $config->namespaces->request }}\Update{{ $config->modelNames->name }}Requ
 use {{ $config->namespaces->app }}\Http\Controllers\AppBaseController;
 use {{ $config->namespaces->model }}\{{ $config->modelNames->name }};
 use Illuminate\Http\Request;
-use Flash;
 
 class {{ $config->modelNames->name }}Controller extends AppBaseController
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:Ver {{ $config->modelNames->humanPlural }}')->only('show');
+        $this->middleware('permission:Crear {{ $config->modelNames->humanPlural }}')->only(['create','store']);
+        $this->middleware('permission:Editar {{ $config->modelNames->humanPlural }}')->only(['edit','update']);
+        $this->middleware('permission:Eliminar {{ $config->modelNames->humanPlural }}')->only('destroy');
+    }
     /**
      * Display a listing of the {{ $config->modelNames->name }}.
      */

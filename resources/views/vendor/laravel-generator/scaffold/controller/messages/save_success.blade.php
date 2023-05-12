@@ -1,5 +1,5 @@
 @if($config->options->localized)
-    Flash::success(__('messages.saved', ['model' => __('models/{{ $config->modelNames->camelPlural }}.singular')]));
+    flash()->success(__('messages.saved', ['model' => __('models/{{ $config->modelNames->camelPlural }}.singular')]));
 @else
-    Flash::success('{{ $config->modelNames->human }} saved successfully.');
+    flash()->success('{{ $config->modelNames->human }} guardado.');
 @endif

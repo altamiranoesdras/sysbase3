@@ -28,4 +28,9 @@ class Create{{ $config->modelNames->name }}Request extends FormRequest
     {
         return {{ $config->modelNames->name }}::$rules;
     }
+
+    public function messages()
+    {
+        return {{ $config->modelNames->name }}::$messages;
+    }
 }

@@ -2,9 +2,7 @@
 {{--    @@include('layouts.datatables_css')--}}
 @@endpush
 
-<div class="card-body px-4">
-    @{!! $dataTable->table(['width' => '100%', 'class' => 'table table-striped table-bordered']) !!}
-</div>
+@{!! $dataTable->table(['width' => '100%', 'class' => 'table table-striped ']) !!}
 
 @@push('scripts')
 {{--    @@include('layouts.datatables_js')--}}

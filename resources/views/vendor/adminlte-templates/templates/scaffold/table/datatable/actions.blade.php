@@ -1,20 +1,24 @@
-@{!! Form::open(['route' => ['{{ $config->prefixes->getRoutePrefixWith('.') }}{{ $config->modelNames->camelPlural }}.destroy', ${{ $config->primaryName }}], 'method' => 'delete']) !!}
-<div class='btn-group'>
-    <a href="@{{ route('{!! $config->prefixes->getRoutePrefixWith('.') !!}{!! $config->modelNames->camelPlural !!}.show', ${!! $config->primaryName !!}) }}" class='btn btn-default btn-xs'>
+@@can('Ver {{ $config->modelNames->humanPlural }}')
+    <a href="@{{ route('{!! $config->prefixes->getRoutePrefixWith('.') !!}{!! $config->modelNames->camelPlural !!}.show', ${!! $config->primaryName !!}) }}" data-toggle="tooltip" title="Ver" class='btn btn-icon btn-flat-secondary rounded-circle'>
         <i class="fa fa-eye"></i>
     </a>
-    <a href="@{{ route('{!! $config->prefixes->getRoutePrefixWith('.') !!}{!! $config->modelNames->camelPlural !!}.edit', ${!! $config->primaryName !!}) }}" class='btn btn-default btn-xs'>
+@@endcan
+
+@@can('Editar {{ $config->modelNames->humanPlural }}')
+    <a href="@{{ route('{!! $config->prefixes->getRoutePrefixWith('.') !!}{!! $config->modelNames->camelPlural !!}.edit', ${!! $config->primaryName !!}) }}" data-toggle="tooltip" title="Editar" class='btn btn-icon btn-flat-info rounded-circle'>
         <i class="fa fa-edit"></i>
     </a>
-    @{!! Form::button('<i class="fa fa-trash"></i>', [
-        'type' => 'submit',
-        'class' => 'btn btn-danger btn-xs',
-@if($config->options->localized)
-        'onclick' => "return confirm('Are you sure?')"
-@else
-        'onclick' => 'return confirm("'.__('crud.are_you_sure').'")'
-@endif
+@@endcan
 
-    ]) !!}
-</div>
-@{!! Form::close() !!}
+@@can('Eliminar {{ $config->modelNames->humanPlural }}')
+    <a href="#" onclick="deleteItemDt(this)" data-id="@{{ ${!! $config->primaryName !!} }}" data-toggle="tooltip" title="Eliminar" class='btn btn-icon btn-flat-danger rounded-circle'>
+        <i class="fa fa-trash-alt"></i>
+    </a>
+
+
+    <form action="@{{ route('{!! $config->prefixes->getRoutePrefixWith('.') !!}{!! $config->modelNames->camelPlural !!}.destroy', ${!! $config->primaryName !!}) }}" method="POST" id="delete-form@{{ ${!! $config->primaryName !!} }}">
+        @@method('DELETE')
+        @@csrf
+    </form>
+@@endcan
+
