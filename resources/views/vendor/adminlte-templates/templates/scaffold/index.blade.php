@@ -4,41 +4,46 @@
 
 @@section('content')
 
-    <div class="content-header row">
-        <div class="content-header-left col-md-9 col-12 mb-2">
-            <div class="row breadcrumbs-top">
-                <div class="col-12">
-                    <h2 class="content-header-title float-start mb-0">
-                        <h1>{{ $config->modelNames->humanPlural }}</h1>
-                    </h2>
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>{{ $config->modelNames->humanPlural }}</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-right">
+                        <li class="breadcrumb-item">
+                            <a class="btn btn-outline-success"
+                               href="@{{ route('{!! $config->prefixes->getRoutePrefixWith('.') !!}{!! $config->modelNames->camelPlural !!}.create') }}">
+                                <i class="fa fa-plus"></i>
+                                <span class="d-none d-sm-inline">Nuevo</span>
+                            </a>
+                        </li>
+                    </ol>
                 </div>
             </div>
-        </div>
-        <div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
-            <div class="mb-1 breadcrumb-right">
-                <div class="dropdown">
-                    <a class="btn btn-outline-success float-end round"
-                       href="@{{ route('{!! $config->prefixes->getRoutePrefixWith('.') !!}{!! $config->modelNames->camelPlural !!}.create') }}">
-                        <i class="fa fa-plus"></i>
-                        Agregar
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+        </div><!-- /.container-fluid -->
+    </section>
 
+    <div class="content">
+        <div class="container-fluid">
+            <div class="clearfix"></div>
 
+            <div class="clearfix"></div>
+            <div class="card card-primary">
+                <div class="card-body">
 
-    <div class="content-body">
-
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
                     {!! $table !!}
+
                 </div>
             </div>
-        </div>
+            <div class="text-center">
 
+            </div>
+        </div>
     </div>
+
+
 
 @@endsection

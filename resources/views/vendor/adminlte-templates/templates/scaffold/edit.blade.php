@@ -22,7 +22,7 @@
             <div class="mb-1 breadcrumb-right">
                 <div class="dropdown">
                     <a class="btn btn-outline-secondary float-right"
-                       href="@{{ url()->previous() }}"
+                       href="@{{ route('{!! $config->prefixes->getRoutePrefixWith('.') !!}{!! $config->modelNames->camelPlural  !!}.index') }}"
                     >
                         <i class="fa fa-arrow-left"></i>
                         Regresar
