@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "arcanedev/log-viewer": "^9.0",
         "arielcr/numero-a-letras": "dev-master",
         "barryvdh/laravel-snappy": "^1.0",
         "doctrine/dbal": "^3.4",
