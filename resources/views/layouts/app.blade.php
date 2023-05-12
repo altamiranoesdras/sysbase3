@@ -30,6 +30,7 @@
     ------------------------------------------------------------------------>
     @yield('css')
     @stack('css')
+    @stack('estilos')
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed ">
