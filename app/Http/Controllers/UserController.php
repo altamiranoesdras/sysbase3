@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\Scopes\ScopeUserDataTable;
 use App\DataTables\UserDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateUserRequest;
@@ -38,6 +39,11 @@ class UserController extends AppBaseController
      */
     public function index(UserDataTable $userDataTable)
     {
+
+        $scope = new ScopeUserDataTable();
+        $userDataTable->addScope($scope);
+
+
         return $userDataTable->render('admin.users.index');
     }
 
