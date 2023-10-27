@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title_page',__('Edit Role'))
+@section('titulo_pagina',__('Edit Role'))
 @include('partials.plugins.gijgo')
 
 @section('content')

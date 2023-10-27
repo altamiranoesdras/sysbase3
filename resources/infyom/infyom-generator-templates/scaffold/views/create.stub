@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title_page',__('New $MODEL_NAME_HUMAN$'))
+@section('titulo_pagina',__('New $MODEL_NAME_HUMAN$'))
 
 @section('content')
 

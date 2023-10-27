@@ -1,6 +1,6 @@
 @extends('layouts.blank')
 
-@section('title_page',__('Reset Password'))
+@section('titulo_pagina',__('Reset Password'))
 
 @section('content')
 <div class="container">

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title_page','Prueba Apis')
+@section('titulo_pagina','Prueba Apis')
 
 @section('content')
     <!-- Content Header (Page header) -->

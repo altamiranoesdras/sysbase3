@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title_page',__('Home'))
+@section('titulo_pagina',__('Home'))
 @include('partials.plugins.fullcalendar')
 
 @section('content')

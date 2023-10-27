@@ -1,6 +1,6 @@
 @extends('layouts.blank')
 
-@section('title_page',__('Login'))
+@section('titulo_pagina',__('Login'))
 
 @section('content')
 

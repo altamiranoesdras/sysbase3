@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title_page',"Menu de: {$user->name}")
+@section('titulo_pagina',"Menu de: {$user->name}")
 @include('partials.plugins.gijgo')
 
 @section('content')

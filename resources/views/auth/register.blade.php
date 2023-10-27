@@ -1,6 +1,6 @@
 @extends('layouts.blank')
 
-@section('title_page',__('Register'))
+@section('titulo_pagina',__('Register'))
 
 @section('content')
     <div class="login-box">

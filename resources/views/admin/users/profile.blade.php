@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title_page',__('Profile'))
+@section('titulo_pagina',__('Profile'))
 
 @push('css')
     <style>

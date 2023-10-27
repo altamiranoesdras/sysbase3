@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title_page',__('Confirm Password'))
+@section('titulo_pagina',__('Confirm Password'))
 
 @section('content')
 <div class="container">

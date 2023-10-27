@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title_page',__('Dashboard'))
+@section('titulo_pagina',__('Dashboard'))
 
 @section('content')
     <!-- Content Header (Page header) -->

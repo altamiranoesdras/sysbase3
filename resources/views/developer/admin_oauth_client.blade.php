@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title_page',__('Passport Clients'))
+@section('titulo_pagina',__('Passport Clients'))
 
 @section('content')
     <!-- Content Header (Page header) -->
