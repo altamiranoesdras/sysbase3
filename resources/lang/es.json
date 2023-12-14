@@ -61,6 +61,56 @@
     "You cannot associate roles superior to yours": "No puedes asociar roles superiores al tuyo",
     "You cannot edit user with role superior to yours": "No puede editar un usuario con un rol superior al suyo",
     "You cannot delete user with role superior to yours": "No puede eliminar un usuario con un rol superior al suyo",
-    "You cannot edit user menu with role superior to yours": "No puede editar el menú del usuario con un rol superior al suyo"
+    "You cannot edit user menu with role superior to yours": "No puede editar el menú del usuario con un rol superior al suyo",
+
+    "Forgot Password?" : "¿Has olvidado tu contraseña?",
+    "Enter your email and we'll send you instructions to reset your password" : "Ingrese su correo electrónico y le enviaremos instrucciones para restablecer su contraseña",
+    "Email" : "Correo electrónico",
+    "Send reset link" : "Enviar enlace de reinicio",
+    "Back to login" : "Atrás para iniciar sesión",
+
+    "Welcome to" : "Bienvenido a",
+    "Please sign-in to your account and start the adventure" : "Inicia sesión en tu cuenta y comienza la aventura",
+    "Sign in" : "Iniciar sesión",
+    "New on our platform?" : "¿Nuevo en nuestra plataforma?",
+    "Create an account" : "Crea una cuenta",
+
+    "Adventure starts here" : "Aquí comienza la aventura",
+    "Make your app management easy and fun!" :     "¡Haz que la administración de tu aplicación sea fácil y divertida!",
+    "I agree to" :      "Estoy de acuerdo con",
+    "Sign up" :     "Registrarme",
+    "Already have an account?" :      "¿Ya tienes una cuenta?",
+    "Sign in instead" :     "Iniciar sesión en su lugar",
+
+    "Your new password must be different from previously used passwords" : "Su nueva contraseña debe ser diferente de las contraseñas utilizadas anteriormente",
+    "New Password" : "Nueva contraseña",
+    "Set New Password" : "Establecer nueva contraseña",
+
+    "Inbox" : "Bandeja de entrada",
+    "Task" : "Tarea",
+    "Chats" : "charlas",
+    "Settings" : "Ajustes",
+    "Pricing" : "Precios",
+    "FAQ" : "Preguntas más frecuentes",
+
+    "Edit Shortcuts" : "Editar accesos",
+    "New Shortcut" : "Nuevo acceso",
+    "Please wait" : "Espere por favor",
+    "Finish edition" : "Finalizar edición",
+    "Forbidden" : "Prohibido",
+    "Server Error" : "Error del Servidor",
+    "Too Many Requests" : "Demasiadas solicitudes",
+    "Page Expired" : "Página caducada",
+    "Page Not Found" : "Página no encontrada",
+    "Unauthorized" : "No autorizado",
+    "Oops! \uD83D\uDE16 The requested URL was not found on this server." : "¡Ups! \uD83D\uDE16 La URL solicitada no se encontró en este servidor.",
+    "You are not authorized!" : "No estas autorizado!",
+    "Service Unavailable" : "Servicio no disponible",
+    "Sorry for the inconvenience but we're performing some maintenance at the moment" : "Disculpe las molestias, pero estamos realizando un mantenimiento en este momento",
+    "Read all notifications" : "Ver todas",
+    "New" : "Nuevo",
+    "Notifications" : "Notificaciones",
+    "cancel" : "cancelar"
+
 
 }

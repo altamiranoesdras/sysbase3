@@ -41,12 +41,12 @@
                         <div class="form-group col-sm-12 mt-2 text-right">
 
                             <a href="@{{ route('{!! $config->prefixes->getRoutePrefixWith('.') !!}{!! $config->modelNames->camelPlural !!}.index') }}"
-                               class="btn btn-outline-secondary round me-1 mr-1">
+                               class="btn btn-outline-secondary mr-2">
                                 <i class="fa fa-ban"></i>
                                 Cancelar
                             </a>
 
-                            <button type="submit" class="btn btn-success round">
+                            <button type="submit" class="btn btn-success">
                                 <i class="fa fa-save"></i>
                                 Guardar
                             </button>

@@ -4,23 +4,16 @@
 
 @@section('content')
 
-    <div class="content-header row">
-        <div class="content-header-left col-md-9 col-12 mb-2">
-            <div class="row breadcrumbs-top">
-                <div class="col-12">
-                    <h2 class="content-header-title float-start mb-0">
-                        @if($config->options->localized)
-                            @@lang('crud.edit') @@lang('models/{!! $config->modelNames->camelPlural !!}.singular')
-                        @else
-                            Editar {{ $config->modelNames->human }}
-                        @endif
-                    </h2>
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>
+                        Editar {{ $config->modelNames->human }}
+                    </h1>
                 </div>
-            </div>
-        </div>
-        <div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
-            <div class="mb-1 breadcrumb-right">
-                <div class="dropdown">
+                <div class="col ">
                     <a class="btn btn-outline-secondary float-right"
                        href="@{{ route('{!! $config->prefixes->getRoutePrefixWith('.') !!}{!! $config->modelNames->camelPlural  !!}.index') }}"
                     >
@@ -29,47 +22,49 @@
                     </a>
                 </div>
             </div>
-        </div>
-    </div>
+        </div><!-- /.container-fluid -->
+    </section>
 
-    <div class="content-body">
+    <div class="content">
+        <div class="container-fluid">
 
-        <div class="row">
-            <div class="col-12">
+            <div class="row">
+                <div class="col-12">
 
-                @@include('layouts.partials.request_errors')
+                    @@include('layouts.partials.request_errors')
 
-                <div class="card">
+                    <div class="card">
 
-                    @{!! Form::model(${{ $config->modelNames->camel }}, ['route' => ['{{ $config->prefixes->getRoutePrefixWith('.') }}{{ $config->modelNames->camelPlural }}.update', ${{ $config->modelNames->camel }}->{{ $config->primaryName }}], 'method' => 'patch','class' => 'esperar']) !!}
+                        @{!! Form::model(${{ $config->modelNames->camel }}, ['route' => ['{{ $config->prefixes->getRoutePrefixWith('.') }}{{ $config->modelNames->camelPlural }}.update', ${{ $config->modelNames->camel }}->{{ $config->primaryName }}], 'method' => 'patch','class' => 'esperar']) !!}
 
-                    <div class="card-body">
-                        <div class="row">
-                            @@include('{{ $config->prefixes->getViewPrefixForInclude() }}{{ $config->modelNames->snakePlural }}.fields')
+                        <div class="card-body">
+                            <div class="row">
+                                @@include('{{ $config->prefixes->getViewPrefixForInclude() }}{{ $config->modelNames->snakePlural }}.fields')
+                            </div>
                         </div>
+
+                        <div class="card-footer text-right bg-white border-top">
+
+                            <a href="@{{ route('{!! $config->prefixes->getRoutePrefixWith('.') !!}{!! $config->modelNames->camelPlural !!}.index') }}"
+                               class="btn btn-outline-secondary mr-1">
+                                <i class="fa fa-ban"></i>
+                                Cancelar
+                            </a>
+
+                            <button type="submit" class="btn btn-success">
+                                <i class="fa fa-save"></i>
+                                Guardar
+                            </button>
+                        </div>
+
+                        @{!! Form::close() !!}
+
+
                     </div>
-
-                    <div class="card-footer text-end">
-
-                        <a href="@{{ route('{!! $config->prefixes->getRoutePrefixWith('.') !!}{!! $config->modelNames->camelPlural !!}.index') }}"
-                           class="btn btn-outline-secondary round me-1">
-                            <i class="fa fa-ban"></i>
-                            Cancelar
-                        </a>
-
-                        <button type="submit" class="btn btn-success round">
-                            <i class="fa fa-save"></i>
-                            Guardar
-                        </button>
-                    </div>
-
-                    @{!! Form::close() !!}
-
-
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
 
 @@endsection

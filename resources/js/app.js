@@ -64,15 +64,6 @@ window.Cropper  = require('cropperjs/dist/cropper.min');
 require('./fn.js');
 
 
-var { log, logI, logD, logW, logE, logConfig } = require("./override-console-log");
-
-window.log = log;
-window.logI = logI;
-window.logD = logD;
-window.logW = logW;
-window.logE = logE;
-window.logConfig = logConfig;
-
 Vue.component(
     'passport-clients',
     require('./components/passport/Clients.vue').default

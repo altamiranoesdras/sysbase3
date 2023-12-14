@@ -5174,19 +5174,6 @@ window.Cropper = __webpack_require__(/*! cropperjs/dist/cropper.min */ "./node_m
  * Funciones personalizadas
  */
 __webpack_require__(/*! ./fn.js */ "./resources/js/fn.js");
-var _require = __webpack_require__(/*! ./override-console-log */ "./resources/js/override-console-log.js"),
-  log = _require.log,
-  logI = _require.logI,
-  logD = _require.logD,
-  logW = _require.logW,
-  logE = _require.logE,
-  logConfig = _require.logConfig;
-window.log = log;
-window.logI = logI;
-window.logD = logD;
-window.logW = logW;
-window.logE = logE;
-window.logConfig = logConfig;
 Vue.component('passport-clients', (__webpack_require__(/*! ./components/passport/Clients.vue */ "./resources/js/components/passport/Clients.vue")["default"]));
 Vue.component('passport-authorized-clients', (__webpack_require__(/*! ./components/passport/AuthorizedClients.vue */ "./resources/js/components/passport/AuthorizedClients.vue")["default"]));
 Vue.component('passport-personal-access-tokens', (__webpack_require__(/*! ./components/passport/PersonalAccessTokens.vue */ "./resources/js/components/passport/PersonalAccessTokens.vue")["default"]));
@@ -5301,16 +5288,13 @@ window.iziTe = function (tile, message) {
     message: message || " "
   });
 };
-$('.duallistbox').bootstrapDualListbox();
-$('[data-toggle="tooltip"]').tooltip();
-window.Swal = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 window.alertSucces = function (title, text, html, time) {
   html = html || false;
   var options = {
     icon: 'success',
     title: title,
     text: text || false,
-    timer: time || 5000
+    timer: time || 0
   };
   if (html) {
     delete options.text;
@@ -5390,7 +5374,8 @@ window.deleteItemDt = function (data) {
     cancelButtonColor: '#d33',
     confirmButtonText: 'Si, elimínalo\n!'
   }).then(function (result) {
-    if (result.value) {
+    if (result.isConfirmed) {
+      esperar();
       $("#delete-form" + id).submit();
     }
   });
@@ -5433,7 +5418,10 @@ window.notifyErrorApi = function (e) {
 
 // Global event bus
 Vue.prototype.$eventBus = new Vue();
-$(".wait-on-submit").submit(function (event) {
+$('.esperar').submit(function (e) {
+  esperar();
+});
+window.esperar = function (e) {
   Swal.fire({
     title: 'Espera por favor...',
     allowEscapeKey: false,
@@ -5441,7 +5429,48 @@ $(".wait-on-submit").submit(function (event) {
     timerProgressBar: true
   });
   Swal.showLoading();
-});
+};
+window.finEspera = function (e) {
+  Swal.close();
+};
+
+/**
+ * Formatea los datos de los inputs de un formulario
+ * solo se utiliza en archivos de servicio DataTable ej: VentaDataTable.php
+ * en el método html
+ * ->ajax([
+ *      'data' => "function(data) { formatDataDatatables($('#formFiltersDatatables').serializeArray(), data);   }"
+ *  ])
+ * @param source
+ * @param target
+ */
+window.formatDataDataTables = function (source, target) {
+  $(source).each(function (i, v) {
+    // console.log(i, v);
+    if (v['name'].includes('[]')) {
+      if (!target[v['name']]) {
+        target[v['name']] = [v['value']];
+      } else {
+        target[v['name']].push(v['value']);
+      }
+    } else {
+      target[v['name']] = v['value'];
+    }
+  });
+};
+var _require = __webpack_require__(/*! ./override-console-log */ "./resources/js/override-console-log.js"),
+  log = _require.log,
+  logI = _require.logI,
+  logD = _require.logD,
+  logW = _require.logW,
+  logE = _require.logE,
+  logConfig = _require.logConfig;
+window.log = log;
+window.logI = logI;
+window.logD = logD;
+window.logW = logW;
+window.logE = logE;
+window.logConfig = logConfig;
 
 /***/ }),
 
