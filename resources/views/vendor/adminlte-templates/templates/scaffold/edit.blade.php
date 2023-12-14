@@ -38,7 +38,7 @@
                         @{!! Form::model(${{ $config->modelNames->camel }}, ['route' => ['{{ $config->prefixes->getRoutePrefixWith('.') }}{{ $config->modelNames->camelPlural }}.update', ${{ $config->modelNames->camel }}->{{ $config->primaryName }}], 'method' => 'patch','class' => 'esperar']) !!}
 
                         <div class="card-body">
-                            <div class="row">
+                            <div class="form-row">
                                 @@include('{{ $config->prefixes->getViewPrefixForInclude() }}{{ $config->modelNames->snakePlural }}.fields')
                             </div>
                         </div>

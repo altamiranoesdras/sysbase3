@@ -27,18 +27,25 @@
     <div class="content">
         <div class="container-fluid">
 
-            @@include('layouts.partials.request_errors')
+            <div class="row">
+                <div class="col-12">
 
-            <div class="card">
-                <div class="card-body">
+                    @@include('layouts.partials.request_errors')
 
-                    @{!! Form::open(['route' => '{{ $config->prefixes->getRoutePrefixWith('.') }}{{ $config->modelNames->camelPlural }}.store','class' => 'esperar']) !!}
-                    <div class="form-row">
+                    <div class="card">
 
-                        @@include('{{ $config->prefixes->getViewPrefixForInclude() }}{{ $config->modelNames->snakePlural }}.fields')
+                        @{!! Form::open(['route' => '{{ $config->prefixes->getRoutePrefixWith('.') }}{{ $config->modelNames->camelPlural }}.store','class' => 'esperar']) !!}
 
-                        <!-- Submit Field -->
-                        <div class="form-group col-sm-12 mt-2 text-right">
+                        <div class="card-body">
+
+                            <div class="form-row">
+
+                                @@include('{{ $config->prefixes->getViewPrefixForInclude() }}{{ $config->modelNames->snakePlural }}.fields')
+
+                            </div>
+                        </div>
+
+                        <div class="card-footer text-right bg-white border-top">
 
                             <a href="@{{ route('{!! $config->prefixes->getRoutePrefixWith('.') !!}{!! $config->modelNames->camelPlural !!}.index') }}"
                                class="btn btn-outline-secondary mr-2">
@@ -51,8 +58,10 @@
                                 Guardar
                             </button>
                         </div>
+
+                        @{!! Form::close() !!}
+
                     </div>
-                    @{!! Form::close() !!}
                 </div>
             </div>
         </div>
