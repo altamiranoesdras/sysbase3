@@ -8,98 +8,104 @@
 
     <div id="root">
 
-        <div class="content-header row">
-            <div class="content-header-left col-md-9 col-12 mb-2">
-                <div class="row breadcrumbs-top">
-                    <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">
-                            Bienvenido {{Auth::user()->name}}
-                        </h2>
+
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Bienvenido {{auth()->user()->name}}</h1>
                     </div>
-                </div>
-            </div>
-            <div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
-                <div class="mb-1 breadcrumb-right">
-                    <button class="btn btn-outline-primary float-right" :class="{'btn-outline-success' : editando}" @click="editando=!editando">
-                        <i class="fa fa-edit" v-if="!editando"></i>
-                        <i class="fa fa-save" v-if="editando"></i>
-                        <span class="d-none d-sm-inline" v-if="!editando">
+                    <div class="col ">
+                        <button class="btn btn-outline-primary float-right" :class="{'btn-outline-success' : editando}" @click="editando=!editando">
+                            <i class="fa fa-edit" v-if="!editando"></i>
+                            <i class="fa fa-save" v-if="editando"></i>
+                            <span class="d-none d-sm-inline" v-if="!editando">
                             {{__('Edit Shortcuts')}}
                         </span>
-                        <span class="d-none d-sm-inline" v-if="editando">
+                            <span class="d-none d-sm-inline" v-if="editando">
                             {{__('Finish edition')}}
                         </span>
-                    </button>
-
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </div><!-- /.container-fluid -->
+        </section>
 
 
         <!-- Main content -->
 
-        <div class="content-body">
-            <br>
-            <div class="row">
 
-                <div class="col-6 col-lg-3 px-2" v-for="shortcut in user.shortcuts">
+        <div class="content">
+            <div class="container-fluid ">
 
 
-                    <div class="card text-center">
-                        <span class="badge rounded-pill bg-danger badge-up badge-glow" v-if="editando">
-                            <button type="button" class="btn btn-flat-warning btn-sm px-1" @click="removerAcceso(shortcut)">
-                                <i class="fa fa-trash fa-3x  text-white"></i>
-                            </button>
-                        </span>
-                        <a :href="shortcut.ruta_evaluada" >
-                            <div class="card-body p-1">
-                                <div class="avatar p-50 mb-1" :class="shortcut.color">
-                                    <div class="avatar-content">
-                                        <i class="fa fa-2x" :class="shortcut.icono_l" style="color: white !important;"></i>
-                                    </div>
+
+                <div class="row px-2">
+
+                    <div class="col-6 col-lg-2 px-4" v-for="shortcut in user.shortcuts">
+
+
+                        <div class="card text-center">
+
+                            <span class="badge bg-danger" v-if="editando">
+                                <button type="button" class="btn btn-outline-danger btn-sm rounded-circle" @click="removerAcceso(shortcut)">
+                                    <i class="fa fa-trash  text-white"></i>
+                                </button>
+                            </span>
+
+                            <a :href="shortcut.ruta_evaluada" >
+                                <div class="card-body p-1">
+
+
+                                    <span class="fa-stack fa-xl my-2" >
+                                      <i class="fa fa-circle fa-stack-2x " :class="shortcut.color"></i>
+                                      <i class="fa fa-stack-1x fa-inverse" :class="shortcut.icono_l"></i>
+                                    </span>
+
+                                    <p class="card-text mb-2" v-text="shortcut.nombre"></p>
                                 </div>
-                                <p class="card-text" v-text="shortcut.nombre">
-                                </p>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row px-2" v-show="editando">
+
+                    <div class="col-12">
+                        <hr>
+                        <br>
+                    </div>
+
+                    <div class="col-6 col-lg-2 px-4" v-for="option in opcionesFiltradas">
+
+                        <div class="card text-center">
+                            <span class="badge bg-success " v-if="editando">
+                                <button type="button" class="btn btn-flat-warning btn-sm px-1" @click="agregarAcceso(option)">
+                                    <i class="fa fa-plus text-white"></i>
+                                </button>
+                            </span>
+                            <a :href="option.ruta_evaluada" >
+                                <div class="card-body p-1">
+
+
+                                    <span class="fa-stack fa-xl my-2" >
+                                      <i class="fa fa-circle fa-stack-2x " :class="option.color"></i>
+                                      <i class="fa fa-stack-1x fa-inverse" :class="option.icono_l"></i>
+                                    </span>
+
+                                    <p class="card-text mb-2" v-text="option.nombre"></p>
+                                </div>
+                            </a>
+                        </div>
+
                     </div>
 
                 </div>
 
             </div>
-
-            <div class="row" v-show="editando">
-
-                <div class="col-12">
-                    <hr>
-                    <br>
-                </div>
-
-                <div class="col-6 col-lg-3 px-2" v-for="option in opcionesFiltradas">
-
-                    <div class="card text-center">
-                        <span class="badge rounded-pill bg-success badge-up badge-glow" v-if="editando">
-                            <button type="button" class="btn btn-flat-warning btn-sm px-1" @click="agregarAcceso(option)">
-                                <i class="fa fa-plus text-white"></i>
-                            </button>
-                        </span>
-                        <a :href="option.ruta_evaluada" >
-                            <div class="card-body p-1">
-                                <div class="avatar p-50 mb-1" :class="option.color">
-                                    <div class="avatar-content">
-                                        <i class="fa fa-2x" :class="option.icono_l" style="color: white !important;"></i>
-                                    </div>
-                                </div>
-                                <p class="card-text" v-text="option.nombre">
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-
-                </div>
-
-            </div>
-
         </div>
 
 
@@ -235,5 +241,17 @@
     </script>
 
 
+@endpush
+
+@push('css')
+    <style>
+        .card > .badge {
+            font-size: 10px;
+            font-weight: 400;
+            position: absolute;
+            right: -20px;
+            top: -20px;
+        }
+    </style>
 @endpush
 
