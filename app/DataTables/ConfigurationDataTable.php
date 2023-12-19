@@ -32,7 +32,7 @@ class ConfigurationDataTable extends DataTable
      * @param \App\Models\Configuration $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Configuration $model): QueryBuilder
+    public function query(Configuration $model)
     {
         return $model->newQuery();
     }
