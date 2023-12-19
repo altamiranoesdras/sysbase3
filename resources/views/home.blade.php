@@ -41,12 +41,12 @@
 
 
 
-                <div class="row px-2">
+                <div class="row px-2 sortable">
 
-                    <div class="col-6 col-lg-2 px-4" v-for="shortcut in user.shortcuts">
+                    <div class="col-6 col-lg-2 px-4 py-2 " v-for="shortcut in shortcuts">
 
 
-                        <div class="card text-center">
+                        <div class="card text-center opciones-ordenar" :data-id="shortcut.id">
 
                             <span class="badge bg-danger" v-if="editando">
                                 <button type="button" class="btn btn-outline-danger btn-sm rounded-circle" @click="removerAcceso(shortcut)">
@@ -79,7 +79,7 @@
                         <br>
                     </div>
 
-                    <div class="col-6 col-lg-2 px-4" v-for="option in opcionesFiltradas">
+                    <div class="col-6 col-lg-2 px-4" v-for="option in opcionesSinAgregar">
 
                         <div class="card text-center">
                             <span class="badge bg-success " v-if="editando">
@@ -121,13 +121,14 @@
 @push('scripts')
     <script src="{{asset('app-assets/vendors/js/blockui/blockui.min.js')}}"></script>
     <script>
-        const app = new Vue({
+        const vmShortcuts = new Vue({
             el: '#root',
             created() {
                 this.getData();
             },
             data: {
                 user : @json($user),
+                shortcuts : [],
                 editando: false,
             },
             methods: {
@@ -135,10 +136,9 @@
 
 
                     try {
-                        let res = await axios.get(route("api.users.show",this.user.id));
+                        let res = await axios.get(route("api.users.shortcuts",this.user.id));
 
-                        this.user = res.data.data;
-                        logI(res);
+                        this.shortcuts = res.data.data;
 
                     }catch (e) {
                         notifyErrorApi(e)
@@ -146,12 +146,12 @@
                 },
                 async agregarAcceso(option){
 
-                    this.bloquear();
+                    esperar();
 
                     try {
                         let res = await axios.post(route("api.users.add_shortcut",this.user.id), {'option' : option.id});
 
-                        this.getData();
+                        await this.getData();
 
                         iziTs(res.data.message);
 
@@ -161,20 +161,19 @@
                         notifyErrorApi(e)
                     }
 
-                    this.desbloquear();
+                    finEspera();
                 },
                 async removerAcceso(option){
 
-                    this.bloquear();
-                    logI('remove shortcut',option);
-
+                    esperar();
 
                     try {
+
                         let res = await axios.post(route("api.users.remove_shortcut",this.user.id),{'option' : option.id});
 
+                        await this.getData();
+
                         iziTs(res.data.message);
-                        this.getData();
-                        logI(res);
 
                     }catch (e) {
 
@@ -182,37 +181,35 @@
 
                     }
 
-                    this.desbloquear();
+                    finEspera();
                 },
-                bloquear(){
-                    $.blockUI({
-                        message: `
-                            <div class="d-flex justify-content-center align-items-center">
-                                <p class="me-50 mb-0">{{__('Please wait')}}...</p>
-                                <div class="spinner-grow spinner-grow-sm text-white" role="status">
-                                </div>
-                            </div>
-                        `,
-                        css: {
-                            backgroundColor: 'transparent',
-                            color: '#fff',
-                            border: '0'
-                        },
-                        overlayCSS: {
-                            opacity: 0.5
+                async actualizarOrden(orden){
+
+                        console.log(orden);
+                        esperar();
+
+                        try {
+
+                            let res = await axios.post(route("api.users.update_shortcut_order",this.user.id),{'orden' : orden});
+
+
+                            iziTs(res.data.message);
+
+                        }catch (e) {
+
+                            notifyErrorApi(e)
+
                         }
-                    });
-                },
-                desbloquear(){
-                    $.unblockUI();
+
+                        finEspera();
                 }
             },
             computed: {
-                opcionesFiltradas(){
+                opcionesSinAgregar(){
                     return this.user.options.filter( (opcion) => {
-                        let esAcceso = this.user.shortcuts.find(shortcut => shortcut.id == opcion.id)
+                        let esAcceso = this.shortcuts.find(shortcut => shortcut.id === opcion.id)
 
-                        if (!esAcceso && opcion.ruta!=''){
+                        if (!esAcceso && opcion.ruta!==''){
                             return  opcion;
                         }
 
@@ -227,13 +224,14 @@
 
 
             $( ".sortable" ).sortable({
-                update: function( event, ui ) {
+                update: async function( event, ui ){
 
-                    var  opciones=[];
-                    $(this).find('li').each(function (index,elemet) {
-                        opciones.push($(this).attr('id'));
+                    var  orden=[];
+                    $(this).find('.opciones-ordenar').each(function () {
+                        orden.push($(this).data('id'));
                     });
 
+                    await vmShortcuts.actualizarOrden(orden);
                 }
             }).disableSelection();
 

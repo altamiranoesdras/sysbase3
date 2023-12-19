@@ -125,6 +125,19 @@ class UserAPIController extends AppBaseController
         return $this->sendSuccess('User deleted successfully');
     }
 
+    public function listShotcuts(User $user)
+    {
+        if (empty($user)) {
+            return $this->sendError('User no encontrado');
+        }
+
+        $shortcuts = $user->shortcuts()->orderBy('pivot_orden')->get();
+
+        return $this->sendResponse($shortcuts->toArray(), 'Listo!');
+
+
+    }
+
     public function addShortcut(User $user,Request $request)
     {
 
@@ -152,6 +165,20 @@ class UserAPIController extends AppBaseController
 
         $user->shortcuts()->detach($request->option);
 
+
+        return $this->sendResponse($user->toArray(), 'Listo!');
+    }
+
+    public function updateShortcutOrden(User $user,Request $request)
+    {
+
+        if (empty($user)) {
+            return $this->sendError('User no encontrado');
+        }
+
+        foreach ($request->orden as $oden => $idShortcut) {
+            $user->shortcuts()->updateExistingPivot($idShortcut, ['orden' => $oden+1]);
+        }
 
         return $this->sendResponse($user->toArray(), 'Listo!');
     }

@@ -143,7 +143,8 @@ class User extends Authenticatable implements  MustVerifyEmail,HasMedia
 
     public function shortcuts()
     {
-        return $this->belongsToMany(Option::class,'user_shortcuts','user_id','option_id');
+        return $this->belongsToMany(Option::class,'user_shortcuts','user_id','option_id')
+            ->withPivot('orden');
     }
 
     public function getAllOptions()
