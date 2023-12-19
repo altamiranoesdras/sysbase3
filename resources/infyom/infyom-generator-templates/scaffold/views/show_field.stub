@@ -1,3 +1,0 @@
-<!-- $FIELD_NAME_TITLE$ Field -->
-{!! Form::label('$FIELD_NAME$', '$FIELD_NAME_TITLE$:') !!}
-{!! $$MODEL_NAME_CAMEL$->$FIELD_NAME$ !!}<br>

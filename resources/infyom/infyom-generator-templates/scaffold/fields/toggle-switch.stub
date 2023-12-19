@@ -1,6 +1,0 @@
-<!-- 'bootstrap / Toggle Switch $FIELD_NAME_TITLE$ Field' -->
-<div class="form-group col-sm-6">
-    {!! Form::label('$FIELD_NAME$', '$FIELD_NAME_TITLE$:') !!}
-    {!! Form::hidden('$FIELD_NAME$', 0) !!}
-    {!! Form::checkbox('$FIELD_NAME$', 1, null,  ['data-bootstrap-switch']) !!}
-</div>
