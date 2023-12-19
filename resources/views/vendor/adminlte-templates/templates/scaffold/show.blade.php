@@ -4,48 +4,51 @@
 
 @@section('content')
 
-    <div class="content-header row">
-        <div class="content-header-left col-md-9 col-12 mb-2">
-            <div class="row breadcrumbs-top">
-                <div class="col-12">
-                    <h2 class="content-header-title float-start mb-0">
-                        @if($config->options->localized)
-                            @@lang('models/{!! $config->modelNames->camelPlural !!}.singular') @@lang('crud.detail')
-
-                        @else
-                            {{ $config->modelNames->human }} detalle
-                        @endif
-                    </h2>
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>
+                        {{ $config->modelNames->human }} detalle
+                    </h1>
                 </div>
-            </div>
-        </div>
-        <div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
-            <div class="mb-1 breadcrumb-right">
-                <div class="dropdown">
-                    <a class="btn btn-outline-secondary float-right"
-                       href="@{{ url()->previous() }}"
+                <div class="col ">
+                    <a class="btn btn-outline-info float-right"
+                       href="@{{ route('{!! $config->prefixes->getRoutePrefixWith('.') !!}{!! $config->modelNames->camelPlural  !!}.index') }}"
                     >
-                        <i class="fa fa-arrow-left"></i>
-                        Regresar
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;
+                        <span class="d-none d-sm-inline">Regresar</span>
                     </a>
                 </div>
             </div>
-        </div>
-    </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <div class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12">
 
 
-    <div class="content-body">
+                    <div class="card">
 
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            @@include('{{ $config->prefixes->getViewPrefixForInclude() }}{{ $config->modelNames->snakePlural }}.show_fields')
+
+                        <div class="card-body">
+
+                            <div class="form-row">
+
+                                @@include('{{ $config->prefixes->getViewPrefixForInclude() }}{{ $config->modelNames->snakePlural }}.show_fields')
+
+                            </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 @@endsection
