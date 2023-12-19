@@ -7,21 +7,54 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * Class Option
- * @package App\Models
- * @version September 21, 2021, 3:53 pm CST
+ * App\Models\Option
  *
- * @property \Illuminate\Database\Eloquent\Collection $roles
- * @property \Illuminate\Database\Eloquent\Collection $users
- * @property integer $option_id
+ * @property int $id
+ * @property int|null $option_id opcion padre
  * @property string $nombre
- * @property string $ruta
- * @property string $descripcion
+ * @property string|null $ruta
+ * @property string|null $descripcion
  * @property string $icono_l
- * @property string $icono_r
- * @property integer $orden
- * @property string $color
- * @property boolean $dev
+ * @property string|null $icono_r
+ * @property int|null $orden
+ * @property string|null $color
+ * @property bool $dev
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Option> $children
+ * @property-read int|null $children_count
+ * @property-read mixed $active
+ * @property-read mixed $ruta_evaluada
+ * @property-read mixed $text
+ * @property-read mixed $visible_to_user
+ * @property-read Option|null $parent
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Role> $roles
+ * @property-read int|null $roles_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
+ * @property-read int|null $users_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Option newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Option newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Option onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Option padres()
+ * @method static \Illuminate\Database\Eloquent\Builder|Option padresDe($chidres)
+ * @method static \Illuminate\Database\Eloquent\Builder|Option query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Option whereColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Option whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Option whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Option whereDescripcion($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Option whereDev($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Option whereIconoL($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Option whereIconoR($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Option whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Option whereNombre($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Option whereOptionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Option whereOrden($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Option whereRuta($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Option whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Option withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Option withoutTrashed()
+ * @mixin \Eloquent
  */
 class Option extends Model
 {
