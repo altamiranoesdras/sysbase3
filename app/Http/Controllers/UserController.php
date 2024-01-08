@@ -294,9 +294,14 @@ class UserController extends AppBaseController
     public function menuStore(User $user,Request $request){
 
 
-        $opciones = explode(",",$request->options);
+        if($request->options) {
 
-        $user->options()->sync($opciones);
+            $opciones = explode(",", $request->options);
+
+
+            $user->options()->sync($opciones);
+
+        }
 
         Flash::success('Menu del usuario actualizado!')->important();
 

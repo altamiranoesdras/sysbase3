@@ -31,7 +31,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            {!! Form::model($user, ['route' => ['users.menuStore', $user->id], 'method' => 'patch']) !!}
+                            {!! Form::model($user, ['route' => ['users.menuStore', $user->id], 'method' => 'patch' ,'class' => 'esperar']) !!}
 
                                 <div class="form-row">
 
@@ -39,13 +39,23 @@
                                         <div id="tree"></div>
                                     </div>
 
-                                    <div class="form-group col-sm-12">
+
+                                    <!-- Submit Field -->
+                                    <div class="form-group col-sm-12 text-right">
+
+                                        <a href="{!! route('users.index') !!}" class="btn btn-outline-secondary mr-2">
+                                            <i class="fa fa-undo"></i>
+                                            Cancelar
+                                        </a>
+
+                                        <button type="submit" class="btn btn-outline-success px-4 text-bold">
+                                            <i class="fa fa-save mr-2"></i>
+                                            Guardar
+                                        </button>
 
                                         <input type="hidden" name="options" id="options">
-                                        <button type="button" id="#btnSave"  class="btn btn-outline-success">Guardar</button>
-                                        <a href="{!! route('users.index') !!}" class="btn btn-outline-secondary">Cancelar</a>
-                                    </div>
 
+                                    </div>
                                 </div>
                             {!! Form::close() !!}
                         </div>
@@ -75,10 +85,17 @@
                 $("#options").val(checkedIds);
             });
 
-            tree.on('dataBound', function() {
+            let nodo = null;
+
+            tree.on('dataBound', () =>  {
 
                 @foreach($user->options as $op)
-                    tree.check(tree.getNodeById('{{$op->id}}'));
+
+                    nodo = tree.getNodeById(@json($op->id ?? 0))
+
+                    if(typeof nodo !== 'undefined'){
+                        tree.check(nodo);
+                    }
                 @endforeach
             })
 
