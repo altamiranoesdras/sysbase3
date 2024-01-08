@@ -5189,6 +5189,8 @@ window.number_format = __webpack_require__(/*! number_format-php */ "./node_modu
 Vue.directive('tooltip', v_tooltip__WEBPACK_IMPORTED_MODULE_2__.VTooltip);
 Vue.directive('close-popover', v_tooltip__WEBPACK_IMPORTED_MODULE_2__.VClosePopover);
 Vue.component('v-popover', v_tooltip__WEBPACK_IMPORTED_MODULE_2__.VPopover);
+$('.duallistbox').bootstrapDualListbox();
+$('[data-toggle="tooltip"]').tooltip();
 
 /***/ }),
 
