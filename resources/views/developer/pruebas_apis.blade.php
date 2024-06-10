@@ -16,43 +16,84 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <div class="content" id="root">
+    <div class="content" id="pruebaApi">
         <div class="container-fluid">
 
 
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card">
+                    <div class="card card-default card-solid">
+                        <div class="card-header">
+                            <h1 class="card-title">Prueba Apis</h1>
+                        </div>
                         <div class="card-body">
                             <form action="" @submit.prevent="runApi()">
 
                                 <div class="form-row">
 
                                     <div class="form-group col-sm-3">
-                                        {!! Form::label('method','Method:',["autocomplete" => "on"]) !!}
-                                        {!!
-                                            Form::select(
-                                                'method',
-                                                ['post' => 'post','get' => 'get','put' => 'put','patch' =>'patch','delete' => 'delete']
-                                                , "post"
-                                                , ['v-model'=>'method','class' => 'form-control','style'=>'width: 100%']
-                                            )
-                                        !!}
+                                        <label for="">Método envío</label>
+                                        <multiselect v-model="metodoSeleccionado"
+                                                     :options="metodos"
+                                                     :multiple="false"
+                                                     :close-on-select="true"
+                                                     placeholder="Seleccione uno..."
+                                                     label="nombre"
+                                                     track-by="valor">
+
+                                        </multiselect>
                                     </div>
                                     <div class="form-group col-sm-9">
-                                        {!! Form::label('api', 'API:') !!}
-                                        <input type="text" v-model="uri" class="form-control" placeholder="ej: api/items">
-                                    </div>
-                                    <div class="form-group col-sm-10">
-                                        {!! Form::label('params', 'Parametros (en forma de objeto sin llaves EJ: hola : mundo , soy : juan):') !!}
-                                        <input type="text" v-model="params" class="form-control">
-                                    </div>
-                                    <div class="form-group col-sm-2">
-                                        {!! Form::label('boton','&nbsp;') !!}
-                                        <div>
-                                            <button type="submit" id="boton" class="btn btn-info">Probar</button>
+                                        {!! Form::label('api', 'API / URL:') !!}
+
+                                        <div class="input-group">
+
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1">
+                                                    {{ url('/') }}/
+                                                </span>
+                                            </div>
+
+                                            <input type="text" v-model="uri" class="form-control" placeholder="ej: api/users">
+
+                                            <span class="input-group-btn">
+                                            <button class="btn btn-success" type="submit">
+                                                <i class="fa fa-play"></i>
+                                                 Probar
+                                            </button>
+                                        </span>
                                         </div>
                                     </div>
+
+                                    <div class="form-group col-sm-12">
+                                        {!! Form::label('params', 'Parametros:') !!}
+                                        <table class="table table-sm table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>Clave</th>
+                                                <th>Valor</th>
+                                                <th>Acción</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr v-for="(parametro,index) in parametros">
+                                                <td>
+                                                    <input type="text" v-model="parametro.key" @keyup="agregarParametro()" class="form-control" placeholder="ej: id">
+                                                </td>
+                                                <td>
+                                                    <input type="text" v-model="parametro.value" class="form-control" placeholder="ej: 1">
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-danger btn-sm" @click="eliminarParametro(index)" v-show="index>0">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+
 
                                 </div>
                             </form>
@@ -70,13 +111,9 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body" >
-                            <pre>
-
-                                <h1 class="text-center" v-show="loading">
-                                    <i class="fa fa-sync-alt fa-spin"></i>
-                                </h1>
-                                <p >@{{ result }}</p>
-                            </pre>
+                        <pre>
+                            <p v-text="result"></p>
+                        </pre>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -92,102 +129,163 @@
 
 @push('scripts')
 <script>
-    const app = new Vue({
-        el: '#root',
+    const vmPruebaApis = new Vue({
+        el: '#pruebaApi',
+        name: 'pruebaApi',
         created() {
 
         },
         data: {
-            method : 'get',
+            metodoSeleccionado : {nombre: 'GET', valor: 'get'},
+
             baseUrl : '{{ url('/')}}',
-            uri : '',
-            params : '',
+            uri : 'api/users',
+
+            parametros: [
+                {key: '', value: ''},
+            ],
+
+            parametroBacio: {
+                key: '',
+                value: ''
+            },
+
             result : '',
-            loading : false,
+
+            metodos : [
+                {nombre: 'GET', valor: 'get'},
+                {nombre: 'POST', valor: 'post'},
+                {nombre: 'PUT', valor: 'put'},
+                {nombre: 'PATCH', valor: 'patch'},
+                {nombre: 'DELETE', valor: 'delete'},
+            ],
+
 
         },
         methods: {
-            runApi(){
-                var url = this.baseUrl+'/'+this.uri;
-                var method = this.method;
-                var params = {};
+            async runApi(){
 
-                if(this.params.length > 0){
+                console.log(this.metodoSeleccionado.valor, this.uri, this.parametrosFormateados);
 
-                    $.each(this.params.split(','),function (index,element) {
-                        const temp = element.split(':');
-                        const [i, v] = temp;
-                        params[i.trim()]=v.trim();
-
-                    });
+                if (this.uri.length == 0){
+                    alertWarning("Debe ingresar una url");
+                    return;
                 }
 
-                log(url);
-                log(method);
-                log(params);
+                var url = this.baseUrl+'/'+this.uri;
 
-                var params = {params : params };
+                esperar();
 
-
-                this.loading = true;
-                switch (method) {
+                switch (this.metodoSeleccionado.valor) {
                     case 'post':
-                            axios.post(url,params).then(response => {
-                                this.result = response;
-                                this.loading = false;
-                            })
-                            .catch(error => {
-                                this.result = error.response;
-                                this.loading = false;
-                            });
+
+                        try {
+
+                            this.result = await axios.post(url, this.parametrosFormateados);
+
+                        }catch (e) {
+
+                            this.result = e.response;
+                            notifyErrorApi(e)
+                        }
+
                         break;
                     case 'get':
-                            axios.get(url,params).then(response => {
-                                this.result = response;
-                                this.loading = false;
-                            })
-                            .catch(error => {
-                                this.result = error.response;
-                                this.loading = false;
-                            });
+                        try {
+
+                            this.result = await axios.get(url, {params: this.parametrosFormateados});
+                        }catch (e) {
+                            this.result = e.response;
+                            notifyErrorApi(e);
+                        }
+
                         break;
                     case 'put':
-                            axios.put(url,params).then(response => {
-                                this.result = response;
-                                this.loading = false;
-                            })
-                            .catch(error => {
-                                this.result = error.response;
-                                this.loading = false;
-                            });
+
+                        try {
+
+                            this.result = await axios.put(url, this.parametrosFormateados);
+
+                        } catch (e) {
+                            this.result = e.response;
+                            notifyErrorApi(e);
+                        }
+
                         break;
                     case 'patch':
-                            axios.patch(url,params).then(response => {
-                                this.result = response;
-                                this.loading = false;
-                            })
-                            .catch(error => {
-                                this.result = error.response;
-                                this.loading = false;
-                            });
+                        try {
+
+                            this.result = await axios.patch(url, this.parametrosFormateados);
+
+                        } catch (e) {
+                            this.result = e.response;
+                            notifyErrorApi(e);
+                        }
                         break;
                     case 'delete':
-                            axios.delete(url,params).then(response => {
-                                this.result = response;
-                                this.loading = false;
-                            })
-                            .catch(error => {
-                                this.result = error.response;
-                                this.loading = false;
-                            });
+                        try {
+
+                            this.result = await axios.delete(url, {params: this.parametrosFormateados});
+
+                        } catch (e) {
+                            this.result = e.response;
+                            notifyErrorApi(e);
+                        }
+                        break;
+                    default:
+                        alertWarning("Metodo no soportado")
                         break;
 
                 }
 
-                this.result = url;
+                finEspera();
 
+            },
+
+            agregarParametro(){
+
+                if (this.validaUltimoParametroTieneValor()){
+                    const nuevo = Object.assign({}, this.parametroBacio);
+
+                    this.parametros.push(nuevo);
+                }
+            },
+            eliminarParametro(index){
+                this.parametros.splice(index,1);
+            },
+            validaUltimoParametroTieneValor(){
+
+                var ultimo = this.parametros[this.parametros.length - 1];
+
+                var tieneValor = false;
+
+
+                if(ultimo.key.length > 0 || ultimo.value.length > 0){
+                    tieneValor = true;
+                }
+
+                console.log(ultimo, tieneValor);
+
+                return tieneValor;
             }
+        },
+        computed: {
+            parametrosFormateados(){
+                var params = this.parametros;
+
+                var paramsFormateados = {};
+
+                params.forEach(function (param) {
+                    if(param.key.length > 0 && param.value.length > 0){
+                        paramsFormateados[param.key] = param.value;
+                    }
+                });
+
+                return paramsFormateados;
+            }
+
         }
+
     });
 </script>
 @endpush
